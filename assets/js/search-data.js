@@ -14,7 +14,7 @@ ninja.data = [{
           description: "",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/https:/github.com/LIONS-EPFL";
+            window.location.href = "/https:/arshiaafzal.github.io/SSM_Story/";
           },
         },{id: "post-lion-part-iv-results",
       
