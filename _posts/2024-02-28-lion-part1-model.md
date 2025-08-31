@@ -6,7 +6,7 @@ tags:
 giscus_comments: false
 date: 2025-08-29
 featured: false
-thumbnail: assets/img/ourlogo.png
+thumbnail: assets/img/ourlogo.PNG
 
 authors:
   - name: Arshia  
