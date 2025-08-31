@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://arshiaafzal.github.ioSSM_Story/sitemap.xml
+Sitemap: https://arshiaafzal.github.io/SSM_Story/sitemap.xml
