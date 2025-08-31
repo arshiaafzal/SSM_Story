@@ -24,6 +24,17 @@ ninja.data = [{
       section: "Posts",
       handler: () => {
         
+          window.location.href = "/SSM_Story/2025/lion-part2-theory/";
+        
+      },
+    },{id: "post-story-of-linear-time-sequence-modeling",
+      
+        title: "Story of Linear Time Sequence Modeling 📚",
+      
+      description: "Summary of Linear Transformers",
+      section: "Posts",
+      handler: () => {
+        
           window.location.href = "/SSM_Story/2025/lion-part1-model/";
         
       },
@@ -47,17 +58,6 @@ ninja.data = [{
       handler: () => {
         
           window.location.href = "/SSM_Story/2025/lion-part3-chunk/";
-        
-      },
-    },{id: "post-lion-part-ii-bi-directional-rnn",
-      
-        title: "LION 🦁 Part II - Bi-directional RNN",
-      
-      description: "Deriving equivalent bi-directional RNN for Linear Attention",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/SSM_Story/2025/lion-part2-theory/";
         
       },
     },{id: "news-a-simple-inline-announcement",
