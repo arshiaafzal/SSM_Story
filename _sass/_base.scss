@@ -4,10 +4,6 @@
 
 // Typography
 
-:root {
-  --details-color: #FF0200;
-}
-
 p,
 h1,
 h2,
@@ -259,7 +255,7 @@ ul.task-list input[type="checkbox"] {
   border: 1px solid var(--global-divider-color);
 
   a:not(.active) {
-    color: var(--details-color);
+    color: var(--global-text-color);
   }
 
   a:hover {
@@ -292,7 +288,7 @@ ul.task-list input[type="checkbox"] {
   }
 
   .navbar-nav .nav-item .nav-link {
-    color: #FF0200;
+    color: var(--global-text-color);
 
     &:hover {
       color: var(--global-hover-color);
@@ -302,7 +298,7 @@ ul.task-list input[type="checkbox"] {
   .navbar-nav .nav-item.active > .nav-link {
     background-color: inherit;
     font-weight: bolder;
-    color: #FF0200;
+    color: var(--global-theme-color);
 
     &:hover {
       color: var(--global-hover-color);
@@ -557,13 +553,8 @@ footer.sticky-bottom {
   padding-bottom: 3rem;
 
   h1 {
-    color: #FF0200;
+    color: var(--global-theme-color);
     font-size: 5rem;
-  }
-  
-  h2 {
-    color: var(--global-text-color-light);
-    font-size: 1.5rem;
   }
 }
 
@@ -589,22 +580,6 @@ footer.sticky-bottom {
 .post-title {
   mjx-container[jax="CHTML"][display="true"] {
     display: unset;
-  }
-}
-
-.post-meta {
-  color: #FF0200;
-  font-size: 0.875rem;
-  margin-bottom: 0;
-}
-
-.post-tags {
-  color: #FF0200 !important;
-  a {
-    color: #FF0200 !important;
-    &:hover {
-      color: var(--global-theme-color) !important;
-    }
   }
 }
 
