@@ -1,748 +1,149 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://alshedivat.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://alshedivat.github.io/" rel="alternate" type="text/html" hreflang="en"/><updated>2025-08-30T11:05:55+00:00</updated><id>https://alshedivat.github.io/feed.xml</id><title type="html">blank</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. </subtitle><entry><title type="html">a post with plotly.js</title><link href="https://alshedivat.github.io/blog/2025/plotly/" rel="alternate" type="text/html" title="a post with plotly.js"/><published>2025-03-26T14:24:00+00:00</published><updated>2025-03-26T14:24:00+00:00</updated><id>https://alshedivat.github.io/blog/2025/plotly</id><content type="html" xml:base="https://alshedivat.github.io/blog/2025/plotly/"><![CDATA[<p>This is an example post with some <a href="https://plotly.com/javascript/">plotly</a> code.</p> <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">```</span><span class="nl">plotly
-</span><span class="sb">{
-  "data": [
-    {
-      "x": [1, 2, 3, 4],
-      "y": [10, 15, 13, 17],
-      "type": "scatter"
-    },
-    {
-      "x": [1, 2, 3, 4],
-      "y": [16, 5, 11, 9],
-      "type": "scatter"
-    }
-  ]
-}</span>
-<span class="p">```</span>
-</code></pre></div></div> <p>Which generates:</p> <pre><code class="language-plotly">{
-  "data": [
-    {
-      "x": [1, 2, 3, 4],
-      "y": [10, 15, 13, 17],
-      "type": "scatter"
-    },
-    {
-      "x": [1, 2, 3, 4],
-      "y": [16, 5, 11, 9],
-      "type": "scatter"
-    }
-  ]
-}
-</code></pre> <p>Also another example chart.</p> <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">```</span><span class="nl">plotly
-</span><span class="sb">{
-  "data": [
-    {
-      "x": [1, 2, 3, 4],
-      "y": [10, 15, 13, 17],
-      "mode": "markers"
-    },
-    {
-      "x": [2, 3, 4, 5],
-      "y": [16, 5, 11, 9],
-      "mode": "lines"
-    },
-    {
-      "x": [1, 2, 3, 4],
-      "y": [12, 9, 15, 12],
-      "mode": "lines+markers"
-    }
-  ],
-  "layout": {
-    "title": {
-      "text": "Line and Scatter Plot"
-    }
-  }
-}</span>
-<span class="p">```</span>
-</code></pre></div></div> <p>This is how it looks like:</p> <pre><code class="language-plotly">{
-  "data": [
-    {
-      "x": [1, 2, 3, 4],
-      "y": [10, 15, 13, 17],
-      "mode": "markers"
-    },
-    {
-      "x": [2, 3, 4, 5],
-      "y": [16, 5, 11, 9],
-      "mode": "lines"
-    },
-    {
-      "x": [1, 2, 3, 4],
-      "y": [12, 9, 15, 12],
-      "mode": "lines+markers"
-    }
-  ],
-  "layout": {
-    "title": {
-      "text": "Line and Scatter Plot"
-    }
-  }
-}
-</code></pre>]]></content><author><name></name></author><category term="sample-posts"/><category term="formatting"/><category term="charts"/><summary type="html"><![CDATA[this is what included plotly.js code could look like]]></summary></entry><entry><title type="html">a post with image galleries</title><link href="https://alshedivat.github.io/blog/2024/photo-gallery/" rel="alternate" type="text/html" title="a post with image galleries"/><published>2024-12-04T01:59:00+00:00</published><updated>2024-12-04T01:59:00+00:00</updated><id>https://alshedivat.github.io/blog/2024/photo-gallery</id><content type="html" xml:base="https://alshedivat.github.io/blog/2024/photo-gallery/"><![CDATA[<p>The images in this post are all zoomable, arranged into different mini-galleries using different libraries.</p> <h2 id="lightbox2"><a href="https://lokeshdhakar.com/projects/lightbox2/">Lightbox2</a></h2> <p><a href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-2500.jpg" data-lightbox="roadtrip"><img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-200.jpg"/></a> <a href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-2500.jpg" data-lightbox="roadtrip"><img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-200.jpg"/></a> <a href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-2500.jpg" data-lightbox="roadtrip"><img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-200.jpg"/></a></p> <hr/> <h2 id="photoswipe"><a href="https://photoswipe.com/">PhotoSwipe</a></h2> <div class="pswp-gallery pswp-gallery--single-column" id="gallery--getting-started"> <a href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-2500.jpg" data-pswp-width="1669" data-pswp-height="2500" target="_blank"> <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-200.jpg" alt=""/> </a> <a href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/7/img-2500.jpg" data-pswp-width="1875" data-pswp-height="2500" data-cropped="true" target="_blank"> <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/7/img-200.jpg" alt=""/> </a> <a href="https://unsplash.com" data-pswp-src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-2500.jpg" data-pswp-width="2500" data-pswp-height="1666" target="_blank"> <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-200.jpg" alt=""/> </a> <div> <a href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/6/img-2500.jpg" data-pswp-width="2500" data-pswp-height="1667" target="_blank"> <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/6/img-200.jpg" alt=""/> </a> </div> </div> <hr/> <h2 id="spotlight-js"><a href="https://nextapps-de.github.io/spotlight/">Spotlight JS</a></h2> <div class="spotlight-group"> <a class="spotlight" href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-2500.jpg"> <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-200.jpg"/> </a> <a class="spotlight" href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-2500.jpg"> <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-200.jpg"/> </a> <a class="spotlight" href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-2500.jpg"> <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-200.jpg"/> </a> </div> <div class="spotlight-group"> <a class="spotlight" href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/4/img-2500.jpg"> <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/4/img-200.jpg"/> </a> <a class="spotlight" href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/5/img-2500.jpg"> <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/5/img-200.jpg"/> </a> <a class="spotlight" href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/6/img-2500.jpg"> <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/6/img-200.jpg"/> </a> </div> <hr/> <h2 id="venobox"><a href="https://veno.es/venobox/">Venobox</a></h2> <p><a class="venobox" data-gall="myGallery" href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-2500.jpg"><img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-200.jpg"/></a> <a class="venobox" data-gall="myGallery" href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-2500.jpg"><img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-200.jpg"/></a> <a class="venobox" data-gall="myGallery" href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-2500.jpg"><img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-200.jpg"/></a></p>]]></content><author><name></name></author><category term="sample-posts"/><category term="formatting"/><category term="images"/><summary type="html"><![CDATA[this is what included image galleries could look like]]></summary></entry><entry><title type="html">Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra</title><link href="https://alshedivat.github.io/blog/2024/google-gemini-updates-flash-15-gemma-2-and-project-astra/" rel="alternate" type="text/html" title="Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra"/><published>2024-05-14T00:00:00+00:00</published><updated>2024-05-14T00:00:00+00:00</updated><id>https://alshedivat.github.io/blog/2024/google-gemini-updates-flash-15-gemma-2-and-project-astra</id><content type="html" xml:base="https://alshedivat.github.io/blog/2024/google-gemini-updates-flash-15-gemma-2-and-project-astra/"><![CDATA[<p>May 14, 2024 We’re introducing a series of updates across the Gemini family of models, including the new 1.5 Flash, our lightweight model for speed and efficiency, and Project Astra, our vision for the future of AI assistants. In December, we launched our first natively multimodal model Gemini 1.0 in three sizes: Ultra, Pro and Nano. Just a few months later we released 1.5 Pro, with enhanced performance and a breakthrough long context window of 1 million tokens.Developers and enterprise customers have been putting 1.5 Pro to use in incredible ways and finding its long context window, multimodal reasoning capabilities and impressive overall performance incredibly useful.We know from user feedback that some applications need lower latency and a lower cost to serve. This inspired us to keep innovating, so today, we’re introducing Gemini 1.5 Flash: a model that’s lighter-weight than 1.5 Pro, and designed to be fast and efficient to serve at scale.Both 1.5 Pro and 1.5 Flash are available in public preview with a 1 million token context window in Google AI Studio and Vertex AI. And now, 1.5 Pro is also available with a 2 million token context window via waitlist to developers using the API and to Google Cloud customers.We’re also introducing updates across the Gemini family of models, announcing our next generation of open models, Gemma 2, and sharing progress on the future of AI assistants, with Project Astra.Context lengths of leading foundation models compared with Gemini 1.5’s 2 million token capability1.5 Flash is the newest addition to the Gemini model family and the fastest Gemini model served in the API. It’s optimized for high-volume, high-frequency tasks at scale, is more cost-efficient to serve and features our breakthrough long context window.While it’s a lighter weight model than 1.5 Pro, it’s highly capable of multimodal reasoning across vast amounts of information and delivers impressive quality for its size.The new Gemini 1.5 Flash model is optimized for speed and efficiency, is highly capable of multimodal reasoning and features our breakthrough long context window.1.5 Flash excels at summarization, chat applications, image and video captioning, data extraction from long documents and tables, and more. This is because it’s been trained by 1.5 Pro through a process called “distillation,” where the most essential knowledge and skills from a larger model are transferred to a smaller, more efficient model.Read more about 1.5 Flash in our updated Gemini 1.5 technical report, on the Gemini technology page, and learn about 1.5 Flash’s availability and pricing.Over the last few months, we’ve significantly improved 1.5 Pro, our best model for general performance across a wide range of tasks.Beyond extending its context window to 2 million tokens, we’ve enhanced its code generation, logical reasoning and planning, multi-turn conversation, and audio and image understanding through data and algorithmic advances. We see strong improvements on public and internal benchmarks for each of these tasks.1.5 Pro can now follow increasingly complex and nuanced instructions, including ones that specify product-level behavior involving role, format and style. We’ve improved control over the model’s responses for specific use cases, like crafting the persona and response style of a chat agent or automating workflows through multiple function calls. And we’ve enabled users to steer model behavior by setting system instructions.We added audio understanding in the Gemini API and Google AI Studio, so 1.5 Pro can now reason across image and audio for videos uploaded in Google AI Studio. And we’re now integrating 1.5 Pro into Google products, including Gemini Advanced and in Workspace apps.Read more about 1.5 Pro in our updated Gemini 1.5 technical report and on the Gemini technology page.Gemini Nano is expanding beyond text-only inputs to include images as well. Starting with Pixel, applications using Gemini Nano with Multimodality will be able to understand the world the way people do — not just through text, but also through sight, sound and spoken language.Read more about Gemini 1.0 Nano on Android.Today, we’re also sharing a series of updates to Gemma, our family of open models built from the same research and technology used to create the Gemini models.We’re announcing Gemma 2, our next generation of open models for responsible AI innovation. Gemma 2 has a new architecture designed for breakthrough performance and efficiency, and will be available in new sizes.The Gemma family is also expanding with PaliGemma, our first vision-language model inspired by PaLI-3. And we’ve upgraded our Responsible Generative AI Toolkit with LLM Comparator for evaluating the quality of model responses.Read more on the Developer blog.As part of Google DeepMind’s mission to build AI responsibly to benefit humanity, we’ve always wanted to develop universal AI agents that can be helpful in everyday life. That’s why today, we’re sharing our progress in building the future of AI assistants with Project Astra (advanced seeing and talking responsive agent).To be truly useful, an agent needs to understand and respond to the complex and dynamic world just like people do — and take in and remember what it sees and hears to understand context and take action. It also needs to be proactive, teachable and personal, so users can talk to it naturally and without lag or delay.While we’ve made incredible progress developing AI systems that can understand multimodal information, getting response time down to something conversational is a difficult engineering challenge. Over the past few years, we’ve been working to improve how our models perceive, reason and converse to make the pace and quality of interaction feel more natural.Building on Gemini, we’ve developed prototype agents that can process information faster by continuously encoding video frames, combining the video and speech input into a timeline of events, and caching this information for efficient recall.By leveraging our leading speech models, we also enhanced how they sound, giving the agents a wider range of intonations. These agents can better understand the context they’re being used in, and respond quickly, in conversation.With technology like this, it’s easy to envision a future where people could have an expert AI assistant by their side, through a phone or glasses. And some of these capabilities are coming to Google products, like the Gemini app and web experience, later this year.We’ve made incredible progress so far with our family of Gemini models, and we’re always striving to advance the state-of-the-art even further. By investing in a relentless production line of innovation, we’re able to explore new ideas at the frontier, while also unlocking the possibility of new and exciting Gemini use cases.Learn more about Gemini and its capabilities. Your information will be used in accordance with Google’s privacy policy.</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      Done. Just one step more.
-    
-      Check your inbox to confirm your subscription.
-    You are already subscribed to our newsletter.
-    You can also subscribe with a
-    different email address
-    
-    .
-    
-  Let’s stay in touch. Get the latest news from Google in your inbox.
-          Follow Us
-</code></pre></div></div>]]></content><author><name></name></author><summary type="html"><![CDATA[We’re sharing updates across our Gemini family of models and a glimpse of Project Astra, our vision for the future of AI assistants.]]></summary></entry><entry><title type="html">a post with tabs</title><link href="https://alshedivat.github.io/blog/2024/tabs/" rel="alternate" type="text/html" title="a post with tabs"/><published>2024-05-01T00:32:13+00:00</published><updated>2024-05-01T00:32:13+00:00</updated><id>https://alshedivat.github.io/blog/2024/tabs</id><content type="html" xml:base="https://alshedivat.github.io/blog/2024/tabs/"><![CDATA[<p>This is how a post with <a href="https://github.com/Ovski4/jekyll-tabs">tabs</a> looks like. Note that the tabs could be used for different purposes, not only for code.</p> <h2 id="first-tabs">First tabs</h2> <p>To add tabs, use the following syntax:</p> <div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">{%</span><span class="w"> </span><span class="nt">tabs</span><span class="w"> </span><span class="nv">group-name</span><span class="w"> </span><span class="cp">%}</span>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://lions-epfl.github.io//feed.xml" rel="self" type="application/atom+xml"/><link href="https://lions-epfl.github.io//" rel="alternate" type="text/html" hreflang="en"/><updated>2025-08-31T08:53:56+00:00</updated><id>https://lions-epfl.github.io//feed.xml</id><title type="html">blank</title><subtitle></subtitle><entry><title type="html">LION 🦁 Part I - Full Linear Attention</title><link href="https://lions-epfl.github.io//2025/lion-part1-model/" rel="alternate" type="text/html" title="LION 🦁 Part I - Full Linear Attention"/><published>2025-02-28T00:00:00+00:00</published><updated>2025-02-28T00:00:00+00:00</updated><id>https://lions-epfl.github.io//2025/lion-part1-model</id><content type="html" xml:base="https://lions-epfl.github.io//2025/lion-part1-model/"><![CDATA[<figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/lion-480.webp 480w,/assets/img/lion-800.webp 800w,/assets/img/lion-1400.webp 1400w," type="image/webp" sizes="95vw"/> <img src="/assets/img/lion.jpg" width="100%" height="auto" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> </figure> <p>[<a href="https://www.arxiv.org/abs/2502.16249">Paper</a>] [<a href="https://github.com/LIONS-EPFL/LION">Code</a>]</p> <ol> <li>Part I - Full Linear Attention</li> <li><a href="/2025/lion-part2-theory/">Part II - Bi-directional RNN</a></li> <li><a href="/2025/lion-part3-chunk/">Part III - Chunkwise Parallel from of LION</a></li> <li><a href="/2025/lion-part4-results/">Part IV - Results</a></li> </ol> <hr/> <h1 id="tldr">TL;DR</h1> <p>Transformers with Linear Attention enable fast and parallel training. Moreover, they can be formulated as Recurrent Neural Networks (RNNs), for efficient linear-time inference. While extensively evaluated in causal sequence modeling, they have yet to be extended to the bi-directional setting. We introduce the <strong>LION</strong> framework, establishing new theoretical foundations for Linear Transformers in bi-directional sequence modeling. <strong>LION</strong> constructs a bi-directional RNN equivalent to full <strong>Linear Attention</strong>. This extends the benefits of Linear Transformers: parallel training and efficient inference into the bi-directional setting.</p> <div style="display: flex; align-items: flex-start;"> <div style="flex: 1; padding-right: 10px;"> <p> Existing memory-efficient bi-directional models employ more than 2x the training time of a Transformer. Our Linear Attention framework benefits from memory-efficient inference while maintaining the Transformer training speed. </p> <table> <tr> <th>Task</th> <th><span style="background-color: rgb(230, 255, 230); padding: 3px; color:black">🦁-🔥 </span></th> <th><span style="background-color: rgb(229, 204, 230); padding: 3px; color:black">🦁-D </span></th> <th><span style="background-color: rgb(255, 233, 211); padding: 3px; color:black">🦁-S </span></th> <th>Hydra</th> <th>Vim</th> </tr> <tr> <td>Vision</td> <td>$\times 0.73$</td> <td>$\times 1.39$</td> <td>$\times 1.46$</td> <td>$\times 2.51$</td> <td>$\times 10.86$</td> </tr> <tr> <td>MLM </td> <td>$\times 0.95$</td> <td>$\times 1.10$</td> <td>$\times 1.32$</td> <td>$\times 3.13$</td> <td>✗</td> </tr> </table> <div class="caption" style="color: #666666; margin-top: 1px;"> Training time (↓) relative to Transformer of the same scale </div> </div> <div style="flex: 0 0 50%;"> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/fig1_plot.svg" sizes="95vw"/> <img src="/assets/img/fig1_plot.svg" width="100%" height="auto" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> </figure> </div> </div> <p>Using <strong>LION</strong>, we cast three Linear Transformers to their bi-directional form:</p> <ul> <li><strong>LION-️‍🔥</strong>, the bi-directional variant corresponding to <a href="https://arxiv.org/abs/2006.16236">LinearTransformer</a>.</li> <li><strong>LION-D</strong>, extending <a href="https://arxiv.org/abs/2307.08621">RetNet</a>.</li> <li><strong>LION-S</strong>, a Linear Transformer with a stable selective mask inspired by selectivity of SSMs like <a href="https://arxiv.org/abs/2405.21060">Mamba🐍</a>.</li> </ul> <p>By replacing the attention block with <strong>LION (-️‍🔥, -D, -S)</strong>, we achieve performance on bi-directional tasks that is comparable to Transformers and State-Space Models (SSMs) while improving training speed.</p> <hr/> <p>Recently, Transformers with Linear Attention <d-cite key="katharopoulos2020transformers"></d-cite> and State Space Models <d-cite key="gu2023mamba"></d-cite> <d-cite key="gu2022efficiently"></d-cite> <d-cite key="dao2024transformers"></d-cite> (SSMs) have gained significant popularity for causal sequence modeling due to their ability to efficiently support both parallel training and RNN-like inference. These models have demonstrated impressive accuracy in causal tasks, particularly in causal language modeling. For bi-directional sequence modeling, SSMs, particularly Mamba <d-cite key="gu2023mamba"></d-cite>, have been evaluated in vision tasks along with architecture iterations like Vision Mamba <d-cite key="zhu2024vision"></d-cite> and Hydra <d-cite key="hwang2025hydra"></d-cite>. However, Transformers with Linear Attention have been less explored in the bi-directional setting.</p> <p>We are curious to explore whether Linear Attention Transformers, including the vanilla Linear Transformer <d-cite key="katharopoulos2020transformers"></d-cite> or RetNet <d-cite key="sun2023retentive"></d-cite> can perform effectively on bi-directional sequence modeling. More specifically, what modifications are needed to adapt them for tasks like image classification and masked language modeling? 😊</p> <p>Let’s break this down with three key questions:</p> <h3 id="question-1-applicability">Question 1 (Applicability)</h3> <p>Given that Linear Transformers can be formulated as RNNs, offering efficiency benefits during inference and enabling parallel training for causal sequence modeling, can they also provide similar advantages for bi-directional processing? If so, what would the parallel form be, and how would the equivalent bi-directional RNN be structured?</p> <h3 id="question-2-performance">Question 2 (Performance)</h3> <p>Can simple Linear Transformers, like Linear Transformer <d-cite key="katharopoulos2020transformers"></d-cite> or RetNet <d-cite key="sun2023retentive"></d-cite>, perform well on bi-directional tasks such as image classification or masked language modeling?</p> <h3 id="question-3-training-throughput">Question 3 (Training Throughput)</h3> <p>While bi-directional SSMs are performant, they tend to be difficult and slow to train compared to Transformers with Full Attention (e.g., ViT <d-cite key="dosovitskiy2020image"></d-cite> and BERT <d-cite key="devlin2018bert"></d-cite>). Can Linear Transformers match the accuracy and efficiency of bi-directional SSMs while maintaining the training throughput of Softmax Transformers?</p> <h2 id="from-causal-to-full-linear-attention">From Causal to Full Linear Attention</h2> <p>Let’s start with Linear Attention Recurrence:</p> \[\begin{aligned} &amp; S_i = S_{i-1} + k_i v^\top_i, \quad z_i = z_{i-1} + k_i, \\ &amp; Scaled: y_i = \frac{q^\top_i S_i}{q^\top_i z_i}, \quad Non-Scaled: y_i = q^\top_i S_i \\ \end{aligned}\] <p>Above is the RNN form of the Linear Attention which has the parallel form of:</p> \[\mathbf{Y} = Scale \left(\mathbf{Q} \mathbf{K}^\top \odot \mathbf{M}^C \right)\] <p>and the mask \(\mathbf{M}^C\) is a lower triangular \(C\)ausal mask. Causal Linear Transformers are a class of models introduced following the development of the original Linear Transformer as shown above <d-cite key="katharopoulos2020transformers"></d-cite>. These models typically define a recurrence of the form:</p> \[\begin{aligned} S_i = \boldsymbol{\Lambda_i} \star S_{i-1} + \gamma_i k_i v^\top_i, \quad z_i = \boldsymbol{\Lambda_i} \star z_{i-1} + \gamma_i k_i, \\ Scaled: y_i = \frac{q^\top_i S_i}{q^\top_i z_i}, \quad Non-Scaled: y_i = q^\top_i S_i \\ \end{aligned}\] <p>Here, \(\boldsymbol{\Lambda_i}\) and \(\gamma_i\) are decay factors introduced after the Linear Transformer to enhance the performance and \(\star\) denotes an associative operator which depends on the specific model. (Spoiler alert ⚠️: the family of Linear Transformers has strong connections to SSMs, as explored in works like Deltanet <d-cite key="yang2024parallelizing"></d-cite> and Mamba2 <d-cite key="dao2024transformers"></d-cite> through state space duality (SSD) 😉). Many models apply a non-linear activation to queries and keys, such that \(\mathbf{k}_i = \phi(\mathbf{k}_i)\) and \(\mathbf{q}_i = \phi(\mathbf{q}_i)\). To avoid notation clutter, we omit explicitly writing \(\phi(.)\) everywhere assuming by default that queries and keys are already non-linearized. For simplicity, we consider \(\boldsymbol{\Lambda_i} = \lambda_i\) as a scalar and \(\gamma_i = 1\). We now present the general Scaled Linear Attention in the following form:</p> \[\begin{aligned} S_i &amp;= \lambda_i S_{i-1} + k_i v^\top_i,\\ z_i &amp;= \lambda_i z_{i-1} + k_i, \\ y_i &amp;= \frac{q^\top_i S_i}{q^\top_i z_i} \\ \end{aligned}\] <p>The first goal is to extend the Causal Linear Attention parallel form</p> \[\mathbf{Y} = \text{Scale} \left(\mathbf{Q} \mathbf{K}^\top \odot \mathbf{M}^C \right)\] <p>to a Scaled and Masked Full Linear Attention mechanism.</p> <h2 id="creating-scaled-and-masked-full-attention">Creating Scaled and Masked Full Attention</h2> <p>The first step is quite simple: the Masked and Scaled Attention can naturally take the following form, as suggested by its name:</p> <blockquote> <p><strong>Full Linear Attention</strong></p> <div class="block-tip">\[\mathbf{Y} = \text{Scale} \left(\mathbf{Q} \mathbf{K}^\top \odot \mathbf{M} \right)\] </div> </blockquote> <p>The important part is how to well define the matrix \(\mathbf{M}\). A natural choice is to extend the causal mask \(\mathbf{M^C}\), where the causal mask between tokens \(i,j\) is given by \(\mathbf{M}^C_{ij} = \lambda_{j+1} \lambda_{j+2} \dots \lambda_i\), representing the product of all selective scalers between \(i\) and \(j\). In the bi-directional case, the full mask should preserve this desirable property. One can interpret the mask entries as a relative positional encoding between two tokens taking the following form:</p> \[\begin{aligned} \mathbf{M}_{ij} = \begin{cases} \Pi_{k=j}^{i-1}{\lambda_k}, &amp; i &gt; j \\ 1 &amp; i=j\\ \Pi_{k=i+1}^{j}{\lambda_k}, &amp; i &lt; j. \end{cases} \end{aligned}\] <p>To recap, the full output of Full Linear Attention can be presented as:</p> <p><span style="font-size: 0.7em;"> \(\mathbf{Y} = Scale \left( \underbrace{\left( \renewcommand*{\arraystretch} \begin{array}{ccccc} \mathbf{q}_1^{\top}\mathbf{k}_1 &amp; \mathbf{q}_1^{\top}\mathbf{k}_2 &amp; \cdots &amp; \mathbf{q}_1^{\top}\mathbf{k}_L \\ \mathbf{q}_2^{\top}\mathbf{k}_1 &amp; \mathbf{q}_2^{\top}\mathbf{k}_2 &amp; \cdots &amp; \mathbf{q}_2^{\top}\mathbf{k}_L\\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ \mathbf{q}_L^{\top}\mathbf{k}_1 &amp; \mathbf{q}_L^{\top}\mathbf{k}_2 &amp; \cdots &amp; \mathbf{q}_L^{\top}\mathbf{k}_L\\ \end{array} \right)}_{\hspace{1mm} \mathbf{A} = \mathbf{Q} \mathbf{K}^{\top}} \odot \underbrace{ \left( \renewcommand*{\arraystretch} \begin{array}{ccccc} 1 &amp; \lambda_2 &amp; \lambda_2 \lambda_3 &amp; \cdots &amp; \lambda_2 \cdots \lambda_L \\ \lambda_1 &amp; 1 &amp; \lambda_3 &amp; \cdots &amp; \lambda_3 \cdots \lambda_L \\ \lambda_2 \lambda_1 &amp; \lambda_2 &amp; 1 &amp; \cdots &amp; \lambda_4 \cdots \lambda_L \\ \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ \lambda_{L-1} \cdots \lambda_1 &amp; \lambda_{L-1} \cdots \lambda_2 &amp; \lambda_{L-1} \cdots \lambda_3 &amp; \cdots &amp; 1 \\ \end{array} \right) }_{\hspace{1mm} \mathbf{M}} \right) \left( \renewcommand*{\arraystretch} \begin{array}{c} \mathbf{v}_1^\top \\ \mathbf{v}_2^\top \\ \mathbf{v}_3^\top \\ \vdots \\ \mathbf{v}_L^\top \\ \end{array} \right)\) </span></p> <p>The equation above represents the Full <strong>Linear</strong> Attention in parallel form. Now that we have established Full Linear Attention for bi-directional sequence modeling, it’s time to derive its equivalent bi-directional RNN.</p> <h3 id="an-important-question"><strong>An Important Question:</strong></h3> <blockquote> <p><strong>Question:</strong> Is it worth training with Full Attention on bi-directional tasks considering it has quadratic complexity with sequence length \(O(L^2)\)?</p> </blockquote> <p>The answer is <strong>yes</strong>! Unlike causal language modeling, for bi-directional tasks such as Vision ($L=196$) and Masked Language Modeling (MLM) ($L=128$), sequence lengths used in practice are relatively short. This means that we can usually fit Full Attention in memory enalbing higher throughput without a significant trade-off in complexity.</p> <p>We believe that architectures designed for causal tasks can really benefit from modifications to adapt them to the bi-directional domain.</p> <h2 id="next-up">Next Up</h2> <ul> <li> <p>We introduce our framework, <strong>LION</strong>, which derives an equivalent bi-directional RNN for Full Linear Attention.</p> </li> <li> <p>Within this framework, we demonstrate how different Linear Transformers can be extended to their bi-directional counterparts.</p> </li> <li> <p>We explore the construction of stable masks \(\mathbf{M}\), enabling models using LION to <strong>TRAIN IN PARALLEL</strong> using Full Attention and <strong>INFER EFFICIENTLY</strong> like an RNN.</p> </li> <li> <p>Finally, we introduce a <strong>chunkwise parallel</strong> variant of LION to balance recurrence and parallelism 🙂.</p> </li> </ul> <p><a href="/2025/lion-part2-theory/">Continue reading to Part II - Bi-directional RNN</a></p> <p><em>Acknowledgement:</em> We appreciate <a href="https://goombalab.github.io/">Albert Gu</a> and <a href="https://tridao.me/blog/">Tri Dao</a> for their insightful blog posts, which have been helpful in shaping our own.</p>]]></content><author><name>Arshia Afzal</name></author><summary type="html"><![CDATA[Explaining the Full Linear Attention paradigm for bi-directional sequence modeling]]></summary></entry><entry><title type="html">LION 🦁 Part II - Bi-directional RNN</title><link href="https://lions-epfl.github.io//2025/lion-part2-theory/" rel="alternate" type="text/html" title="LION 🦁 Part II - Bi-directional RNN"/><published>2025-02-28T00:00:00+00:00</published><updated>2025-02-28T00:00:00+00:00</updated><id>https://lions-epfl.github.io//2025/lion-part2-theory</id><content type="html" xml:base="https://lions-epfl.github.io//2025/lion-part2-theory/"><![CDATA[<p>[<a href="https://www.arxiv.org/abs/2502.16249">Paper</a>] [<a href="https://github.com/LIONS-EPFL/LION">Code</a>]</p> <ol> <li><a href="/2025/lion-part1-model/">Part I - Full Linear Attention</a></li> <li>Part II - Bi-directional RNN</li> <li><a href="/2025/lion-part3-chunk/">Part III - Chunkwise Parallel from of LION</a></li> <li><a href="/2025/lion-part4-results/">Part IV - Results</a></li> </ol> <p>In <a href="/2025/lion-part1-model/">Part I</a> of this series, we defined Full Linear Attention with Masking and Scaling. Similar to all Linear Transformers designed for Causal Sequence Modeling, we aim to derive an RNN form for efficiency during inference. In this section, we theoretically demonstrate the equivalent bi-directional RNN for the Full Linear Transformer.</p> <h2 id="finding-bi-directional-rnn-equal-to-full-linear-attention">Finding Bi-directional RNN Equal to Full Linear Attention</h2> <p>We aim to construct an RNN that is equivalent to the Masked and Scaled Linear Attention. The idea of a bi-directional RNN is to process the sequence in both the forward order (from first to last) and the reverse order (from last to first), these naturally correspond to the upper and lower parts of the Attention matrix and mask.</p> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/att_mask_color.svg" sizes="95vw"/> <img src="/assets/img/att_mask_color.svg" width="100%" height="auto" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> </figure> <p><strong>Note:</strong> We use a consistent color coding for this section of the blog post and throughout our <a href="https://www.arxiv.org/abs/2502.16249">paper</a> 😊.</p> <ul> <li><span style="background-color: rgb(255, 248, 203); padding: 3px; color:black">Yellow</span> color indicates the <strong>upper part of the matrix (non-causal)</strong>.</li> <li><span style="background-color: rgb(254, 200, 201); padding: 3px; color:black">Red</span> color represents the <strong>diagonal elements</strong>.</li> <li><span style="background-color: rgb(208, 243, 248); padding: 3px; color:black">Blue</span> color corresponds to the <strong>lower triangular (causal) part</strong>.</li> </ul> <p>Let’s seperate the Attention into upper and lower parts:</p> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/att_sep.svg" sizes="95vw"/> <img src="/assets/img/att_sep.svg" width="100%" height="auto" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> </figure> <p>This formulation represents both the causal and non-causal forms of Attention. We would like to model each triangular part using an RNN. Similarly, we can also separate the mask in the same way:</p> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/mask_sep.svg" sizes="95vw"/> <img src="/assets/img/mask_sep.svg" width="100%" height="auto" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> </figure> <p>Let’s also write the scaling part of the Masked Attention $\mathbf{Y} = \text{Scale}(\mathbf{Q} \mathbf{K}^\top \odot \mathbf{M} ) \mathbf{V}$ as:</p> \[\begin{aligned} \mathbf{Y} = \big(\text{Scale}(\mathbf{Q}\mathbf{K}^{\top} \odot \mathbf{M})\big) \mathbf{V} = (\mathbf{C}^{-1}(\mathbf{Q}\mathbf{K}^{\top} \odot \mathbf{M}))\mathbf{V}, \hspace{1mm} \mathbf{C}_i = \mathbf{q}^{\top}_i\sum\limits_{j=1}^{L} \mathbf{M}_{ij}\mathbf{k}_j. \end{aligned}\] <p>Also, we can decompose the scaling matrix \(\mathbf{C}_i\) as:</p> \[\begin{aligned} \mathbf{C}_{i}= \underbrace{\mathbf{q}^{\top}_i\sum\nolimits_{j=1}^{i} \mathbf{M}_{ij}\mathbf{k}_j - \frac{1}{2} \mathbf{q}^{\top}_i\mathbf{k}_i}_{\mathbf{C}^F_i} + \underbrace{\mathbf{q}^{\top}_i\sum\nolimits_{j=i}^{L} \mathbf{M}_{ij}\mathbf{k}_j - \frac{1}{2} \mathbf{q}^{\top}_i\mathbf{k}_i}_{\mathbf{C}^B_i} \end{aligned}\] <p>Now we replace the above scaling matrix $\mathbf{C}$ in the output of the Attention form of $\mathbf{Y} = \text{Scale}(\mathbf{Q} \mathbf{K}^\top \odot \mathbf{M} ) \mathbf{V}$ . Interestingly, many terms naturally cancel out with each other.</p> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/proofC.svg" sizes="95vw"/> <img src="/assets/img/proofC.svg" width="100%" height="auto" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> </figure> <p>This results in only the forward and backward directions of the RNN remaining. As observed, the forward path aligns with Causal Linear Attention with masking. Now, we need to demonstrate that the backward path follows the same RNN structure in the reverse direction. We can simply flip the upper triangular matrices using the <a href="https://en.wikipedia.org/wiki/Exchange_matrix">Exchange Matrix</a> \(\mathbf{J}_L\) and the function \(F(X) = \mathbf{J}_L X \mathbf{J}_L\):</p> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/flip.svg" sizes="95vw"/> <img src="/assets/img/flip.svg" width="100%" height="auto" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> </figure> <p>Cool! Now, both the upper part (equivalent to the RNN in the forward direction) and the lower part (equivalent to the RNN in the backward direction) can be formulated as RNNs. This is exactly what we need to construct our bi-directional RNN equivalent to Full Linear Attention.</p> <blockquote> <p><strong>LION: Reccurence form</strong></p> \[\begin{aligned} \mathbf{S}_i^{F/B} &amp;= \lambda_i \mathbf{S}^{F/B}_{i-1} + \mathbf{k}_i \mathbf{v}_i^{\top}, \\ \mathbf{z}^{F/B}_i &amp;= \lambda_i \mathbf{z}^{F/B}_{i-1} + \mathbf{k}_i, \\ c^{F/B}_i &amp; = \mathbf{q}_i^{\top} \mathbf{z}^{F/B}_{i} - \frac{\mathbf{q}_i^{\top} \mathbf{k}_i}{2}, \\ \mathbf{y}^{F/B}_i &amp;= \mathbf{q}_i^{\top} \mathbf{S}^{F/B}_i - \frac{\mathbf{q}_i^{\top} \mathbf{k}_i}{2} \mathbf{v}_i, \\ out&amp;put: \mathbf{y}_i = \frac{\mathbf{y}^{F}_i + \mathbf{y}^{B}_i}{c^F_i + c^B_i}. \\ \end{aligned}\] </blockquote> <p>The terms \(\frac{\mathbf{q}_i^{\top} \mathbf{k}_i}{2}\) and \(\frac{\mathbf{q}_i^{\top} \mathbf{k}_i}{2} \mathbf{v}_i\) are subtracted to avoid double counting. This bi-directional RNN is equivalent to Scaled and Masked Linear Attention described in previous section of this blogpost.</p> <h2 id="some-important-details-of-our-rnn">Some Important details of our RNN</h2> <blockquote> <p>Only the states \(c^{F/B}_i\) and \(\mathbf{y}^{F/B}_i\) are stored per token, resulting in \(\mathcal{O}(Ld)\) memory usage. In contrast, naively storing full matrix-valued hidden states would require \(\mathcal{O}(Ld^2)\), which becomes infeasible for large models.</p> </blockquote> <blockquote> <p>Forward and backward recurrences run independently, completing in \(L\) time steps with \(L\) memory units, compared to \(2L\) in the naive approach.</p> </blockquote> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/memory.svg" sizes="95vw"/> <img src="/assets/img/memory.svg" width="100%" height="auto" title="Memory Allocation of LION in RNN form" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> <figcaption class="caption">Memory allocation in LION during Forward and Backward recurrences.</figcaption> </figure> <p>All in one, we can visualize our framework:</p> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/frlion.svg" sizes="95vw"/> <img src="/assets/img/frlion.svg" width="100%" height="auto" title="LION" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> <figcaption class="caption">LION 🦁: Our framework for training in parallel using Full Linear Attention which also supports the efficient bi-directional RNN format.</figcaption> </figure> <h2 id="different-masks-of-lion">Different Masks of LION</h2> <p>Now that we have created our framework let’s see what are the choices of the decay factor \(\lambda_i\) and how they resemble known Linear Transformer models. Let’s set:</p> <blockquote> <p>$\lambda_i=1$ resembles the bi-directional version of the vanilla Linear Transformer <d-cite key="katharopoulos2020transformers"></d-cite> which we refer to as <span style="background-color: rgb(230, 255, 230); padding: 3px; color:black">LION-🔥 </span> (-LIT in <a href="https://www.arxiv.org/abs/2502.16249">the paper</a>).</p> </blockquote> <blockquote> <p>$\lambda_i=\lambda$ resembles the bi-directional version of RetNet <d-cite key="sun2023retentive"></d-cite> which we refer to as <span style="background-color: rgb(229, 204, 230); padding: 3px; color:black">LION-D </span>.</p> </blockquote> <blockquote> <p>$\lambda_i=\sigma(\mathbf{W}\mathbf{x}_i)$ (input dependent) resembles a bi-directional selective Linear Transformer inspired by Mamba2 <d-cite key="dao2024transformers"></d-cite> which we refer to as <span style="background-color: rgb(255, 233, 211) ; padding: 3px; color:black">LION-S </span>.</p> </blockquote> <p>We evaluate all models on several bi-directional tasks. Also inspired by Linear Transformers applying a feature mapping $\phi(.)$ to queries and keys we apply normalized shifted SILU $\phi(x)=$ <code class="language-plaintext highlighter-rouge">(SILU(x)+0.5)/(norm(SILU(x)+0.5))</code> as a non-linear activation function. Let’s dive deep in each of these models in LION framework.</p> <h3 id="lion-">LION-🔥</h3> <p>LION-🔥 is an extension of the original Linear Transformer <d-cite key="katharopoulos2020transformers"></d-cite>. Without any masking, the bi-directional parallel form can be simply written as:</p> \[\mathbf{Y} = Scale(\mathbf{Q} \mathbf{K}^\top )\mathbf{V}\] <p>the RNN form is the one introduced the previous green box “LION: Reccurence form” with \(\lambda_i=1\).</p> <h3 id="lion-d">LION-D</h3> <p>By fixing \(\lambda_i = \lambda\), the mask \(\mathbf{M}\) has the form:</p> \[\begin{align} \mathbf{M}_{ij} = \lambda^{|i-j|}, \quad \mathbf{D}_{ij} = |i-j|\log(\lambda), \quad \mathbf{M} = \exp(\mathbf{D}). \notag \end{align}\] <p>\(\mathbf{M}\) above is a Toeplitz mask <d-cite key="qin2023toeplitz"></d-cite>, we can efficiently create a decay mask with such structure using simple PyTorch functions. To ensure numerical stability, we bound the parameter \(\lambda\) with a <strong>sigmoid</strong>, setting \(\lambda = \sigma(a)\). Without this constraint, the scalar \(\lambda^L\) could become excessively large, leading to instability. In practice, for <strong>RetNet-style mask</strong> with a fixed decay, multiplication remains stable. Such mask can be implemented as follows:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">decay_mask</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">length</span><span class="p">):</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">a</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">meshgrid</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="sh">"</span><span class="s">ij</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">abs</span><span class="p">((</span><span class="n">i</span> <span class="o">-</span> <span class="n">j</span><span class="p">)).</span><span class="nf">float</span><span class="p">().</span><span class="nf">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">length</span><span class="p">)</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">sigmoid</span><span class="p">(</span><span class="n">a</span><span class="p">).</span><span class="nf">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="n">e</span>
+    <span class="k">return</span> <span class="n">m</span>
+</code></pre></div></div> <h3 id="lion-s">LION-S</h3> <p>Observing the structure of $\mathbf{M}$, its upper ($\mathbf{M}^B$) and lower ($\mathbf{M}^F$) triangular parts are rank-1 <a href="https://people.cs.kuleuven.be/~raf.vandebril/homepage/publications/papers_html/qrq_07/node16.html">semi-separable matrices</a> <d-cite key="dao2024transformers"></d-cite>, allowing for efficient computation via matrix multiplications.</p> <p>During training, the decay factors $\lambda_i$ are stacked into ${\lambda}^F \in \mathbb{R}^L$, and the cumulative product</p> \[\mathbf{L}^F = cumprod(\lambda^F) = \prod_{k=0}^{i} \lambda^F_k\] <p>is used to generate the lower triangular mask \(\mathbf{M}^F\). For the upper triangular mask \(\mathbf{M}^B\), the input sequence is flipped, and the decay factors are computed as</p> \[\boldsymbol{\lambda}^B = \text{Flip}(\boldsymbol{\lambda}^F), \quad \mathbf{L}^B = cumprod(\boldsymbol{\lambda}^B).\] <p>The masks are then constructed as, \(\mathbf{M}^F =\) <code class="language-plaintext highlighter-rouge">tril(LF@inv(LF)^T)</code> for the forward part and \(\mathbf{M}^B =\) <code class="language-plaintext highlighter-rouge">triu(LB@inv(LB)^T)</code> for the backward part. Where <code class="language-plaintext highlighter-rouge">tril(.)</code> and <code class="language-plaintext highlighter-rouge">triu(.)</code> extract the lower and upper triangular parts of the input matrix respectively and <code class="language-plaintext highlighter-rouge">inv(.)</code> is a element wise inverse. The full mask is then obtained as</p> \[\mathbf{M} = \mathbf{M}^F + \mathbf{M}^B - \mathbf{I}.\] <p>To improve numerical stability, the selective scalar $\lambda_i$ is designed in exponential form</p> \[\lambda_i = e^{a_i}.\] <p>This results in the cumulative sum:</p> \[\mathbf{D}^F_{ij} = \begin{cases} \sum_{k=i}^{j+1} a_k, &amp; \text{if } i &gt; j, \\ - \infty, &amp; \text{if } i &lt; j, \\ 0, &amp; \text{if } i = j, \end{cases}\] \[\mathbf{M^F} = \exp(\mathbf{D^F}),\] <p>where $\exp(\cdot)$ is applied element-wise. The same process applies to $\mathbf{M}^B$ by flipping the input sequence order.</p> <p>Here, $\mathbf{D}^{F/B} = cumsum(\mathbf{a}^{F/B})$, where $\mathbf{a} \in \mathbb{R}^L$ contains the selective exponents $a_i$.</p> <p>Ensuring stability is crucial, as $\mathbf{L}^{F/B}$ can overflow or underflow when forming the full mask without chunking. To mitigate this, we define</p> \[a_i = \log(\sigma(\mathbf{W}_{a}^\top\mathbf{x}_i + b)),\] <p>where $\sigma(.)$ is the sigmoid function. By bounding $a_i$ within the interval $[0,1]$ we get numerical stability.</p> <p><strong>Note:</strong> We find using bounded activation functions to be important in practise since unbounded activations could cause NaN values in the loss function. To maintain stability, <strong>Chunking</strong> is required during training in Mamba and Hydra models when using the full sequence. This issue has been specifically highlighted in the <strong>Mamba2</strong> <a href="https://goombalab.github.io/blog/2024/mamba2-part3-algorithm/">blog post</a> and can, again, be attributed to the softplus activation being unbounded. Since LION models use sigmoid activation, chunking is not required for training. In the <strong>Results</strong> section of this blog post, we explore why using <strong>Full Attention</strong> is beneficial for achieving <strong>high throughput</strong> during training.</p> <p>The code for building the mask of LION-S is simple, a Pytorch implementation is provided below:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create_causal_mask_lions</span><span class="p">(</span><span class="n">tensor</span><span class="p">):</span>
+    <span class="n">cumsum</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">cumsum</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">cumprod</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">exp</span><span class="p">(</span><span class="n">cumsum</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">matmul</span><span class="p">(</span>
+        <span class="n">cumprod</span><span class="p">.</span><span class="nf">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">cumprod</span><span class="p">.</span><span class="nf">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">).</span><span class="nf">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1e-7</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">torch</span><span class="p">.</span><span class="nf">tril</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</code></pre></div></div> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">selective_mask</span><span class="p">(</span><span class="n">vec</span><span class="p">):</span>
+    <span class="n">vec_shape</span> <span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">shape</span>
+    <span class="n">a_for</span> <span class="o">=</span> <span class="nf">create_matrix_from_tensor</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="nf">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">).</span><span class="nf">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)).</span><span class="nf">squeeze</span><span class="p">()</span>
+    <span class="n">a_back</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="nf">create_matrix_from_tensor</span><span class="p">(</span>
+            <span class="n">torch</span><span class="p">.</span><span class="nf">cat</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="n">torch</span><span class="p">.</span><span class="nf">ones</span><span class="p">((</span><span class="n">vec_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vec_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">vec</span><span class="p">.</span><span class="n">device</span><span class="p">)),</span>
+                <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+            <span class="p">)[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">:]</span>
+            <span class="p">.</span><span class="nf">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="p">.</span><span class="nf">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="p">.</span><span class="nf">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+        <span class="p">.</span><span class="nf">squeeze</span><span class="p">()</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">a_for</span> <span class="o">+</span> <span class="n">a_back</span> <span class="o">-</span> <span class="n">torch</span><span class="p">.</span><span class="nf">eye</span><span class="p">(</span><span class="n">a_for</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]).</span><span class="nf">to</span><span class="p">(</span><span class="n">a_for</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
+</code></pre></div></div> <h2 id="lion-attention-block">LION Attention Block</h2> <p>We can formulate the parallel Attention form of LION supporting all three extensions of our main experiments:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">LIONAttention</span><span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="n">self</span><span class="p">,</span>
+        <span class="n">dim</span><span class="p">,</span>
+        <span class="n">num_heads</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+        <span class="n">qkv_bias</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">qk_scale</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+        <span class="n">attn_drop</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">proj_drop</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">silunorm</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span>
+        <span class="n">mask_type</span><span class="o">=</span><span class="sh">"</span><span class="s">Lit</span><span class="sh">"</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nf">super</span><span class="p">().</span><span class="nf">__init__</span><span class="p">()</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">num_heads</span> <span class="o">=</span> <span class="n">num_heads</span>
+        <span class="n">head_dim</span> <span class="o">=</span> <span class="n">dim</span> <span class="o">//</span> <span class="n">num_heads</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">qk_scale</span> <span class="ow">or</span> <span class="n">head_dim</span><span class="o">**-</span><span class="mf">0.5</span>
 
-<span class="cp">{%</span><span class="w"> </span><span class="nt">tab</span><span class="w"> </span><span class="nv">group-name</span><span class="w"> </span><span class="nv">tab-name-1</span><span class="w"> </span><span class="cp">%}</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">qkv</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Linear</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">dim</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="n">qkv_bias</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">attn_drop</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Dropout</span><span class="p">(</span><span class="n">attn_drop</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">proj</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Linear</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">dim</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">proj_drop</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Dropout</span><span class="p">(</span><span class="n">proj_drop</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">mask_type</span> <span class="o">=</span> <span class="n">mask_type</span>
 
-Content 1
+        <span class="k">if</span> <span class="n">mask_type</span> <span class="o">==</span> <span class="sh">"</span><span class="s">Lit</span><span class="sh">"</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="n">mask_type</span> <span class="o">==</span> <span class="sh">"</span><span class="s">Selective</span><span class="sh">"</span><span class="p">:</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">a_i</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Linear</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">num_heads</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">mask_type</span> <span class="o">==</span> <span class="sh">"</span><span class="s">Decay</span><span class="sh">"</span><span class="p">:</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">a_i</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="p">.</span><span class="nf">randn</span><span class="p">(</span><span class="n">num_heads</span><span class="p">))</span>
 
-<span class="cp">{%</span><span class="w"> </span><span class="nt">endtab</span><span class="w"> </span><span class="cp">%}</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">non_lin</span> <span class="o">=</span> <span class="n">silu_shifted</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">silunorm</span> <span class="o">=</span> <span class="n">silunorm</span>
 
-<span class="cp">{%</span><span class="w"> </span><span class="nt">tab</span><span class="w"> </span><span class="nv">group-name</span><span class="w"> </span><span class="nv">tab-name-2</span><span class="w"> </span><span class="cp">%}</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="n">shape</span>
+        <span class="n">qkv</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">self</span><span class="p">.</span><span class="nf">qkv</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">num_heads</span><span class="p">,</span> <span class="n">c</span> <span class="o">//</span> <span class="n">self</span><span class="p">.</span><span class="n">num_heads</span><span class="p">)</span>
+            <span class="p">.</span><span class="nf">permute</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">q</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">self</span><span class="p">.</span><span class="nf">non_lin</span><span class="p">(</span><span class="n">qkv</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">silunorm</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">silunorm</span><span class="p">),</span>
+            <span class="n">self</span><span class="p">.</span><span class="nf">non_lin</span><span class="p">(</span><span class="n">qkv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">silunorm</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">silunorm</span><span class="p">),</span>
+            <span class="n">qkv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+        <span class="p">)</span>
 
-Content 2
+        <span class="n">a_i</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">a_i</span><span class="p">(</span><span class="n">x</span><span class="p">).</span><span class="nf">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">a_i</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">torch</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">functional</span><span class="p">.</span><span class="nf">sigmoid</span><span class="p">(</span><span class="n">a_i</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1e-7</span><span class="p">)</span>
 
-<span class="cp">{%</span><span class="w"> </span><span class="nt">endtab</span><span class="w"> </span><span class="cp">%}</span>
+        <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="n">mask_type</span> <span class="o">==</span> <span class="sh">"</span><span class="s">Selective</span><span class="sh">"</span><span class="p">:</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="nf">selective_mask</span><span class="p">(</span><span class="n">a_i</span><span class="p">)</span>
 
-<span class="cp">{%</span><span class="w"> </span><span class="nt">endtabs</span><span class="w"> </span><span class="cp">%}</span>
-</code></pre></div></div> <p>With this you can generate visualizations like:</p> <ul id="log" class="tab" data-tab="254c3b83-c34b-45a2-ba9e-dfb11299f23b" data-name="log"> <li class="active" id="log-php"> <a href="#">php </a> </li> <li id="log-js"> <a href="#">js </a> </li> <li id="log-ruby"> <a href="#">ruby </a> </li> </ul> <ul class="tab-content" id="254c3b83-c34b-45a2-ba9e-dfb11299f23b" data-name="log"> <li class="active"> <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">var_dump</span><span class="p">(</span><span class="s1">'hello'</span><span class="p">);</span>
-</code></pre></div></div> </li> <li> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span><span class="p">);</span>
-</code></pre></div></div> </li> <li> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">pputs</span> <span class="dl">'</span><span class="s1">hello</span><span class="dl">'</span>
-</code></pre></div></div> </li> </ul> <h2 id="another-example">Another example</h2> <ul id="data-struct" class="tab" data-tab="db9fda3a-cc7f-4091-8f88-874752c931be" data-name="data-struct"> <li class="active" id="data-struct-yaml"> <a href="#">yaml </a> </li> <li id="data-struct-json"> <a href="#">json </a> </li> </ul> <ul class="tab-content" id="db9fda3a-cc7f-4091-8f88-874752c931be" data-name="data-struct"> <li class="active"> <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">hello</span><span class="pi">:</span>
-  <span class="pi">-</span> <span class="s2">"</span><span class="s">whatsup"</span>
-  <span class="pi">-</span> <span class="s2">"</span><span class="s">hi"</span>
-</code></pre></div></div> </li> <li> <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"hello"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"whatsup"</span><span class="p">,</span><span class="w"> </span><span class="s2">"hi"</span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div> </li> </ul> <h2 id="tabs-for-something-else">Tabs for something else</h2> <ul id="something-else" class="tab" data-tab="04c7da06-42df-4f46-a8f7-dacb97f7092f" data-name="something-else"> <li class="active" id="something-else-text"> <a href="#">text </a> </li> <li id="something-else-quote"> <a href="#">quote </a> </li> <li id="something-else-list"> <a href="#">list </a> </li> </ul> <ul class="tab-content" id="04c7da06-42df-4f46-a8f7-dacb97f7092f" data-name="something-else"> <li class="active"> <p>Regular text</p> </li> <li> <blockquote> <p>A quote</p> </blockquote> </li> <li> <p>Hipster list</p> <ul> <li>brunch</li> <li>fixie</li> <li>raybans</li> <li>messenger bag</li> </ul> </li> </ul>]]></content><author><name></name></author><category term="sample-posts"/><category term="formatting"/><category term="code"/><summary type="html"><![CDATA[this is what included tabs in a post could look like]]></summary></entry><entry><title type="html">a post with typograms</title><link href="https://alshedivat.github.io/blog/2024/typograms/" rel="alternate" type="text/html" title="a post with typograms"/><published>2024-04-29T23:36:10+00:00</published><updated>2024-04-29T23:36:10+00:00</updated><id>https://alshedivat.github.io/blog/2024/typograms</id><content type="html" xml:base="https://alshedivat.github.io/blog/2024/typograms/"><![CDATA[<p>This is an example post with some <a href="https://github.com/google/typograms/">typograms</a> code.</p> <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">```</span><span class="nl">typograms
-</span><span class="sb">+----+
-|    |---&gt; My first diagram!
-+----+</span>
-<span class="p">```</span>
-</code></pre></div></div> <p>Which generates:</p> <pre><code class="language-typograms">+----+
-|    |---&gt; My first diagram!
-+----+
-</code></pre> <p>Another example:</p> <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">```</span><span class="nl">typograms
-</span><span class="sb">.------------------------.
-|.----------------------.|
-||"https://example.com" ||
-|'----------------------'|
-| ______________________ |
-||                      ||
-||   Welcome!           ||
-||                      ||
-||                      ||
-||  .----------------.  ||
-||  | username       |  ||
-||  '----------------'  ||
-||  .----------------.  ||
-||  |"*******"       |  ||
-||  '----------------'  ||
-||                      ||
-||  .----------------.  ||
-||  |   "Sign-up"    |  ||
-||  '----------------'  ||
-||                      ||
-|+----------------------+|
-.------------------------.</span>
-<span class="p">```</span>
-</code></pre></div></div> <p>which generates:</p> <pre><code class="language-typograms">.------------------------.
-|.----------------------.|
-||"https://example.com" ||
-|'----------------------'|
-| ______________________ |
-||                      ||
-||   Welcome!           ||
-||                      ||
-||                      ||
-||  .----------------.  ||
-||  | username       |  ||
-||  '----------------'  ||
-||  .----------------.  ||
-||  |"*******"       |  ||
-||  '----------------'  ||
-||                      ||
-||  .----------------.  ||
-||  |   "Sign-up"    |  ||
-||  '----------------'  ||
-||                      ||
-|+----------------------+|
-.------------------------.
-</code></pre> <p>For more examples, check out the <a href="https://google.github.io/typograms/#examples">typograms documentation</a>.</p>]]></content><author><name></name></author><category term="sample-posts"/><category term="formatting"/><category term="diagrams"/><summary type="html"><![CDATA[this is what included typograms code could look like]]></summary></entry><entry><title type="html">a post that can be cited</title><link href="https://alshedivat.github.io/blog/2024/post-citation/" rel="alternate" type="text/html" title="a post that can be cited"/><published>2024-04-28T15:06:00+00:00</published><updated>2024-04-28T15:06:00+00:00</updated><id>https://alshedivat.github.io/blog/2024/post-citation</id><content type="html" xml:base="https://alshedivat.github.io/blog/2024/post-citation/"><![CDATA[<p>This is an example post that can be cited. The content of the post ends here, while the citation information is automatically provided below. The only thing needed is for you to set the <code class="language-plaintext highlighter-rouge">citation</code> key in the front matter to <code class="language-plaintext highlighter-rouge">true</code>.</p>]]></content><author><name></name></author><category term="sample-posts"/><category term="formatting"/><category term="citation"/><summary type="html"><![CDATA[this is what a post that can be cited looks like]]></summary></entry><entry><title type="html">a post with pseudo code</title><link href="https://alshedivat.github.io/blog/2024/pseudocode/" rel="alternate" type="text/html" title="a post with pseudo code"/><published>2024-04-15T00:01:00+00:00</published><updated>2024-04-15T00:01:00+00:00</updated><id>https://alshedivat.github.io/blog/2024/pseudocode</id><content type="html" xml:base="https://alshedivat.github.io/blog/2024/pseudocode/"><![CDATA[<p>This is an example post with some pseudo code rendered by <a href="https://github.com/SaswatPadhi/pseudocode.js">pseudocode</a>. The example presented here is the same as the one in the <a href="https://saswat.padhi.me/pseudocode.js/">pseudocode.js</a> documentation, with only one simple but important change: everytime you would use <code class="language-plaintext highlighter-rouge">$</code>, you should use <code class="language-plaintext highlighter-rouge">$$</code> instead. Also, note that the <code class="language-plaintext highlighter-rouge">pseudocode</code> key in the front matter is set to <code class="language-plaintext highlighter-rouge">true</code> to enable the rendering of pseudo code. As an example, using this code:</p> <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">```</span><span class="nl">pseudocode
-</span><span class="sb">% This quicksort algorithm is extracted from Chapter 7, Introduction to Algorithms (3rd edition)
-\begin{algorithm}
-\caption{Quicksort}
-\begin{algorithmic}
-\PROCEDURE{Quicksort}{$$A, p, r$$}
-    \IF{$$p &lt; r$$}
-        \STATE $$q = $$ \CALL{Partition}{$$A, p, r$$}
-        \STATE \CALL{Quicksort}{$$A, p, q - 1$$}
-        \STATE \CALL{Quicksort}{$$A, q + 1, r$$}
-    \ENDIF
-\ENDPROCEDURE
-\PROCEDURE{Partition}{$$A, p, r$$}
-    \STATE $$x = A[r]$$
-    \STATE $$i = p - 1$$
-    \FOR{$$j = p$$ \TO $$r - 1$$}
-        \IF{$$A[j] &lt; x$$}
-            \STATE $$i = i + 1$$
-            \STATE exchange
-            $$A[i]$$ with $$A[j]$$
-        \ENDIF
-        \STATE exchange $$A[i]$$ with $$A[r]$$
-    \ENDFOR
-\ENDPROCEDURE
-\end{algorithmic}
-\end{algorithm}</span>
-<span class="p">```</span>
-</code></pre></div></div> <p>Generates:</p> <pre><code class="language-pseudocode">% This quicksort algorithm is extracted from Chapter 7, Introduction to Algorithms (3rd edition)
-\begin{algorithm}
-\caption{Quicksort}
-\begin{algorithmic}
-\PROCEDURE{Quicksort}{$$A, p, r$$}
-    \IF{$$p &lt; r$$}
-        \STATE $$q = $$ \CALL{Partition}{$$A, p, r$$}
-        \STATE \CALL{Quicksort}{$$A, p, q - 1$$}
-        \STATE \CALL{Quicksort}{$$A, q + 1, r$$}
-    \ENDIF
-\ENDPROCEDURE
-\PROCEDURE{Partition}{$$A, p, r$$}
-    \STATE $$x = A[r]$$
-    \STATE $$i = p - 1$$
-    \FOR{$$j = p$$ \TO $$r - 1$$}
-        \IF{$$A[j] &lt; x$$}
-            \STATE $$i = i + 1$$
-            \STATE exchange
-            $$A[i]$$ with $$A[j]$$
-        \ENDIF
-        \STATE exchange $$A[i]$$ with $$A[r]$$
-    \ENDFOR
-\ENDPROCEDURE
-\end{algorithmic}
-\end{algorithm}
-</code></pre>]]></content><author><name></name></author><category term="sample-posts"/><category term="formatting"/><category term="code"/><summary type="html"><![CDATA[this is what included pseudo code could look like]]></summary></entry><entry><title type="html">a post with code diff</title><link href="https://alshedivat.github.io/blog/2024/code-diff/" rel="alternate" type="text/html" title="a post with code diff"/><published>2024-01-27T19:22:00+00:00</published><updated>2024-01-27T19:22:00+00:00</updated><id>https://alshedivat.github.io/blog/2024/code-diff</id><content type="html" xml:base="https://alshedivat.github.io/blog/2024/code-diff/"><![CDATA[<p>You can display diff code by using the regular markdown syntax:</p> <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">```</span><span class="nl">diff
-</span><span class="gh">diff --git a/sample.js b/sample.js
-index 0000001..0ddf2ba
-</span><span class="gd">--- a/sample.js
-</span><span class="gi">+++ b/sample.js
-</span><span class="p">@@ -1 +1 @@</span>
-<span class="gd">-console.log("Hello World!")
-</span><span class="gi">+console.log("Hello from Diff2Html!")</span>
-<span class="p">```</span>
-</code></pre></div></div> <p>Which generates:</p> <div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gh">diff --git a/sample.js b/sample.js
-index 0000001..0ddf2ba
-</span><span class="gd">--- a/sample.js
-</span><span class="gi">+++ b/sample.js
-</span><span class="p">@@ -1 +1 @@</span>
-<span class="gd">-console.log("Hello World!")
-</span><span class="gi">+console.log("Hello from Diff2Html!")
-</span></code></pre></div></div> <p>But this is difficult to read, specially if you have a large diff. You can use <a href="https://diff2html.xyz/">diff2html</a> to display a more readable version of the diff. For this, just use <code class="language-plaintext highlighter-rouge">diff2html</code> instead of <code class="language-plaintext highlighter-rouge">diff</code> for the code block language:</p> <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">```</span><span class="nl">diff2html
-</span><span class="sb">diff --git a/sample.js b/sample.js
-index 0000001..0ddf2ba
---- a/sample.js
-+++ b/sample.js
-@@ -1 +1 @@
--console.log("Hello World!")
-+console.log("Hello from Diff2Html!")</span>
-<span class="p">```</span>
-</code></pre></div></div> <p>If we use a longer example, for example <a href="https://github.com/rtfpessoa/diff2html/commit/c2c253d3e3f8b8b267f551e659f72b44ca2ac927">this commit from diff2html</a>, it will generate the following output:</p> <pre><code class="language-diff2html">From 2aaae31cc2a37bfff83430c2c914b140bee59b6a Mon Sep 17 00:00:00 2001
-From: Rodrigo Fernandes &lt;rtfrodrigo@gmail.com&gt;
-Date: Sun, 9 Oct 2016 16:41:54 +0100
-Subject: [PATCH 1/2] Initial template override support
+        <span class="k">elif</span> <span class="n">self</span><span class="p">.</span><span class="n">mask_type</span> <span class="o">==</span> <span class="sh">"</span><span class="s">Decay</span><span class="sh">"</span><span class="p">:</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="nf">decay_mask</span><span class="p">(</span><span class="n">a_i</span><span class="p">)</span>
 
----
- scripts/hulk.js                    |  4 ++--
- src/diff2html.js                   |  3 +--
- src/file-list-printer.js           | 11 ++++++++---
- src/hoganjs-utils.js               | 29 +++++++++++++++++------------
- src/html-printer.js                |  6 ++++++
- src/line-by-line-printer.js        |  6 +++++-
- src/side-by-side-printer.js        |  6 +++++-
- test/file-list-printer-tests.js    |  2 +-
- test/hogan-cache-tests.js          | 18 +++++++++++++++---
- test/line-by-line-tests.js         |  3 +--
- test/side-by-side-printer-tests.js |  3 +--
- 11 files changed, 62 insertions(+), 29 deletions(-)
+        <span class="k">elif</span> <span class="n">self</span><span class="p">.</span><span class="n">mask_type</span> <span class="o">==</span> <span class="sh">"</span><span class="s">Lit</span><span class="sh">"</span><span class="p">:</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="mi">1</span>
 
-diff --git a/scripts/hulk.js b/scripts/hulk.js
-index 5a793c18..a4b1a4d5 100755
---- a/scripts/hulk.js
-+++ b/scripts/hulk.js
-@@ -173,11 +173,11 @@ function namespace(name) {
- // write a template foreach file that matches template extension
- templates = extractFiles(options.argv.remain)
-   .map(function(file) {
--    var openedFile = fs.readFileSync(file, 'utf-8');
-+    var openedFile = fs.readFileSync(file, 'utf-8').trim();
-     var name;
-     if (!openedFile) return;
-     name = namespace(path.basename(file).replace(/\..*$/, ''));
--    openedFile = removeByteOrderMark(openedFile.trim());
-+    openedFile = removeByteOrderMark(openedFile);
-     openedFile = wrap(file, name, openedFile);
-     if (!options.outputdir) return openedFile;
-     fs.writeFileSync(path.join(options.outputdir, name + '.js')
-diff --git a/src/diff2html.js b/src/diff2html.js
-index 21b0119e..64e138f5 100644
---- a/src/diff2html.js
-+++ b/src/diff2html.js
-@@ -7,7 +7,6 @@
+        <span class="n">attn</span> <span class="o">=</span> <span class="p">(</span><span class="n">q</span> <span class="o">@</span> <span class="n">k</span><span class="p">.</span><span class="nf">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">*</span> <span class="n">self</span><span class="p">.</span><span class="n">scale</span>
+        <span class="n">attn</span> <span class="o">=</span> <span class="n">m</span> <span class="o">*</span> <span class="n">attn</span>
 
- (function() {
-   var diffParser = require('./diff-parser.js').DiffParser;
--  var fileLister = require('./file-list-printer.js').FileListPrinter;
-   var htmlPrinter = require('./html-printer.js').HtmlPrinter;
+        <span class="c1"># Scaling
+</span>        <span class="n">attn</span> <span class="o">=</span> <span class="n">attn</span> <span class="o">/</span> <span class="n">attn</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">attn</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">attn_drop</span><span class="p">(</span><span class="n">attn</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">attn</span> <span class="o">@</span> <span class="n">v</span><span class="p">).</span><span class="nf">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">).</span><span class="nf">reshape</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
 
-   function Diff2Html() {
-@@ -43,7 +42,7 @@
+        <span class="n">x</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">proj</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">proj_drop</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span>
+</code></pre></div></div> <blockquote> <p><strong>Question:</strong> As seen above, the <strong>RNN</strong> is more efficient than the <strong>Transformer</strong> since it only requires storing the output for each token, resulting in a memory complexity of <strong>$\mathcal{O}(Ld)$</strong>, as opposed to storing the full Attention matrix, which requires <strong>$\mathcal{O}(L^2 d)$</strong>. Can we achieve a balance between the speed of Attention parallelism and the efficiency of an RNN?</p> </blockquote> <p>We will answer this question in our next section by introducing LION-Chunk.</p> <h2 id="next-up">Next Up</h2> <ul> <li> <p>In the next section of this series, we will describe how to apply a <strong>chunkwise parallel form</strong> for LION, allowing us to balance between the <em>RNN structure</em> and the <em>Attention-based</em> formulation.</p> </li> <li> <p>We show the numercial results and experiments on <a href="https://www.image-net.org/">Imagenet</a> and <a href="https://paperswithcode.com/dataset/c4">C4</a> dataset 😊.</p> </li> </ul> <p><a href="/2025/lion-part3-chunk/">Continue reading to Part III - Chunkwise Parallel from of LION</a></p>]]></content><author><name>Arshia Afzal</name></author><summary type="html"><![CDATA[Deriving equivalent bi-directional RNN for Linear Attention]]></summary></entry><entry><title type="html">LION 🦁 Part III - Chunkwise Parallel from of LION</title><link href="https://lions-epfl.github.io//2025/lion-part3-chunk/" rel="alternate" type="text/html" title="LION 🦁 Part III - Chunkwise Parallel from of LION"/><published>2025-02-28T00:00:00+00:00</published><updated>2025-02-28T00:00:00+00:00</updated><id>https://lions-epfl.github.io//2025/lion-part3-chunk</id><content type="html" xml:base="https://lions-epfl.github.io//2025/lion-part3-chunk/"><![CDATA[<p>[<a href="https://www.arxiv.org/abs/2502.16249">Paper</a>] [<a href="https://github.com/LIONS-EPFL/LION">Code</a>]</p> <ol> <li><a href="/2025/lion-part1-model/">Part I - Full Linear Attention</a></li> <li><a href="/2025/lion-part2-theory/">Part II - Bi-directional RNN</a></li> <li>Part III - Chunkwise Parallel from of LION</li> <li><a href="/2025/lion-part4-results/">Part IV - Results</a></li> </ol> <p>Since we have now established the LION framework, which maps Full Linear Attention into a bi-directional RNN in <a href="/2025/lion-part2-theory/">Part II</a> of this series, a key question arises:</p> <p>Given that RNNs are efficient and Attention is fast, can we strike a balance between them?</p> <p>For causal Transformers like DeltaNet <d-cite key="yang2024parallelizing"></d-cite> and GLA <d-cite key="yang2024gated"></d-cite>, as well as the SSD algorithm in Mamba2 <d-cite key="dao2024transformers"></d-cite>, a chunkwise parallel form of Full Linear Attention could be an effective solution. Additionally, in models like Hydra <d-cite key="hwang2025hydra"></d-cite>, this balance is achieved by applying two SSD algorithms. However, can we derive a unified framework for chunking Full Linear Attention, particularly for LION-S and LION-D, where the mask $\mathbf{M}$ structure is known? The aim of chunking Full Linear Attention in LION is to maintain a balance between efficiency and speed, particularly during inference. Since LION benefits from stable masks, it does <strong>not</strong> require chunking during training allowing for higher throughput, especially for short sequences, when compared to other models such as Hydra <d-cite key="hwang2025hydra"></d-cite>. While in <strong>Gated Linear Attention (GLA)</strong> <d-cite key="yang2024gated"></d-cite>, <strong>DeltaNet</strong> <d-cite key="yang2024parallelizing"></d-cite>, and the <strong>SSD algorithm of Mamba2</strong> <d-cite key="dao2024transformers"></d-cite> <em>causal-specific</em> chunking methods are employed, we extend this to the non-causal case as well.</p> <h2 id="lion-chunk">LION-Chunk</h2> <p>The key idea of chunking is that instead of processing the entire sequence of length $L$, we divide it into $N$ subsequences of length $C$, where $N \times C = L$.<br/> To achieve this, we start with the Full Linear Attention formulation:</p> \[\mathbf{Y} = (\mathbf{Q} \mathbf{K}^\top \odot \mathbf{M}) \mathbf{V}\] <p>we first chunk the queries, keys and values into submatrices</p> \[\mathbf{Q}_{[i]} , \mathbf{K}_{[i]}, \mathbf{V}_{[i]} \in \mathbb{R}^{C \times d}\] <p>Now, given the form \((\mathbf{A} \odot \mathbf{M})\), where \(\mathbf{A} = \mathbf{Q} \mathbf{K}^\top\) we can construct the chunkwise form in four parts</p> <ul> <li>Chunkwise \(\mathbf{A}_{[ij]}\)</li> <li>Chunkwise form for the scaling matrix $\mathbf{C}_{[ij]}$</li> <li>The chunked hidden state to shape the unscaled output $\mathbf{S}_{[i(j-1)]}$</li> <li>Finally the output of the chunk $i$ which is $\mathbf{Y}_{[i]}$</li> </ul> <p>using these chunked matrices we shape the full linear atteniton in chunk form as bellow:</p> <blockquote class="block-tip"> <p><strong>LION Chunk</strong></p> \[\begin{aligned} \mathbf{A}_{[ij]} &amp; = \mathbf{Q}_{[i]}\mathbf{K}_{[j]}^\top \odot \mathbf{M}_{[ij]}, \\ \mathbf{C}_{[ij]} &amp;= \mathbf{C}_{[i(j-1)]} + \text{Sum}(\mathbf{A}_{[ij]}), \\ \mathbf{S}_{[ij]} &amp; = \mathbf{S}_{[i(j-1)]} + \mathbf{A}_{[ij]} \mathbf{V}_{[j]}, \\ \mathbf{Y}_{[i]} &amp; = \frac{\mathbf{S}_{[iN]}}{\mathbf{C}_{[iN]}} \end{aligned}\] </blockquote> <p>where $\text{Sum}$ operations applies summation over the row of the input matrix. And $\mathbf{M}_{[ij]}$ corresponds to a submatrix of the full maks $\mathbf{M}$ at chunk $ij$ like:</p> \[\mathbf{M}_{[ij]} = \mathbf{M}_{iC+1:i(C+1),jC+1:j(C+1)} \in \mathbb{R}^{C \times C}.\] <p>Let’s start with an example, chunking the Attention matrix $\mathbf{A}$ for a sequence of $L=9$ with $C=3$ chunk size in detail below:</p> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/att_chunk.svg" sizes="95vw"/> <img src="/assets/img/att_chunk.svg" width="100%" height="auto" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> </figure> <p>Chunking simply involves computing the queries and keys for each boxed sub-matrix, as illustrated for the upper, lower, and diagonal chunks. For every Attention matrix chunk $[ij]$, the computation follows the same pattern, multiplying the corresponding queries and keys for that chunk.</p> <p>But does the same approach apply to Selective and Fixed masks?</p> <p>In reality, chunking the Attention mask is slightly different and even more critical than chunking Attention itself due to its unique structure. Below, we provide a detailed explanation of how to chunk the Attention mask for LION-D and LION-S.</p> <p>🚀 <strong>Note:</strong> The chunking visualization and details of this part are exclusively on the blogpost version.</p> <h3 id="lion-d-chunk">LION-D Chunk</h3> <p>Let’s start with the decay mask, as it is simpler and easier to visualize. For LION-D, the final mask is a Toeplitz mask constructed using the scalar decay factor $\lambda$. We can visualize how the mask is structured.</p> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/maskdec_chunk.svg" sizes="95vw"/> <img src="/assets/img/maskdec_chunk.svg" width="100%" height="auto" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> </figure> <p>The full mask of LION-D (or full RetNet mask) is constructed simply by the submatrix of $\Gamma$, which is a <a href="https://en.wikipedia.org/wiki/Toeplitz_matrix">Toeplitz matrix</a> itself. Regardless of where the chunk is located, whether in the upper or lower part of the mask matrix $\mathbf{M}$, it retains the same property of being a fraction of the Toeplitz matrix $\Gamma$ as bellow:</p> \[\mathbf{M}_{[ij]} = \Gamma \lambda^{|i-j|}\] <p>A pytorch implementation for LION-D Chunk Mask is provided below:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">mask_decay_partial</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">a</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">meshgrid</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">idx</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">],</span> <span class="n">indexing</span><span class="o">=</span><span class="sh">"</span><span class="s">ij</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">abs</span><span class="p">((</span><span class="n">i</span> <span class="o">-</span> <span class="n">j</span><span class="p">)).</span><span class="nf">float</span><span class="p">().</span><span class="nf">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">idx</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]))</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">sigmoid</span><span class="p">(</span><span class="n">a</span><span class="p">).</span><span class="nf">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="n">e</span>
+    <span class="k">return</span> <span class="n">m</span>
+</code></pre></div></div> <h3 id="lion-s-chunk">LION-S Chunk</h3> <p>The full mask of LION-S is more tricky than LION-D since the upper lower and the diagonal part of the mask are shaped differently:</p> <ul> <li>The <span style="background-color: rgb(255, 248, 203); padding: 3px; color:black">Upper</span> part is influenced only by the decay factors applied from the end to the beginning of the sequence.</li> <li>The <span style="background-color: rgb(254, 200, 201); padding: 3px; color:black">Diagonal</span> part incorporates contributions from both directions, spanning from the start to the end and from the end to the start.</li> <li>The <span style="background-color: rgb(208, 243, 248); padding: 3px; color:black">Lower</span> part is influenced only by the decay factors applied from the beginning to the end of the sequence.</li> </ul> <p>Let’s visualize LION-S mask as well:</p> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/masksel_chunk.svg" sizes="95vw"/> <img src="/assets/img/masksel_chunk.svg" width="100%" height="auto" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> </figure> <p>For example, the chunk [1,3] has only the cumulative decay factors multiplied from the beginning up to the last three sequence elements, while the chunk [3,1] has only the decay factors multiplied from the end up to the first three sequence elements. This is the reason for using the matrices $\mathbf{L}^F$ and $\mathbf{L}^B$ to compute the cumulative products of the decay factors, progressing from the beginning to the end of the sequence and in reverse which can be created simply by <code class="language-plaintext highlighter-rouge">L^F = cumprod(a)</code> and <code class="language-plaintext highlighter-rouge">L^B = cumprod(flip(a))</code>.</p> <h3 id="the-code-for-lion-s-chunk-mask">The code for LION-S Chunk Mask</h3> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">mask_forward</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">chunk_index</span><span class="p">,</span> <span class="n">chunk_length</span><span class="p">):</span>
+    <span class="n">cumprod</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">clamp</span><span class="p">(</span><span class="n">tensor</span><span class="p">.</span><span class="nf">cumprod</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span> <span class="mf">1e-6</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cumprod</span><span class="p">.</span><span class="nf">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="o">/</span> <span class="n">cumprod</span><span class="p">.</span><span class="nf">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)[</span>
+            <span class="p">...,</span> <span class="n">chunk_index</span> <span class="o">*</span> <span class="n">chunk_length</span> <span class="p">:</span> <span class="p">(</span><span class="n">chunk_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">chunk_length</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">torch</span><span class="p">.</span><span class="nf">tril</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">diagonal</span><span class="o">=-</span><span class="n">chunk_index</span> <span class="o">*</span> <span class="n">chunk_length</span><span class="p">)</span>
 
-     var fileList = '';
-     if (configOrEmpty.showFiles === true) {
--      fileList = fileLister.generateFileList(diffJson, configOrEmpty);
-+      fileList = htmlPrinter.generateFileListSummary(diffJson, configOrEmpty);
-     }
 
-     var diffOutput = '';
-diff --git a/src/file-list-printer.js b/src/file-list-printer.js
-index e408d9b2..1e0a2c61 100644
---- a/src/file-list-printer.js
-+++ b/src/file-list-printer.js
-@@ -8,11 +8,16 @@
- (function() {
-   var printerUtils = require('./printer-utils.js').PrinterUtils;
+<span class="k">def</span> <span class="nf">mask_backward</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">chunk_index</span><span class="p">,</span> <span class="n">chunk_length</span><span class="p">):</span>
+    <span class="n">cumprod</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">clamp</span><span class="p">(</span><span class="n">tensor</span><span class="p">.</span><span class="nf">cumprod</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span> <span class="mf">1e-6</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">cumprod</span><span class="p">.</span><span class="nf">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)[</span>
+        <span class="p">...,</span> <span class="n">chunk_index</span> <span class="o">*</span> <span class="n">chunk_length</span> <span class="p">:</span> <span class="p">(</span><span class="n">chunk_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">chunk_length</span><span class="p">,</span> <span class="p">:</span>
+    <span class="p">]</span> <span class="o">/</span> <span class="n">cumprod</span><span class="p">.</span><span class="nf">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">torch</span><span class="p">.</span><span class="nf">triu</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="nf">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="n">diagonal</span><span class="o">=-</span><span class="n">chunk_index</span> <span class="o">*</span> <span class="n">chunk_length</span><span class="p">)</span>
 
--  var hoganUtils = require('./hoganjs-utils.js').HoganJsUtils;
-+  var hoganUtils;
-+
-   var baseTemplatesPath = 'file-summary';
-   var iconsBaseTemplatesPath = 'icon';
 
--  function FileListPrinter() {
-+  function FileListPrinter(config) {
-+    this.config = config;
-+
-+    var HoganJsUtils = require('./hoganjs-utils.js').HoganJsUtils;
-+    hoganUtils = new HoganJsUtils(config);
-   }
-
-   FileListPrinter.prototype.generateFileList = function(diffFiles) {
-@@ -38,5 +43,5 @@
-     });
-   };
-
--  module.exports.FileListPrinter = new FileListPrinter();
-+  module.exports.FileListPrinter = FileListPrinter;
- })();
-diff --git a/src/hoganjs-utils.js b/src/hoganjs-utils.js
-index 9949e5fa..0dda08d7 100644
---- a/src/hoganjs-utils.js
-+++ b/src/hoganjs-utils.js
-@@ -8,18 +8,19 @@
- (function() {
-   var fs = require('fs');
-   var path = require('path');
--
-   var hogan = require('hogan.js');
-
-   var hoganTemplates = require('./templates/diff2html-templates.js');
-
--  var templatesPath = path.resolve(__dirname, 'templates');
-+  var extraTemplates;
-
--  function HoganJsUtils() {
-+  function HoganJsUtils(configuration) {
-+    this.config = configuration || {};
-+    extraTemplates = this.config.templates || {};
-   }
-
--  HoganJsUtils.prototype.render = function(namespace, view, params, configuration) {
--    var template = this.template(namespace, view, configuration);
-+  HoganJsUtils.prototype.render = function(namespace, view, params) {
-+    var template = this.template(namespace, view);
-     if (template) {
-       return template.render(params);
-     }
-@@ -27,17 +28,16 @@
-     return null;
-   };
-
--  HoganJsUtils.prototype.template = function(namespace, view, configuration) {
--    var config = configuration || {};
-+  HoganJsUtils.prototype.template = function(namespace, view) {
-     var templateKey = this._templateKey(namespace, view);
-
--    return this._getTemplate(templateKey, config);
-+    return this._getTemplate(templateKey);
-   };
-
--  HoganJsUtils.prototype._getTemplate = function(templateKey, config) {
-+  HoganJsUtils.prototype._getTemplate = function(templateKey) {
-     var template;
-
--    if (!config.noCache) {
-+    if (!this.config.noCache) {
-       template = this._readFromCache(templateKey);
-     }
-
-@@ -53,6 +53,7 @@
-
-     try {
-       if (fs.readFileSync) {
-+        var templatesPath = path.resolve(__dirname, 'templates');
-         var templatePath = path.join(templatesPath, templateKey);
-         var templateContent = fs.readFileSync(templatePath + '.mustache', 'utf8');
-         template = hogan.compile(templateContent);
-@@ -66,12 +67,16 @@
-   };
-
-   HoganJsUtils.prototype._readFromCache = function(templateKey) {
--    return hoganTemplates[templateKey];
-+    return extraTemplates[templateKey] || hoganTemplates[templateKey];
-   };
-
-   HoganJsUtils.prototype._templateKey = function(namespace, view) {
-     return namespace + '-' + view;
-   };
-
--  module.exports.HoganJsUtils = new HoganJsUtils();
-+  HoganJsUtils.prototype.compile = function(templateStr) {
-+    return hogan.compile(templateStr);
-+  };
-+
-+  module.exports.HoganJsUtils = HoganJsUtils;
- })();
-diff --git a/src/html-printer.js b/src/html-printer.js
-index 585d5b66..13f83047 100644
---- a/src/html-printer.js
-+++ b/src/html-printer.js
-@@ -8,6 +8,7 @@
- (function() {
-   var LineByLinePrinter = require('./line-by-line-printer.js').LineByLinePrinter;
-   var SideBySidePrinter = require('./side-by-side-printer.js').SideBySidePrinter;
-+  var FileListPrinter = require('./file-list-printer.js').FileListPrinter;
-
-   function HtmlPrinter() {
-   }
-@@ -22,5 +23,10 @@
-     return sideBySidePrinter.generateSideBySideJsonHtml(diffFiles);
-   };
-
-+  HtmlPrinter.prototype.generateFileListSummary = function(diffJson, config) {
-+    var fileListPrinter = new FileListPrinter(config);
-+    return fileListPrinter.generateFileList(diffJson);
-+  };
-+
-   module.exports.HtmlPrinter = new HtmlPrinter();
- })();
-diff --git a/src/line-by-line-printer.js b/src/line-by-line-printer.js
-index b07eb53c..d230bedd 100644
---- a/src/line-by-line-printer.js
-+++ b/src/line-by-line-printer.js
-@@ -11,7 +11,8 @@
-   var utils = require('./utils.js').Utils;
-   var Rematch = require('./rematch.js').Rematch;
-
--  var hoganUtils = require('./hoganjs-utils.js').HoganJsUtils;
-+  var hoganUtils;
-+
-   var genericTemplatesPath = 'generic';
-   var baseTemplatesPath = 'line-by-line';
-   var iconsBaseTemplatesPath = 'icon';
-@@ -19,6 +20,9 @@
-
-   function LineByLinePrinter(config) {
-     this.config = config;
-+
-+    var HoganJsUtils = require('./hoganjs-utils.js').HoganJsUtils;
-+    hoganUtils = new HoganJsUtils(config);
-   }
-
-   LineByLinePrinter.prototype.makeFileDiffHtml = function(file, diffs) {
-diff --git a/src/side-by-side-printer.js b/src/side-by-side-printer.js
-index bbf1dc8d..5e3033b3 100644
---- a/src/side-by-side-printer.js
-+++ b/src/side-by-side-printer.js
-@@ -11,7 +11,8 @@
-   var utils = require('./utils.js').Utils;
-   var Rematch = require('./rematch.js').Rematch;
-
--  var hoganUtils = require('./hoganjs-utils.js').HoganJsUtils;
-+  var hoganUtils;
-+
-   var genericTemplatesPath = 'generic';
-   var baseTemplatesPath = 'side-by-side';
-   var iconsBaseTemplatesPath = 'icon';
-@@ -26,6 +27,9 @@
-
-   function SideBySidePrinter(config) {
-     this.config = config;
-+
-+    var HoganJsUtils = require('./hoganjs-utils.js').HoganJsUtils;
-+    hoganUtils = new HoganJsUtils(config);
-   }
-
-   SideBySidePrinter.prototype.makeDiffHtml = function(file, diffs) {
-diff --git a/test/file-list-printer-tests.js b/test/file-list-printer-tests.js
-index a502a46f..60ea3208 100644
---- a/test/file-list-printer-tests.js
-+++ b/test/file-list-printer-tests.js
-@@ -1,6 +1,6 @@
- var assert = require('assert');
-
--var fileListPrinter = require('../src/file-list-printer.js').FileListPrinter;
-+var fileListPrinter = new (require('../src/file-list-printer.js').FileListPrinter)();
-
- describe('FileListPrinter', function() {
-   describe('generateFileList', function() {
-diff --git a/test/hogan-cache-tests.js b/test/hogan-cache-tests.js
-index 190bf6f8..3bb754ac 100644
---- a/test/hogan-cache-tests.js
-+++ b/test/hogan-cache-tests.js
-@@ -1,6 +1,6 @@
- var assert = require('assert');
-
--var HoganJsUtils = require('../src/hoganjs-utils.js').HoganJsUtils;
-+var HoganJsUtils = new (require('../src/hoganjs-utils.js').HoganJsUtils)();
- var diffParser = require('../src/diff-parser.js').DiffParser;
-
- describe('HoganJsUtils', function() {
-@@ -21,16 +21,28 @@ describe('HoganJsUtils', function() {
-       });
-       assert.equal(emptyDiffHtml, result);
-     });
-+
-     it('should render view without cache', function() {
-       var result = HoganJsUtils.render('generic', 'empty-diff', {
-         contentClass: 'd2h-code-line',
-         diffParser: diffParser
-       }, {noCache: true});
--      assert.equal(emptyDiffHtml + '\n', result);
-+      assert.equal(emptyDiffHtml, result);
-     });
-+
-     it('should return null if template is missing', function() {
--      var result = HoganJsUtils.render('generic', 'missing-template', {}, {noCache: true});
-+      var hoganUtils = new (require('../src/hoganjs-utils.js').HoganJsUtils)({noCache: true});
-+      var result = hoganUtils.render('generic', 'missing-template', {});
-       assert.equal(null, result);
-     });
-+
-+    it('should allow templates to be overridden', function() {
-+      var emptyDiffTemplate = HoganJsUtils.compile('&lt;p&gt;&lt;/p&gt;');
-+
-+      var config = {templates: {'generic-empty-diff': emptyDiffTemplate}};
-+      var hoganUtils = new (require('../src/hoganjs-utils.js').HoganJsUtils)(config);
-+      var result = hoganUtils.render('generic', 'empty-diff', {myName: 'Rodrigo Fernandes'});
-+      assert.equal('&lt;p&gt;Rodrigo Fernandes&lt;/p&gt;', result);
-+    });
-   });
- });
-diff --git a/test/line-by-line-tests.js b/test/line-by-line-tests.js
-index 1cd92073..8869b3df 100644
---- a/test/line-by-line-tests.js
-+++ b/test/line-by-line-tests.js
-@@ -14,7 +14,7 @@ describe('LineByLinePrinter', function() {
-         '            File without changes\n' +
-         '        &lt;/div&gt;\n' +
-         '    &lt;/td&gt;\n' +
--        '&lt;/tr&gt;\n';
-+        '&lt;/tr&gt;';
-
-       assert.equal(expected, fileHtml);
-     });
-@@ -422,7 +422,6 @@ describe('LineByLinePrinter', function() {
-         '        &lt;/div&gt;\n' +
-         '    &lt;/td&gt;\n' +
-         '&lt;/tr&gt;\n' +
--        '\n' +
-         '                &lt;/tbody&gt;\n' +
-         '            &lt;/table&gt;\n' +
-         '        &lt;/div&gt;\n' +
-diff --git a/test/side-by-side-printer-tests.js b/test/side-by-side-printer-tests.js
-index 76625f8e..771daaa5 100644
---- a/test/side-by-side-printer-tests.js
-+++ b/test/side-by-side-printer-tests.js
-@@ -14,7 +14,7 @@ describe('SideBySidePrinter', function() {
-         '            File without changes\n' +
-         '        &lt;/div&gt;\n' +
-         '    &lt;/td&gt;\n' +
--        '&lt;/tr&gt;\n';
-+        '&lt;/tr&gt;';
-
-       assert.equal(expectedRight, fileHtml.right);
-       assert.equal(expectedLeft, fileHtml.left);
-@@ -324,7 +324,6 @@ describe('SideBySidePrinter', function() {
-         '        &lt;/div&gt;\n' +
-         '    &lt;/td&gt;\n' +
-         '&lt;/tr&gt;\n' +
--        '\n' +
-         '                    &lt;/tbody&gt;\n' +
-         '                &lt;/table&gt;\n' +
-         '            &lt;/div&gt;\n' +
-
-From f3cadb96677d0eb82fc2752dc3ffbf35ca9b5bdb Mon Sep 17 00:00:00 2001
-From: Rodrigo Fernandes &lt;rtfrodrigo@gmail.com&gt;
-Date: Sat, 15 Oct 2016 13:21:22 +0100
-Subject: [PATCH 2/2] Allow uncompiled templates
-
----
- README.md                 |  3 +++
- src/hoganjs-utils.js      |  7 +++++++
- test/hogan-cache-tests.js | 24 +++++++++++++++++++++++-
- 3 files changed, 33 insertions(+), 1 deletion(-)
-
-diff --git a/README.md b/README.md
-index 132c8a28..46909f25 100644
---- a/README.md
-+++ b/README.md
-@@ -98,6 +98,9 @@ The HTML output accepts a Javascript object with configuration. Possible options
-   - `synchronisedScroll`: scroll both panes in side-by-side mode: `true` or `false`, default is `false`
-   - `matchWordsThreshold`: similarity threshold for word matching, default is 0.25
-   - `matchingMaxComparisons`: perform at most this much comparisons for line matching a block of changes, default is `2500`
-+  - `templates`: object with previously compiled templates to replace parts of the html
-+  - `rawTemplates`: object with raw not compiled templates to replace parts of the html
-+  &gt; For more information regarding the possible templates look into [src/templates](https://github.com/rtfpessoa/diff2html/tree/master/src/templates)
-
- ## Diff2HtmlUI Helper
-
-diff --git a/src/hoganjs-utils.js b/src/hoganjs-utils.js
-index 0dda08d7..b2e9c275 100644
---- a/src/hoganjs-utils.js
-+++ b/src/hoganjs-utils.js
-@@ -17,6 +17,13 @@
-   function HoganJsUtils(configuration) {
-     this.config = configuration || {};
-     extraTemplates = this.config.templates || {};
-+
-+    var rawTemplates = this.config.rawTemplates || {};
-+    for (var templateName in rawTemplates) {
-+      if (rawTemplates.hasOwnProperty(templateName)) {
-+        if (!extraTemplates[templateName]) extraTemplates[templateName] = this.compile(rawTemplates[templateName]);
-+      }
-+    }
-   }
-
-   HoganJsUtils.prototype.render = function(namespace, view, params) {
-diff --git a/test/hogan-cache-tests.js b/test/hogan-cache-tests.js
-index 3bb754ac..a34839c0 100644
---- a/test/hogan-cache-tests.js
-+++ b/test/hogan-cache-tests.js
-@@ -36,7 +36,7 @@ describe('HoganJsUtils', function() {
-       assert.equal(null, result);
-     });
-
--    it('should allow templates to be overridden', function() {
-+    it('should allow templates to be overridden with compiled templates', function() {
-       var emptyDiffTemplate = HoganJsUtils.compile('&lt;p&gt;&lt;/p&gt;');
-
-       var config = {templates: {'generic-empty-diff': emptyDiffTemplate}};
-@@ -44,5 +44,27 @@ describe('HoganJsUtils', function() {
-       var result = hoganUtils.render('generic', 'empty-diff', {myName: 'Rodrigo Fernandes'});
-       assert.equal('&lt;p&gt;Rodrigo Fernandes&lt;/p&gt;', result);
-     });
-+
-+    it('should allow templates to be overridden with uncompiled templates', function() {
-+      var emptyDiffTemplate = '&lt;p&gt;&lt;/p&gt;';
-+
-+      var config = {rawTemplates: {'generic-empty-diff': emptyDiffTemplate}};
-+      var hoganUtils = new (require('../src/hoganjs-utils.js').HoganJsUtils)(config);
-+      var result = hoganUtils.render('generic', 'empty-diff', {myName: 'Rodrigo Fernandes'});
-+      assert.equal('&lt;p&gt;Rodrigo Fernandes&lt;/p&gt;', result);
-+    });
-+
-+    it('should allow templates to be overridden giving priority to compiled templates', function() {
-+      var emptyDiffTemplate = HoganJsUtils.compile('&lt;p&gt;&lt;/p&gt;');
-+      var emptyDiffTemplateUncompiled = '&lt;p&gt;Not used!&lt;/p&gt;';
-+
-+      var config = {
-+        templates: {'generic-empty-diff': emptyDiffTemplate},
-+        rawTemplates: {'generic-empty-diff': emptyDiffTemplateUncompiled}
-+      };
-+      var hoganUtils = new (require('../src/hoganjs-utils.js').HoganJsUtils)(config);
-+      var result = hoganUtils.render('generic', 'empty-diff', {myName: 'Rodrigo Fernandes'});
-+      assert.equal('&lt;p&gt;Rodrigo Fernandes&lt;/p&gt;', result);
-+    });
-   });
- });
-</code></pre>]]></content><author><name></name></author><category term="sample-posts"/><category term="formatting"/><category term="code"/><summary type="html"><![CDATA[this is how you can display code diffs]]></summary></entry><entry><title type="html">a post with advanced image components</title><link href="https://alshedivat.github.io/blog/2024/advanced-images/" rel="alternate" type="text/html" title="a post with advanced image components"/><published>2024-01-27T11:46:00+00:00</published><updated>2024-01-27T11:46:00+00:00</updated><id>https://alshedivat.github.io/blog/2024/advanced-images</id><content type="html" xml:base="https://alshedivat.github.io/blog/2024/advanced-images/"><![CDATA[<p>This is an example post with advanced image components.</p> <h2 id="image-slider">Image Slider</h2> <p>This is a simple image slider. It uses the <a href="https://swiperjs.com/">Swiper</a> library. Check the <a href="https://swiperjs.com/demos">examples page</a> for more information of what you can achieve with it.</p> <swiper-container keyboard="true" navigation="true" pagination="true" pagination-clickable="true" pagination-dynamic-bullets="true" rewind="true"> <swiper-slide> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/9-480.webp 480w,/assets/img/9-800.webp 800w,/assets/img/9-1400.webp 1400w," type="image/webp" sizes="95vw"/> <img src="/assets/img/9.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> </figure> </swiper-slide> <swiper-slide> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/7-480.webp 480w,/assets/img/7-800.webp 800w,/assets/img/7-1400.webp 1400w," type="image/webp" sizes="95vw"/> <img src="/assets/img/7.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> </figure> </swiper-slide> <swiper-slide> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/8-480.webp 480w,/assets/img/8-800.webp 800w,/assets/img/8-1400.webp 1400w," type="image/webp" sizes="95vw"/> <img src="/assets/img/8.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> </figure> </swiper-slide> <swiper-slide> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/10-480.webp 480w,/assets/img/10-800.webp 800w,/assets/img/10-1400.webp 1400w," type="image/webp" sizes="95vw"/> <img src="/assets/img/10.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> </figure> </swiper-slide> <swiper-slide> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/12-480.webp 480w,/assets/img/12-800.webp 800w,/assets/img/12-1400.webp 1400w," type="image/webp" sizes="95vw"/> <img src="/assets/img/12.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> </figure> </swiper-slide> </swiper-container> <h2 id="image-comparison-slider">Image Comparison Slider</h2> <p>This is a simple image comparison slider. It uses the <a href="https://img-comparison-slider.sneas.io/">img-comparison-slider</a> library. Check the <a href="https://img-comparison-slider.sneas.io/examples.html">examples page</a> for more information of what you can achieve with it.</p> <img-comparison-slider> <figure slot="first"> <picture> <source class="responsive-img-srcset" srcset="/assets/img/prof_pic-480.webp 480w,/assets/img/prof_pic-800.webp 800w,/assets/img/prof_pic-1400.webp 1400w," type="image/webp" sizes="95vw"/> <img src="/assets/img/prof_pic.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> </figure> <figure slot="second"> <picture> <source class="responsive-img-srcset" srcset="/assets/img/prof_pic_color-480.webp 480w,/assets/img/prof_pic_color-800.webp 800w,/assets/img/prof_pic_color-1400.webp 1400w," type="image/webp" sizes="95vw"/> <img src="/assets/img/prof_pic_color.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> </figure> </img-comparison-slider>]]></content><author><name></name></author><category term="sample-posts"/><category term="formatting"/><category term="images"/><summary type="html"><![CDATA[this is what advanced image components could look like]]></summary></entry><entry><title type="html">a post with vega lite</title><link href="https://alshedivat.github.io/blog/2024/vega-lite/" rel="alternate" type="text/html" title="a post with vega lite"/><published>2024-01-27T00:20:00+00:00</published><updated>2024-01-27T00:20:00+00:00</updated><id>https://alshedivat.github.io/blog/2024/vega-lite</id><content type="html" xml:base="https://alshedivat.github.io/blog/2024/vega-lite/"><![CDATA[<p>This is an example post with some <a href="https://vega.github.io/vega-lite/">vega lite</a> code.</p> <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">```</span><span class="nl">vega_lite
-</span><span class="sb">{
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "A dot plot showing each movie in the database, and the difference from the average movie rating. The display is sorted by year to visualize everything in sequential order. The graph is for all Movies before 2019.",
-  "data": {
-    "url": "https://raw.githubusercontent.com/vega/vega/main/docs/data/movies.json"
-  },
-  "transform": [
-    {"filter": "datum['IMDB Rating'] != null"},
-    {"filter": {"timeUnit": "year", "field": "Release Date", "range": [null, 2019]}},
-    {
-      "joinaggregate": [{
-        "op": "mean",
-        "field": "IMDB Rating",
-        "as": "AverageRating"
-      }]
-    },
-    {
-      "calculate": "datum['IMDB Rating'] - datum.AverageRating",
-      "as": "RatingDelta"
-    }
-  ],
-  "mark": "point",
-  "encoding": {
-    "x": {
-      "field": "Release Date",
-      "type": "temporal"
-    },
-    "y": {
-      "field": "RatingDelta",
-      "type": "quantitative",
-      "title": "Rating Delta"
-    },
-    "color": {
-      "field": "RatingDelta",
-      "type": "quantitative",
-      "scale": {"domainMid": 0},
-      "title": "Rating Delta"
-    }
-  }
-}</span>
-<span class="p">```</span>
-</code></pre></div></div> <p>Which generates:</p> <pre><code class="language-vega_lite">{
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "A dot plot showing each movie in the database, and the difference from the average movie rating. The display is sorted by year to visualize everything in sequential order. The graph is for all Movies before 2019.",
-  "data": {
-    "url": "https://raw.githubusercontent.com/vega/vega/main/docs/data/movies.json"
-  },
-  "transform": [
-    {"filter": "datum['IMDB Rating'] != null"},
-    {"filter": {"timeUnit": "year", "field": "Release Date", "range": [null, 2019]}},
-    {
-      "joinaggregate": [{
-        "op": "mean",
-        "field": "IMDB Rating",
-        "as": "AverageRating"
-      }]
-    },
-    {
-      "calculate": "datum['IMDB Rating'] - datum.AverageRating",
-      "as": "RatingDelta"
-    }
-  ],
-  "mark": "point",
-  "encoding": {
-    "x": {
-      "field": "Release Date",
-      "type": "temporal"
-    },
-    "y": {
-      "field": "RatingDelta",
-      "type": "quantitative",
-      "title": "Rating Delta"
-    },
-    "color": {
-      "field": "RatingDelta",
-      "type": "quantitative",
-      "scale": {"domainMid": 0},
-      "title": "Rating Delta"
-    }
-  }
-}
-</code></pre> <p>This plot supports both light and dark themes.</p>]]></content><author><name></name></author><category term="sample-posts"/><category term="formatting"/><category term="charts"/><summary type="html"><![CDATA[this is what included vega lite code could look like]]></summary></entry></feed>
+<span class="k">def</span> <span class="nf">mask_selective_partial</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="n">chunk_index</span><span class="p">,</span> <span class="n">chunk_length</span><span class="p">):</span>
+    <span class="n">b</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">l</span> <span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">shape</span>
+    <span class="n">a_for</span> <span class="o">=</span> <span class="nf">create_matrix_from_tensor_forward</span><span class="p">(</span>
+        <span class="n">torch</span><span class="p">.</span><span class="nf">cat</span><span class="p">((</span><span class="n">torch</span><span class="p">.</span><span class="nf">ones_like</span><span class="p">(</span><span class="n">vec</span><span class="p">[...,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]),</span> <span class="n">vec</span><span class="p">[...,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span>
+        <span class="n">chunk_index</span><span class="p">,</span>
+        <span class="n">chunk_length</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">a_back</span> <span class="o">=</span> <span class="nf">create_matrix_from_tensor_backward</span><span class="p">(</span>
+        <span class="n">torch</span><span class="p">.</span><span class="nf">cat</span><span class="p">((</span><span class="n">torch</span><span class="p">.</span><span class="nf">ones_like</span><span class="p">(</span><span class="n">vec</span><span class="p">[...,</span> <span class="p">:</span><span class="mi">1</span><span class="p">]),</span> <span class="n">vec</span><span class="p">[...,</span> <span class="mi">1</span><span class="p">:]),</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span>
+        <span class="n">chunk_index</span><span class="p">,</span>
+        <span class="n">chunk_length</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">diag_embed</span><span class="p">(</span>
+        <span class="n">torch</span><span class="p">.</span><span class="nf">ones</span><span class="p">((</span><span class="n">b</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">l</span> <span class="o">-</span> <span class="n">chunk_index</span> <span class="o">*</span> <span class="n">chunk_length</span><span class="p">)),</span>
+        <span class="n">offset</span><span class="o">=-</span><span class="n">chunk_index</span> <span class="o">*</span> <span class="n">chunk_length</span><span class="p">,</span>
+    <span class="p">)[...,</span> <span class="p">:</span> <span class="n">a_for</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="n">a_for</span> <span class="o">+</span> <span class="n">a_back</span> <span class="o">-</span> <span class="n">i</span><span class="p">.</span><span class="nf">to</span><span class="p">(</span><span class="n">a_for</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
+</code></pre></div></div> <p>Now that we have all elements in place let’s see how these models are working in practice on real-world datasets for masked language modeling and image classification.</p> <h2 id="next-up">Next Up</h2> <p>In the <a href="/2025/lion-part4-results/">final part of this series</a>, we present the advantages of using LION compared to other methods for training SSMs or Linear Transformers.</p> <p>We also present the trade-offs for different LION 🦁 models and compare them with other well-known SSMs and Softmax Transformers.</p> <p><a href="/2025/lion-part4-results/">Continue reading to Part IV - Results</a></p>]]></content><author><name>Arshia Afzal</name></author><summary type="html"><![CDATA[Explaining LION-Chunk for Balancing Memory-Speed Tradeoffs During Inference]]></summary></entry><entry><title type="html">LION 🦁 Part IV - Results</title><link href="https://lions-epfl.github.io//2025/lion-part4-results/" rel="alternate" type="text/html" title="LION 🦁 Part IV - Results"/><published>2025-02-28T00:00:00+00:00</published><updated>2025-02-28T00:00:00+00:00</updated><id>https://lions-epfl.github.io//2025/lion-part4-results</id><content type="html" xml:base="https://lions-epfl.github.io//2025/lion-part4-results/"><![CDATA[<p>[<a href="https://www.arxiv.org/abs/2502.16249">Paper</a>] [<a href="https://github.com/LIONS-EPFL/LION">Code</a>]</p> <ol> <li><a href="/2025/lion-part1-model/">Part I - Full Linear Attention</a></li> <li><a href="/2025/lion-part2-theory/">Part II - Bi-directional RNN</a></li> <li><a href="/2025/lion-part3-chunk/">Part III - Chunkwise Parallel from of LION</a></li> <li>Part IV - Results</li> </ol> <p>In the final part of our LION series, we will present and discuss a selection of experimental results across various domains, including vision tasks, masked language modeling (MLM), and different LION architectures. These results not only highlight LION’s versatility and efficiency across diverse applications but also serve as a preview of the comprehensive findings detailed in the full paper.</p> <h2 id="image-classification-performance-overview">Image Classification Performance Overview</h2> <h3 id="model-comparisons">Model Comparisons</h3> <p>We evaluated LION’s performance, efficiency, and training times against state-of-the-art SSMs and Transformers for image classification. The results demonstrate that LION achieves competitive performance while offering significant advantages in training speed and efficiency.</p> <table> <thead> <tr> <th>Model</th> <th>#Param</th> <th>Imagenet Top-1 Acc.</th> <th>Train. time</th> </tr> </thead> <tbody> <tr> <td>$\text{ViT}$</td> <td>86M</td> <td>$77.9$</td> <td>$\times 1$</td> </tr> <tr> <td>$\text{DeiT}$</td> <td>86M</td> <td>$\underline{81.8}$</td> <td>$\times 1$</td> </tr> <tr> <td>$\text{Hydra}$</td> <td>104M</td> <td>$81.0$</td> <td>$\times 2.51$</td> </tr> <tr> <td>$\text{Vim}$</td> <td>98M</td> <td>$\mathbf{81.9}$</td> <td>$\times 10.86$</td> </tr> <tr> <td>$\text{LION-}\text{🔥}$</td> <td>86M</td> <td>$74.7$</td> <td>$\mathbf{\times 0.73}$</td> </tr> <tr> <td>$\text{LION-D}$</td> <td>86M</td> <td>$77.8$</td> <td>$\times \underline{1.39}$</td> </tr> <tr> <td>$\text{LION-D}^{\natural}$</td> <td>86M</td> <td>$80.2$</td> <td>$\times 1.48$</td> </tr> <tr> <td>$\text{LION-S}$</td> <td>86M</td> <td>$76.3$</td> <td>$\times 1.46$</td> </tr> <tr> <td>$\text{LION-S}^{\natural}$</td> <td>86M</td> <td>$79.9$</td> <td>$\times 1.68$</td> </tr> </tbody> </table> <div class="caption" style="color: #666666; margin-top: 1px;"> Model performance comparison on ImageNet classification, showing parameter count, top-1 accuracy, and relative training time. </div> <p>As shown in the table above, LION models achieve competitive performance with vision-specific SSMs like Vim, while being significantly faster during training. LION-D performs comparably to Vim and surpasses Hydra <d-cite key="hwang2025hydra"></d-cite>, while training approximately 7x faster than Vim <d-cite key="zhu2024vision"></d-cite>. Notably, LION-🔥 demonstrates the highest training speed across all models, showing that training with Full Linear Attention is significantly faster than chunkwise parallel training (used in Hydra) and considerably faster than the scan algorithm, even with optimized GPU kernels (as used in Vim). \(LION-S^{\natural}\) and \(LION-D^{\natural}\) modify the order of patches in an image to better capture the locality inherent in spatial patterns. By rearranging the patch sequence, these models enhance their understanding of local structures while still leveraging the efficiency of Linear Attention mechanisms similar to xLSTM <d-cite key="alkin2024vision"></d-cite>.</p> <h3 id="memory-efficiency">Memory Efficiency</h3> <p>The LION family demonstrates excellent memory efficiency across both vision and language tasks. Figure below shows inference memory usage with a batch size of 64 across different image resolutions, LION models (RNN form) maintain reasonable memory consumption even at high resolutions up to 2496 pixels, while adding minimal training overhead in BERT-style language modeling scenarios. In contrast, baseline models like ViT and DeiT run out of memory (OOM) at much lower resolutions.</p> <div class="row mt-3"> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/fig1_plot.svg" sizes="95vw"/> <img src="/assets/img/fig1_plot.svg" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="Memory Usage Comparison" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> <figcaption class="caption">Memory usage during inference across different architectures with batch size 64. LION models (RNN form) maintain reasonable memory consumption at high resolutions while other models run out of memory.</figcaption> </figure> </div> </div> <h3 id="training-time-analysis">Training Time Analysis</h3> <p>The LION family demonstrates remarkable training efficiency across both vision and language tasks. As shown in the table below, LION variants add minimal training overhead compared to SSMs.</p> <table> <thead> <tr> <th>Task</th> <th><span style="background-color: rgb(230, 255, 230); padding: 3px; color:black">LION-🔥 </span></th> <th><span style="background-color: rgb(229, 204, 230); padding: 3px; color:black">LION-D </span></th> <th><span style="background-color: rgb(255, 233, 211) ; padding: 3px; color:black">LION-S </span></th> <th>Hydra</th> <th>Vim</th> </tr> </thead> <tbody> <tr> <td>Vision</td> <td>$\times 0.73$</td> <td>$\times 1.39$</td> <td>$\times 1.46$</td> <td>$\times 2.51$</td> <td>$\times 10.86$</td> </tr> <tr> <td>MLM</td> <td>$\times 0.95$</td> <td>$\times 1.10$</td> <td>$\times 1.32$</td> <td>$\times 3.13$</td> <td>✗</td> </tr> </tbody> </table> <div class="caption" style="color: #666666; margin-top: 1px;"> Training Times (relative to Transformer) ↓ </div> <p>For vision tasks, LION-🔥 achieves remarkable speed, training 27% faster than standard vision Transformers <d-cite key="dosovitskiy2020image"></d-cite>. Even the more complex LION variants maintain competitive training times, with LION-D and LION-S training only ~1.4x slower than Transformers. This is significantly better than competing approaches like Hydra (2.51x slower) and Vim (10.86x slower).</p> <p>In MLM tasks, the efficiency gains are even more pronounced. LION-🔥 nearly matches Transformer training speed at just 0.95x, while LION-D adds only 10% overhead. Even LION-S remains efficient at 1.32x. All LION variants significantly outperform Hydra’s 3.13x slowdown, while Vim is not applicable to MLM tasks (marked as ✗).</p> <h2 id="mlm-results">MLM Results</h2> <p>For masked language modeling (MLM) tasks, we evaluated LION models against BERT <d-cite key="devlin2018bert"></d-cite> and Hydra on both MLM pretraining and GLUE benchmark finetuning. The results show that LION variants achieve competitive performance while maintaining good training efficiency.</p> <table> <thead> <tr> <th>Model</th> <th>MLM Acc.</th> <th>GLUE</th> <th>Train. time</th> </tr> </thead> <tbody> <tr> <td>BERT</td> <td>$\underline{69.88}$</td> <td>$\mathbf{82.95}$</td> <td>$\times 1$</td> </tr> <tr> <td>Hydra</td> <td>$\mathbf{71.18}$</td> <td>$\underline{81.77}$</td> <td>$\times 3.13$</td> </tr> <tr> <td><span style="background-color: rgb(230, 255, 230); padding: 3px; color:black">LION-🔥 </span></td> <td>$67.11$</td> <td>$80.76$</td> <td>$\times \mathbf{0.95}$</td> </tr> <tr> <td><span style="background-color: rgb(229, 204, 230); padding: 3px; color:black">LION-D </span></td> <td>$68.64$</td> <td>$81.34$</td> <td>$\times \underline{1.10}$</td> </tr> <tr> <td><span style="background-color: rgb(255, 233, 211) ; padding: 3px; color:black">LION-S </span></td> <td>$69.16$</td> <td>$81.58$</td> <td>$\times 1.32$</td> </tr> </tbody> </table> <div class="caption" style="color: #666666; margin-top: 1px;"> C4 MLM and GLUE results for the LARGE scale (334M). For each dataset, the best and second best results are highlighted with bold and underline respectively. </div> <h2 id="lion-architecture-variants-and-trade-offs">LION Architecture Variants and Trade-offs</h2> <p>Let’s explore how different LION variants handle the trade-off between memory usage and inference speed. We will look at three key approaches:</p> <ol> <li>Full Linear Attention - The standard approach using the Full Attention matrix.</li> <li>Bidirectional RNN - Our memory-efficient RNN formulation.</li> <li>LION Chunk - A balanced approach using chunked computation.</li> </ol> <h3 id="memory-vs-speed-trade-offs">Memory vs Speed Trade-offs</h3> <p>The first plot below shows how these approaches compare in terms of memory efficiency and inference speed in LION-D. The RNN approach proves to be the most memory-efficient, while Full Attention uses the most memory. LION Chunk provides a nice middle ground - it uses less memory than Full Attention while actually achieving faster inference speeds than both alternatives. This makes it particularly attractive when you need to balance performance with resource constraints.</p> <div class="row mt-3"> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/fig3_plot.svg" sizes="95vw"/> <img src="/assets/img/fig3_plot.svg" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="Impact of Chunk Size" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> <figcaption class="caption">Analysis of how chunk size affects model performance across different LION-D variants.</figcaption> </figure> </div> </div> <p>For LION-🔥, we see a similar pattern, but the chunking approach is even more pronounced.</p> <div class="row mt-3"> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/linear_chunking.svg" sizes="95vw"/> <img src="/assets/img/linear_chunking.svg" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="Linear Chunking Analysis" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> <figcaption class="caption">Evaluation of linear chunking strategies and their impact on model efficiency of LION-🔥.</figcaption> </figure> </div> </div> <p>Lastly for LION-S, we see that the chunking approach is only faster at lower resolutions - at higher resolutions, the overhead from mask calculations starts to slow it down.</p> <div class="row mt-3"> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/selective_chunking.svg" sizes="95vw"/> <img src="/assets/img/selective_chunking.svg" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="Selective Chunking Analysis" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> <figcaption class="caption">Performance comparison of selective chunking approaches across different sequence lengths with LION-S.</figcaption> </figure> </div> </div> <h2 id="future-directions">Future Directions</h2> <ul> <li> <p><strong>Expanding LION’s Potential:</strong> Our experiments focused on three main mask choices, but LION has the potential to accelerate other Linear Transformer variants for bidirectional tasks.</p> </li> <li> <p><strong>Optimizing Chunkwise Parallelism:</strong> The chunkwise parallel implementation during inference was done in PyTorch, with room for optimization through GPU kernel programming to reduce I/O overhead and improve speed.</p> </li> <li> <p><strong>Stabilizing Hydra and Mamba with LION:</strong> Hydra <d-cite key="hwang2025hydra"></d-cite> and Mamba <d-cite key="gu2023mamba"></d-cite> activations led to unstable training under Full Attention, suggesting LION could be used to stabilize these variants in the future.</p> </li> </ul> <h1 id="last-points">Last Points</h1> <p>We encourage the readers of this blog post to read the full <a href="https://www.arxiv.org/abs/2502.16249">paper</a> for more details about the LION framework and experimental setups. The implementation details are available in the <a href="https://github.com/LIONS-EPFL/LION">code repository</a>.</p> <p>If you use this work, please consider citing the paper:</p> <div class="language-bibtex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">@article</span><span class="p">{</span><span class="nl">afzal2025linear</span><span class="p">,</span>
+  <span class="na">title</span><span class="p">=</span><span class="s">{Linear Attention for Efficient Bidirectional Sequence Modeling}</span><span class="p">,</span>
+  <span class="na">author</span><span class="p">=</span><span class="s">{Afzal, Arshia and Abad Rocamora, Elias and Candogan, Leyla Naz and Puigdemont, Pol and Tonin, Francesco and Wu, Yongtao and Shoaran, Mahsa and Cevher, Volkan}</span><span class="p">,</span>
+  <span class="na">journal</span><span class="p">=</span><span class="s">{arXiv preprint arXiv:2502.16249}</span><span class="p">,</span>
+  <span class="na">year</span><span class="p">=</span><span class="s">{2025}</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">=</span><span class="s">{https://arxiv.org/abs/2502.16249}</span><span class="p">,</span>
+  <span class="na">doi</span><span class="p">=</span><span class="s">{10.48550/arXiv.2502.16249}</span>
+<span class="p">}</span>
+</code></pre></div></div>]]></content><author><name>Arshia Afzal</name></author><summary type="html"><![CDATA[Comprehensive results on Vision, MLM and more LION variants]]></summary></entry></feed>
