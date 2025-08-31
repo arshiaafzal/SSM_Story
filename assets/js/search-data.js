@@ -16,7 +16,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/SSM_Story/https:/arshiaafzal.github.io/SSM_Story/";
           },
-        },{id: "post-lion-part-iv-results",
+        },{id: "post-story-of-linear-time-sequence-modeling",
+      
+        title: "Story of Linear Time Sequence Modeling 📚",
+      
+      description: "Summary of Linear Transformers",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/SSM_Story/2025/lion-part1-model/";
+        
+      },
+    },{id: "post-lion-part-iv-results",
       
         title: "LION 🦁 Part IV - Results",
       
@@ -47,17 +58,6 @@ ninja.data = [{
       handler: () => {
         
           window.location.href = "/SSM_Story/2025/lion-part2-theory/";
-        
-      },
-    },{id: "post-lion-part-i-full-linear-attention",
-      
-        title: "LION 🦁 Part I - Full Linear Attention",
-      
-      description: "Explaining the Full Linear Attention paradigm for bi-directional sequence modeling",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/SSM_Story/2025/lion-part1-model/";
         
       },
     },{id: "news-a-simple-inline-announcement",
