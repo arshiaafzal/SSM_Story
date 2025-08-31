@@ -33,12 +33,6 @@ toc:
 ---
 
 
-<!-- 
-1. Part I - Full Linear Attention
-2. [Part II - Bi-directional RNN]({% post_url 2024-05-31-lion-part2-theory %})
-3. [Part III -  Chunkwise Parallel from of LION]({% post_url 2024-05-31-lion-part3-chunk %})
-4. [Part IV - Results]({% post_url 2024-05-31-lion-part4-results %})
- -->
 
 ------------------
 
