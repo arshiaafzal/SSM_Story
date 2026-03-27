@@ -161,7 +161,19 @@ Dense router $r_t = \mathbf{1}$ gives you an SSM. One-hot $r_t = e_t$ gives you 
 
 For every token, only the content of the selected slots gets decayed — exactly like squeezing a specific shelf to make room, while leaving the other shelves untouched.
 
-{% include figure.liquid loading="eager" path="assets/img/mem.png" title="RSM Vis" caption=" Visualization of three different sequence mixers using Routing Slot Memories, with different router choices.  (a) SWA memory allocation uses a first-in-first-out strategy with a one-hot vector $\mathbf{e}_t$ as the router.  (b) SSM memory allocation projects each token into all memory slots using a dense, all-ones router $\mathbf{1}_M$.  (c) Phoenix memory allocation uses a selective router for writes. The visualization shows a sequence of $T=6$ tokens and $M=4$ memory slots for the hidden state $\mathbf{S}_t$, with $\text{Top}_K = 1$ for the \ours router." %}
+<figure style="text-align: center;">
+  <video autoplay loop muted playsinline
+         style="width: 90%; max-width: 750px;">
+    <source src="{{ '/assets/video/memory_cells.mp4' | relative_url }}" type="video/mp4">
+  </video>
+  <figcaption style="margin-top: 0.6em; font-size: 0.85em; color: #555; line-height: 1.5;">
+    Visualization of three different sequence mixers using Routing Slot Memories, with different router choices.
+    <strong>(a)</strong> SWA memory allocation uses a first-in-first-out strategy with a one-hot vector $\mathbf{e}_t$ as the router.
+    <strong>(b)</strong> SSM memory allocation projects each token into all memory slots using a dense, all-ones router $\mathbf{1}_M$.
+    <strong>(c)</strong> Phoenix memory allocation uses a selective router for writes.
+    The visualization shows a sequence of $T=6$ tokens and $M=4$ memory slots for the hidden state $\mathbf{S}_t$, with $\mathrm{Top}_K = 1$ for the Phoenix router.
+  </figcaption>
+</figure>
 
 And so the question became concrete:
 
