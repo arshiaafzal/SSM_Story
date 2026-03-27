@@ -6,7 +6,7 @@ tags:
 giscus_comments: false
 date: 2025-08-29
 featured: false
-thumbnail: assets/img/best.PNG
+thumbnail: assets/img/best.png
 
 authors:
   - name: Arshia Afzal$^*$ (Bloggin 🎙️)
@@ -34,7 +34,7 @@ bibliography: arshia.bib
 
 
 toc:
-  - name: A Nagging Problem
+  - name: Organize your memory like your closet
   - name: What Are SSMs Actually Doing?
   - name: The Other Extreme — SWA
   - name: Routing Slot Memories
@@ -42,14 +42,12 @@ toc:
 ---
 
 <div style="width: 50%; margin: 0 auto;">
-  {% include figure.liquid loading="eager" path="assets/img/best.PNG" %}
+  {% include figure.liquid loading="eager" path="assets/img/best.png" %}
 </div>
 
 ------------------
 
-## A Nagging Problem
-
-It started with a nagging feeling.
+## Organize your memory like your closet 👕
 
 Mamba <d-cite key="mamba"></d-cite> had just shown the world that you didn't need attention <d-cite key="attention"></d-cite> to build powerful sequence models. A simple, elegant recurrence could match and even beat Transformers on language modeling. We were excited — the efficiency gains alone were compelling. But then we started running recall benchmarks.
 
@@ -72,8 +70,6 @@ That was the missing piece. We first needed to understand precisely what SSMs an
 
 
 ## What Are SSMs Actually Doing?
-
-To build something better, we had to look carefully under the hood.
 
 State space models <d-cite key="mamba,mamba2"></d-cite> and linear transformers <d-cite key="linearattn"></d-cite> all share the same fundamental memory operation — a matrix-valued hidden state $S_t \in \mathbb{R}^{M\times d}$ updated by a **linear time-dependent** recurrence:
 
@@ -113,8 +109,6 @@ This, we realized, is the root of the recall problem. And once we saw it clearly
 
 ## The Other Extreme — SWA
 
-There is. And it had been hiding in plain sight.
-
 Sliding window attention keeps a fixed cache of the past $M$ tokens, and at every step it does something deceptively simple: it **$\color{red}{\text{drops}}$** the oldest token and **$\color{green}{\text{appends}}$** the newest one. With key and value caches $S^k_t, S^v_t\in \mathbb{R}^{M\times d}$:
 
 $$
@@ -152,8 +146,6 @@ And as a bonus — much like organizing a closet by clothing type — this turns
 
 ## Routing Slot Memories
 
-The key idea, in hindsight, is surprisingly clean.
-
 Instead of the ring-buffer's fixed one-hot selector $e_t$, what if we used a learned, *sparse* router vector $r_t \in \mathbb{R}^M$ that picks which slots each token gets written to — based on the *content* of that token? This is the heart of **Routing Slot Memories (RSMs)**:
 
 $$
@@ -182,7 +174,3 @@ This is why Phoenix can store a passkey once and retrieve it 32,000 tokens later
 In Part 2, we'll walk through how we actually built Phoenix from this framework, the design decisions that surprised us along the way, and what happened when we finally ran the experiments.
 
 ----------------
-
-<div style="text-align: center;">
-  <img src="{{ '/assets/video/best.gif' | relative_url }}" alt="animation" style="width: 60%; max-width: 600px;" />
-</div>

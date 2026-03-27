@@ -6,7 +6,7 @@ tags:
 giscus_comments: false
 date: 2025-08-29
 featured: false
-thumbnail: assets/img/best.PNG
+thumbnail: assets/img/best.png
 
 authors:
   - name: Arshia Afzal$^*$ (Bloggin 🎙️)
@@ -42,7 +42,7 @@ toc:
 ---
 
 <div style="width: 50%; margin: 0 auto;">
-  {% include figure.liquid loading="eager" path="assets/img/best.PNG" %}
+  {% include figure.liquid loading="eager" path="assets/img/best.png" %}
 </div>
 
 ------------------
