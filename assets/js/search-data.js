@@ -38,22 +38,22 @@ ninja.data = [{
           window.location.href = "/SSM_Story/2025/lion-part3-chunk/";
         
       },
-    },{id: "post-story-of-linear-time-sequence-modeling",
+    },{id: "post-phoenix-part-2",
       
-        title: "Story of Linear Time Sequence Modeling 📚",
+        title: "Phoenix (Part-2)",
       
-      description: "Summary of Linear Transformers",
+      description: "Architecture and Results",
       section: "Posts",
       handler: () => {
         
           window.location.href = "/SSM_Story/2025/lion-part2-theory/";
         
       },
-    },{id: "post-story-of-linear-time-sequence-modeling",
+    },{id: "post-phoenix-part-1",
       
-        title: "Story of Linear Time Sequence Modeling 📚",
+        title: "Phoenix (Part-1)",
       
-      description: "Summary of Linear Transformers",
+      description: "Memory as a set of Slots",
       section: "Posts",
       handler: () => {
         
