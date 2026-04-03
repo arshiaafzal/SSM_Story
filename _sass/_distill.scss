@@ -19,6 +19,7 @@ d-article d-byline a {
 }
 
 d-article {
+  overflow-x: visible !important;
   border-top-color: var(--global-divider-color) !important;
   p,
   h1,
@@ -75,6 +76,8 @@ d-article {
   }
 
   d-contents {
+    position: sticky;
+    top: 120px;
     align-self: start;
     grid-column: 1 / 4;
     grid-row: auto / span 4;
@@ -155,6 +158,8 @@ d-appendix {
 @media (max-width: 1024px) {
   d-article {
     d-contents {
+      position: static;
+      top: 0;
       display: block;
       grid-column-start: 2;
       grid-column-end: -2;

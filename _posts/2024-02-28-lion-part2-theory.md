@@ -17,7 +17,7 @@ authors:
     url:
     affiliations:
       name: CMU
-  - name: Eric P.Xing
+  - name: Eric P. Xing
     url:
     affiliations:
       name: CMU, MBZUAI
@@ -37,23 +37,23 @@ toc:
   - name: From Framework to Model
   - name: Design Decisions
   - name: Empirical Results
+    subsections:
+      - name: Retrieval Ability
+      - name: Language Modeling
+      - name: Hybrid Phoenix
   - name: A Pleasant Surprise
+  - name: Final Notes and Future
 
 ---
 
-<div style="width: 50%; margin: 0 auto;">
-  {% include figure.liquid loading="eager" path="assets/img/best.png" %}
-</div>
-
-------------------
 
 ## From Framework to Model
 
-In Part 1, we arrived at Routing Slot Memories — a framework that could, in principle, combine the selective writing of SWA with the graceful forgetting of SSMs. Now came the harder question: how do you actually *build* this thing?
+In Part 1, we introduced Routing Slot Memories, a framework that combines the selective writing of SWA with the gradual forgetting of SSMs. The next step was to turn that framework into a concrete model.
 
-The RSM framework is general by design. To get Phoenix, we had to make concrete choices about how the router $r_t$ works and what kind of decay $a_t$ to use. We wanted something expressive enough to learn meaningful slot assignments, but simple enough to train stably at scale.
+RSM is deliberately general. To instantiate Phoenix, one needs to choose how the router $r_t$ is computed and how the decay term $a_t$ is parameterized. We wanted a design expressive enough to learn meaningful slot assignments, but simple enough to train stably at scale.
 
-The recurrence we settled on uses two separate caches — one for keys, one for values — mirroring SWA's structure, but with a learned decay instead of hard deletion:
+Our recurrence uses separate key and value states, mirroring SWA, but replaces hard deletion with learned decay:
 
 $$
 S^k_t = (1-\exp(a_tr_t)) \odot S^k_{t-1} + \exp(a_tr_t)^\top k_t
@@ -63,93 +63,186 @@ $$
 S^v_t = (1-\exp(a_tr_t)) \odot S^v_{t-1} + \exp(a_tr_t)^\top v_t
 $$
 
-Unlike other SSMs <d-cite key="mamba,mamba2"></d-cite> that write to all memory slots at once ($r_t = \mathbf{1}$), Phoenix writes only to the slots selected by $r_t$. Unlike SWA, which fully erases the oldest slot, Phoenix gradually decays the selected slot's previous content — preserving partial information rather than discarding it.
+Unlike standard SSMs <d-cite key="mamba,mamba2"></d-cite> that write to all memory slots at once ($r_t = \mathbf{1}$), Phoenix writes only to the slots selected by $r_t$. And unlike SWA, which fully overwrites the evicted slot, Phoenix decays the previous content of the selected slot rather than removing it outright.
 
-For the router itself, we drew inspiration from the DeepSeek MoE family <d-cite key="deepseek_moe"></d-cite>. Each token produces a score vector via a learned linear projection, and only the top-$K$ slots are activated:
+For routing, we draw inspiration from the DeepSeek Mixture-of-Experts (MoE) family <d-cite key="deepseek_moe"></d-cite>. Each token is projected to a score vector, and only the top-$K$ entries remain active:
 
 $$
-m_t = \sigma(Wx_t), \qquad
-g_t = \mathrm{KeepTop}_K(m_t) =
+\begin{aligned}
+m_t &= \sigma(Wx_t), \\
+g_t &= \mathrm{KeepTop}_K(m_t) =
 \begin{cases}
 m_t[i], & \text{if } i \in \mathrm{TopK}(m_t),\\
-0, & \text{otherwise},
-\end{cases}, \qquad
+0, & \text{otherwise}.
+\end{cases}
+\end{aligned}
+$$
+
+By isolating only the highest-scoring slots, the memory dynamically specializes based on the content of the token. Finally, to keep the effective write magnitude stable, these gated scores are normalized into the final routing weights:
+
+$$
 r_t = \frac{g_t}{\alpha\sum_{i=1}^M g_t[i]}.
 $$
 
-The decay $a_t$ follows Mamba-2's <d-cite key="mamba2"></d-cite> scalar per-head design:
+Here, $\alpha$ controls the effective write scale, similarly to the role of temperature-like scaling in GLA .
 
-$$
-a_t = -\mathrm{SoftPlus}(w^\top x_t)\,\exp(\Delta).
-$$
 
-And $\alpha$ normalizes the router logits — similar to the temperature scaling used in GLA <d-cite key="gla"></d-cite> — to keep the effective write magnitude stable.
-
+<div style="margin: 1.5rem auto 1rem; display: flex; justify-content: center; width: 100%;">
+  <iframe
+    id="phoenix-recurrent-matrix-update"
+    src="{{ '/assets/html/phoenix_recurrent_matrix_update.html' | relative_url }}"
+    title="Phoenix recurrent matrix update visualization"
+    loading="lazy"
+    scrolling="no"
+    style="display: block; width: 70%; max-width: 1400px; height: 0; border: 0; border-radius: 0rem; background: transparent; overflow: hidden;"
+  ></iframe>
+</div>
 
 ## Design Decisions
 
-With the recurrence in place, we turned to the block-level design. Several choices here surprised us.
+With the recurrence fixed, we turned to the block design.
 
-{% include figure.liquid loading="eager" path="assets/img/arch.png" title="block diagram" caption="Phoenix block design vs. other linear models block design." %}
+{% include figure.liquid loading="eager" path="assets/img/arch.png" title="block diagram" caption="Phoenix block design vs. other linear models block design." width="60%" max-width="60%" class="rounded mx-auto d-block" %}
 
-**Dropping the short convolution.** Most linear transformer blocks include a short depthwise convolution before the recurrence — a holdover that helps capture local context. We removed it. The reasoning: SWA is mathematically equivalent to an input-dependent convolution, and Phoenix's RSM already subsumes SWA as a special case. Adding a separate convolution on top would be redundant. Similar to what Mamba-3 does, we found that removing it came at no cost and slightly simplified the architecture. The RSM, it turns out, was already doing that job implicitly.
+**Dropping the short convolution.** 
+Most linear transformer blocks include a short depthwise convolution before the recurrence — a holdover that helps capture local context. We removed it. The reasoning: SWA is mathematically equivalent to an input-dependent convolution, and Phoenix's RSM already subsumes SWA as a special case. Adding a separate convolution on top would be redundant. 
+<!-- Similar to what Mamba-3 does, we found that removing it came at no cost and slightly simplified the architecture. The RSM, it turns out, was already doing that job implicitly. -->
 
-**On norms.** We use QK-RMSNorm on queries and keys to stabilize training — a practice that helps prevent gradient explosions in SSMs. One nuance: in the hybrid Phoenix variant (with interleaved attention layers), we found that removing these norms actually *improves* length generalization, particularly on recall tasks. Why? Our hypothesis is that the norms interfere with position-related information that the NoPE attention layers need. It was one of those unexpected ablation results that made us rethink a long-held assumption.
+**On norms.** 
+We apply QK-RMSNorm to queries and keys to stabilize training and avoid gradient explosions, following common practice in SSMs. 
+One interesting exception appears in hybrid Phoenix, where Phoenix layers are interleaved with attention. In that setting, removing these norms improves length generalization, especially on recall tasks.
+We hypothesize that the norms suppress position-related information that the NoPE attention layers rely on. This was one of the more unexpected ablation results.
 
 {% details Side Note on RoPE %}
 
-In our early experiments, we included Rotary Position Embedding (RoPE) <d-cite key="rope"></d-cite> to incorporate positional information into queries and keys. However, it severely degraded the length generalization of Phoenix, one of its main strengths, so we removed it from the design.
+In early experiments, we applied Rotary Position Embedding (RoPE) <d-cite key="rope"></d-cite> to queries and keys.
+This substantially hurt Phoenix’s length generalization, which is one of its main strengths, so we removed it from the final design.
 
 {% enddetails %}
 
-**The counterintuitive choice: no load balancing.** In Mixture-of-Experts models <d-cite key="moe"></d-cite>, load-balancing losses are standard practice — you push the router to distribute tokens evenly across experts to prevent a few experts from dominating. We tried this. It made Phoenix worse.
+<!-- **The counterintuitive choice: no load balancing.** In Mixture-of-Experts models <d-cite key="moe"></d-cite>, load-balancing losses are standard practice — you push the router to distribute tokens evenly across experts to prevent a few experts from dominating. We tried this. It made Phoenix worse.
 
-The reason, once we thought about it, made sense: Phoenix *wants* its memory to be uneven. A slot that specializes in storing retrieval-critical tokens — passkeys, variable names, rare facts — should store *more* of those tokens, not fewer. Forcing uniform allocation would destroy exactly the specialization that makes Phoenix useful. So we dropped the load-balancing loss entirely and instead added Gumbel noise during training to encourage exploration and prevent early collapse. The router was free to specialize, and specialize it did: retrieval-critical tokens naturally clustered into dedicated slots, leaving the rest of the memory free for ordinary context.
+The reason, once we thought about it, made sense: Phoenix *wants* its memory to be uneven. A slot that specializes in storing retrieval-critical tokens — passkeys, variable names, rare facts — should store *more* of those tokens, not fewer. Forcing uniform allocation would destroy exactly the specialization that makes Phoenix useful. So we dropped the load-balancing loss entirely and instead added Gumbel noise during training to encourage exploration and prevent early collapse. The router was free to specialize, and specialize it did: retrieval-critical tokens naturally clustered into dedicated slots, leaving the rest of the memory free for ordinary context. -->
+
+**No load balancing.**
+ In Mixture-of-Experts models, load-balancing losses are commonly used to spread tokens more evenly across experts. We do not use such a loss in Phoenix, since its memory is most useful when allocation is uneven. Slots that specialize in retrieval-critical tokens, such as passkeys, variable names, or rare facts, should receive more of those tokens rather than be pushed toward uniform usage. For this reason, we allow the router to specialize freely, and use Gumbel noise during training only to encourage exploration and avoid early collapse. This intuition is supported by our experiments: retrieval-critical tokens naturally cluster into dedicated slots, while other slots remain available for ordinary context.
 
 
 ## Empirical Results
 
-When we finally ran the experiments, we were cautiously optimistic. The theory was clean. But linear models had disappointed on recall before, and we didn't want to overclaim.
+<!-- When we finally ran the experiments, we were cautiously optimistic. The theory was clean. But linear models had disappointed on recall before, and we didn't want to overclaim. -->
+We now turn to the empirical evaluation. Our main question was whether Phoenix improves in-context retrieval without sacrificing general language modeling.
 
 ### Retrieval Ability
 
-Our first question was simple: does Phoenix actually retrieve better? We pitted it against the strongest linear baselines we knew — *Mamba-2* <d-cite key="mamba2"></d-cite>, *GDN* <d-cite key="gated_deltanet"></d-cite>, and *GLA* <d-cite key="gla"></d-cite> on the SSM side, and SWA-like models including *SWA+RoPE* and *GSA* <d-cite key="gsa"></d-cite> on the other — and threw Needle-in-a-Haystack tasks at all of them.
+<!-- Our first question was simple: does Phoenix actually retrieve better? We pitted it against the strongest linear baselines we knew —  -->
+We begin with retrieval. We compare Phoenix against *Mamba-2* <d-cite key="mamba2"></d-cite>, *GDN* <d-cite key="gated_deltanet"></d-cite>, and *GLA* <d-cite key="gla"></d-cite> on the SSM side, and SWA-like models including *SWA+RoPE* and *GSA* <d-cite key="gsa"></d-cite> on the other — and threw Needle-in-a-Haystack tasks at all of them.
 
-The degradation in the baselines was predictable once you understood the mechanism: Mamba-2 and GDN write every token to every slot, so over a long sequence, each slot becomes a blurry average of everything it has ever seen. By 8K tokens — already $4\times$ their training length — the passkey signal is too diluted to recover.
+<!-- The degradation in the baselines was predictable once you understood the mechanism:  -->
+The baseline behavior is consistent with their memory mechanism: Mamba-2 and GDN write every token to every slot, so over a long sequence, each slot becomes a blurry average of everything it has ever seen. By 8K tokens — already $4\times$ their training length — the passkey signal is too diluted to recover.
 
-{% include figure.liquid loading="eager" path="assets/img/recall.png" title="tab recall" caption="In-Context Recall Benchmarks and NIAH Accuracy vs. Context Length and Cache Size.
-We report accuracy (%) on SWDE, FDA, and SQuAD, as well as on individual NIAH-1, NIAH-2, and NIAH-3 tasks across varying context lengths.  Rec. mem. and Conv. mem. denote the millions of cached state elements used during decoding." %}
+<div  style="margin: 2rem auto; display: flex; flex-direction: column; gap: 0.4rem; align-items: center; max-width: 100%;">
+  <div style="width: 100%; display: flex; justify-content: center; overflow-y: hidden;">
+    <iframe
+      id="recall-table"
+      src="{{ '/assets/html/recall_table.html' | relative_url }}"
+      title="Benchmark table"
+      loading="lazy"
+      scrolling="no"
+      style="display: block; width: 100%; height: 420px; border: 0; background: transparent;"
+      onload="(function(f){try{const d=f.contentWindow.document;const resize=function(){f.style.height='0px';const h=Math.max(d.body?d.body.scrollHeight:0,d.documentElement?d.documentElement.scrollHeight:0);f.style.height=(h+2)+'px';};resize();setTimeout(resize,120);setTimeout(resize,500);}catch(e){}})(this)"
+    ></iframe>
+  </div>
+  <div style="width: 100%; font-size: 0.85rem; color: #475569; line-height: 1.6; text-align: left;">
+    <strong style="color: #1e293b; display: block; margin-bottom: 0.5rem;">Table 2: In-context recall benchmarks and NIAH accuracy vs. context length and cache size.</strong> 
+    We report accuracy (%) on SWDE/FDA/SQuAD and on single NIAH-1/2/3 across context lengths. Rec. mem. and Conv. mem. denote the millions of cached state elements used during decoding. The common baseline of \(12.5\)M recurrent elements corresponds to a 24-layer model with a total state size of \(0.57\)M per layer (derived from \(2\times\) factors in architectures like GSA/SWA or larger single tensors in Mamba-2/GDN).
+  </div>
+</div>
 
-Phoenix behaved differently. It held near-perfect accuracy ($\geq \mathbf{99\%}$) all the way to 16K tokens, and remained the *only model* at the 400M scale to keep strong performance ($> \mathbf{91\%}$) at 32K — that's $\mathbf{16\times}$ its training length. The passkey was going into a dedicated slot at the moment it was encountered, and staying there. No dilution. No overwriting.
 
-{% include figure.liquid loading="eager" path="assets/img/niah.png" title="niah" caption="NIAH-1 accuracy visualization vs sequence length. Dashed line indicate training sequence length." %}
+Phoenix behaved differently. It held near-perfect accuracy ($\geq \mathbf{99\%}$) all the way to 16K tokens, and remained the *only model* at the 400M scale to keep strong performance ($> \mathbf{91\%}$) at 32K — that's $\mathbf{16\times}$ its training length. 
+This behavior is consistent with the routing mechanism: the passkey can be written into a dedicated slot and remain recoverable over long spans, rather than being diluted by subsequent tokens.
+
+{% include figure.liquid loading="eager" path="assets/img/niah.png" title="niah" caption="NIAH-1 accuracy visualization vs sequence length. The dashed line indicates the training sequence length." %}
 
 ### Language Modeling
 
-A natural worry at this point: did we buy recall ability at the cost of general language modeling? We had deliberately made the memory uneven — would that hurt perplexity or zero-shot benchmarks?
+A natural question is whether this improvement in retrieval comes at the expense of general language modeling.
+We had deliberately made the memory uneven — would that hurt perplexity or zero-shot benchmarks?
 
-It didn't. Across standard evaluations, Phoenix matched or surpassed **Mamba-2** <d-cite key="mamba2"></d-cite>, **GLA** <d-cite key="gla"></d-cite>, and **GDN** <d-cite key="gated_deltanet"></d-cite>, as well as strong Transformer baselines like *FoX*, at both **400M and 800M parameter scales**. It even achieved the **best Lambada performance at 400M**. Selective memory, it turns out, doesn't hurt general language modeling — if anything, routing tokens to content-appropriate slots seems to help.
+Across standard evaluations, Phoenix matched or surpassed **Mamba-2** <d-cite key="mamba2"></d-cite>, **GLA** <d-cite key="gla"></d-cite>, and **GDN** <d-cite key="gated_deltanet"></d-cite>, as well as strong Transformer baselines like *FoX*, at both **400M and 800M parameter scales**. It even achieved the **best Lambada performance at 400M**. 
+These results suggest that selective memory does not compromise general language modeling, and may even help by routing tokens to more appropriate slots.
 
-{% include figure.liquid loading="eager" path="assets/img/lm.png" title="niah" caption="Zero-shot language modeling performance across models." %}
+
+<div  style="margin: 2rem auto; display: flex; flex-direction: column; gap: 0.4rem; align-items: center; max-width: 100%;">
+  <div style="width: 100%; display: flex; justify-content: center; overflow-y: hidden;">
+    <iframe
+      id="lm-table"
+      src="{{ '/assets/html/lm_table.html' | relative_url }}"
+      title="Benchmark table"
+      loading="lazy"
+      scrolling="no"
+      style="display: block; width: 100%; height: 420px; border: 0; background: transparent;"
+      onload="(function(f){try{const d=f.contentWindow.document;const resize=function(){f.style.height='0px';const h=Math.max(d.body?d.body.scrollHeight:0,d.documentElement?d.documentElement.scrollHeight:0);f.style.height=(h+2)+'px';};resize();setTimeout(resize,120);setTimeout(resize,500);}catch(e){}})(this)"
+    ></iframe>
+  </div>
+  <div style="width: 100%; font-size: 0.85rem; color: #475569; line-height: 1.6; text-align: left;">
+    <strong style="color: #1e293b; display: block; margin-bottom: 0.5rem;">Table 3: Language modeling and zero-shot evaluation results. </strong> 
+    Perplexity on Lambada (LMB.) and zero-shot accuracy on Lambada, PIQA, HellaSwag, WinoGrande, ARC-e, and ARC-c for Transformer, SSM, and Phoenix models at 400M and 800M parameter scales. Phoenix matches strong linear baselines overall while maintaining strong downstream performance.
+  </div>
+</div>
+
 
 ### Hybrid Phoenix
 
 We also experimented with a hybrid variant — interleaving Phoenix RSM layers with standard attention layers. The results here were striking. The hybrid Phoenix achieved near-perfect NIAH-1 accuracy up to **32K tokens** and strong NIAH-2 performance up to **16K tokens**, while other SSM hybrids like GDN+Attn <d-cite key="gated_deltanet"></d-cite> and Mamba-2+Attn <d-cite key="mamba2"></d-cite> started breaking down at 4K and 2K respectively. The combination of NoPE attention — good at precise short-range retrieval — with Phoenix's persistent, content-addressed slots turned out to be unusually complementary.
 
-{% include figure.liquid loading="eager" path="assets/img/hybrid.png" title="hybrid" caption="Recall ability of hybrid-phoenix vs other hybrid architechtures." %}
+<div style="margin: 2rem 0; width: 100%; display: flex; flex-direction: column; gap: 0.75rem; align-items: stretch;">
+  <div style="width: 100%; overflow: hidden;">
+    <iframe
+      id="hybrid-table"
+      src="{{ '/assets/html/hybrid_table.html' | relative_url }}"
+      title="Benchmark table"
+      loading="lazy"
+      scrolling="no"
+      style="display: block; width: 100%; max-width: 100%; height: 420px; border: 0; background: transparent;"
+      onload="(function(f){try{const d=f.contentWindow.document;const resize=function(){f.style.height='0px';const h=Math.max(d.body?d.body.scrollHeight:0,d.documentElement?d.documentElement.scrollHeight:0);f.style.height=(h+2)+'px';};resize();setTimeout(resize,120);setTimeout(resize,500);}catch(e){}})(this)"
+    ></iframe>
+  </div>
+  <div style="width: 100%; font-size: 0.85rem; color: #475569; line-height: 1.6; text-align: left;">
+    <strong style="color: #1e293b; display: block; margin-bottom: 0.5rem;">Table 4: Hybrid Models Retrieval Ability.</strong> 
+    Recall ability of hybrid-phoenix vs other hybrid architechtures.
+  </div>
+</div>
 
-
-## A Pleasant Surprise
-
+<!-- ## A Pleasant Surprise 
 We had set out to fix recall. We hadn't planned on fixing length generalization. But there it was.
+-->
+## Length Generalization
+One unexpected outcome was Phoenix’s strong length generalization. During evaluation, we found that Phoenix remained effective far beyond its training length, beyond what had previously been observed in SSM-based models. This behavior was not explicitly designed for, which motivated us to look for a mechanistic explanation. In developing that explanation, we found it useful to think in terms of **Effective Sequence Length (ESL)** (ESL), a concept we developed with [Ricardo](https://r-buitrago.github.io/).
 
-During evaluation, we noticed Phoenix generalizing to sequences far beyond its training length — well beyond what any SSM had demonstrated before. We hadn't engineered this; it seemed to be a byproduct of the routing mechanism. So we went looking for an explanation, and that search led us to [Ricardo](https://www.linkedin.com/in/ricardobuitrago), who helped us develop the concept of **Effective Sequence Length (ESL)**.
 
-{% include figure.liquid loading="eager" path="assets/img/esl_1.png" title="esl" caption="Normalized effective sequence length for a NIAH-1 sample at sequence length 16K. SWA stores each token in exactly one slot (FIFO). Phoenix shows the hidden state $S_t$ for layer 1, head 1 (256 slots, Top$_{32}$). SSM stores each token in all slots with decay. Slots are reordered by usage frequency; results correspond to 400M parameter models." %}
+<div markdown="1" style="margin: 0.6rem auto 2rem; display: flex; flex-direction: column; gap: 0.4rem; align-items: center; max-width: 100%;">
+  <div style="width: 100%; display: flex; justify-content: center; overflow-y: hidden;">
+    <iframe
+      id="esl-table"
+      src="{{ '/assets/html/esl_figure.html' | relative_url }}"
+      title="Benchmark table"
+      loading="lazy"
+      scrolling="no"
+      style="display: block; width: 100%; height: 600px; border: 0; background: transparent;"
+      onload="(function(f){try{const d=f.contentWindow.document;const resize=function(){f.style.height='0px';const h=Math.max(d.body?d.body.scrollHeight:0,d.documentElement?d.documentElement.scrollHeight:0);f.style.height=(h+2)+'px';};resize();setTimeout(resize,120);setTimeout(resize,500);}catch(e){}})(this)"
+    ></iframe>
+  </div>
+  <div style="width: 100%; font-size: 0.85rem; color: #475569; line-height: 1.6; text-align: left;">
+    <strong style="color: #1e293b; display: block; margin-bottom: 0.5rem;">Figure: Effective Sequence Length.</strong> 
+    Normalized effective sequence length for a NIAH-1 sample at sequence length 16K. SWA stores each token in exactly one slot (FIFO). Phoenix shows the hidden state $S_t$ for layer 1, head 1 (256 slots, Top$_{32}$). SSM stores each token in all slots with decay. Slots are reordered by usage frequency; results correspond to 400M parameter models.
+  </div>
+</div>
 
-The insight is simple in retrospect. In a standard SSM, every slot sees every token — the effective sequence length is $T$ for all slots. In SWA, every slot sees exactly $\frac{T}{M}$ tokens — uniform and predictable. In Phoenix, the router creates *diversity*: some slots see many tokens (acting like SSM slots), while others see very few — just the rare tokens they've specialized for. This diversity means no single slot consistently overfits to the training sequence length, which appears to be why Phoenix generalizes so gracefully beyond it.
+In a standard SSM, every slot receives every token, so the effective sequence length of each slot is $T$. In SWA, each slot receives exactly $\frac{T}{M}$ tokens, yielding uniform allocation across slots. In Phoenix, routing produces a more heterogeneous pattern: some slots receive many tokens, while others receive only a small subset, including rare retrieval-critical tokens. As a result, different slots operate over different effective sequence lengths, which may help explain Phoenix’s improved length generalization.
 
-To make this concrete, we looked directly inside Phoenix's hidden state on a synthetic NIAH task. The picture was striking:
+To make this concrete, we visualize Phoenix’s hidden state on a synthetic NIAH task:
 
 <figure style="text-align: center;">
   <img src="{{ '/assets/video/best.gif' | relative_url }}"
@@ -164,14 +257,54 @@ To make this concrete, we looked directly inside Phoenix's hidden state on a syn
   </figcaption>
 </figure>
 
-The passkey — shown in $\color{red}{red}$ — goes into a dedicated region of the hidden state the moment it appears, and stays there. Ordinary tokens shown in $\color{green}{green}$ flow through the general-purpose slots without touching it. Some slots shown in $\color{blue}{blue}$ serve both roles. Crucially, different heads allocate different amounts of memory to retrieval-critical tokens — the model discovered this specialization entirely on its own, without any explicit supervision.
+The passkey — shown in $\color{red}{red}$ — is routed into a dedicated region of the hidden state and remains separated from most ordinary tokens. Ordinary tokens shown in $\color{green}{green}$ flow through the general-purpose slots without touching it. Some slots shown in $\color{blue}{blue}$ serve both roles. Crucially, different heads allocate different amounts of memory to retrieval-critical tokens — the model discovered this specialization entirely on its own, without any explicit supervision.
 
 This is what "organizing memory like a closet" looks like from the inside.
 
 ## Final Notes and Future
 
-Phoenix started as an answer to a simple frustration — linear models that forgot too easily — and ended up revealing something deeper about how memory can be organized in learned sequence models. The routing idea is not complicated, but its consequences are: better recall, better language modeling, and a surprising bonus of length generalization, all from the same mechanism.
+Phoenix began from a simple goal: improving recall in linear models. More broadly, it suggests that learned memory can benefit from structured, content-based allocation rather than uniform updates across slots. In Phoenix, a relatively simple routing mechanism is enough to improve recall while remaining competitive on language modeling, with the additional benefit of strong length generalization.
 
 There is plenty left to explore. How far can the length generalization be pushed? Can the routing mechanism be made even more expressive? What happens at truly large scales? We don't have all the answers yet — but we're working on it.
 
-----------------
+
+
+
+
+
+
+
+
+<script>
+  (() => {
+    const iframe = document.getElementById('phoenix-recurrent-matrix-update');
+    if (!iframe) return;
+
+    const resizeIframe = () => {
+      try {
+        const doc = iframe.contentDocument || iframe.contentWindow?.document;
+        if (!doc || !doc.body || !doc.documentElement) return;
+
+        const height = Math.max(
+          doc.body.scrollHeight,
+          doc.documentElement.scrollHeight,
+          doc.body.offsetHeight,
+          doc.documentElement.offsetHeight
+        );
+
+        iframe.style.height = `${height}px`;
+      } catch (error) {
+        // Ignore cross-document timing issues during initial load.
+      }
+    };
+
+    iframe.addEventListener('load', () => {
+      resizeIframe();
+      window.setTimeout(resizeIframe, 0);
+      window.setTimeout(resizeIframe, 250);
+      window.setTimeout(resizeIframe, 1000);
+    });
+
+    window.addEventListener('resize', resizeIframe);
+  })();
+</script>
