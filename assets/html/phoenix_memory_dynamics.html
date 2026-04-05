@@ -232,7 +232,7 @@ const GRAY = [232, 236, 241];
 const BASE  = [GRAY, GRAY, GRAY, GRAY];
 const FULL  = [
   [175, 182, 193],  // unused
-  [220,  16,  16],  // red   — vivid #dc1010
+  [195,  60,  60],  // red   — softer #c33c3c
   [ 18, 181,  84],  // green — vivid #12b554
   [ 26, 143, 224],  // blue  — vivid #1a8fe0
 ];
@@ -258,9 +258,9 @@ function drawState(t) {
     // Slot type based on what has ACTUALLY written to this slot up to time t
     let stype;
     if (total < 0.5)           stype = 0;  // unwritten → gray
-    else if (n / total > 0.60) stype = 1;  // red   — needle-dominant
-    else if (n / total < 0.15) stype = 2;  // green — context-dominant
-    else                        stype = 3;  // blue  — shared
+    else if (n / total > 0.85) stype = 1;  // red   — needle-dominant  (~10% of slots)
+    else if (n / total < 0.42) stype = 2;  // green — context-dominant (~50% of slots)
+    else                        stype = 3;  // blue  — shared           (~40% of slots)
 
     const [r, g, b] = bright > 0 ? lerpC(GRAY, FULL[stype], bright) : GRAY;
     const x0 = si * PX;
