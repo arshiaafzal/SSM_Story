@@ -130,7 +130,7 @@
       flex-shrink: 0;
     }
     .phase-label.prompt  { color: #0f172a; }
-    .phase-label.phoenix { color: #c0392b; }
+    .phase-label.phoenix { color: #0f172a; }
     /* force Phoenix label to new line */
     .line-break { width: 100%; height: 0; flex-shrink: 0; }
 
@@ -210,16 +210,28 @@ const ctx = canvas.getContext('2d');
 document.getElementById('head-label').textContent = DATA.head_label;
 document.getElementById('scrubber').max = T - 1;
 
-// ── Cumulative frames ──
-const cum = new Float64Array(N);
-const frames = new Array(T);
+// ── Cumulative frames: track needle vs context separately ──
+// This ensures slot color is determined by what has ACTUALLY written to it so far,
+// so red slots only turn red once the passkey tokens are processed.
+const cumN = new Float64Array(N);  // cumulative from needle tokens
+const cumO = new Float64Array(N);  // cumulative from other tokens
+const framesN = new Array(T);
+const framesO = new Array(T);
 for (let t = 0; t < T; t++) {
   const row = DATA.rows[t];
-  for (let j = 0; j < N; j++) cum[j] += row[j];
-  frames[t] = new Float64Array(cum);
+  const isNeedle = DATA.token_types[t] === 1;
+  for (let j = 0; j < N; j++) {
+    if (isNeedle) cumN[j] += row[j];
+    else          cumO[j] += row[j];
+  }
+  framesN[t] = new Float64Array(cumN);
+  framesO[t] = new Float64Array(cumO);
 }
 let maxVal = 0;
-for (let j = 0; j < N; j++) if (frames[T-1][j] > maxVal) maxVal = frames[T-1][j];
+for (let j = 0; j < N; j++) {
+  const tot = framesN[T-1][j] + framesO[T-1][j];
+  if (tot > maxVal) maxVal = tot;
+}
 
 // ── Colors ──
 const GRAY = [232, 236, 241];
@@ -243,11 +255,20 @@ const imgData = ctx.createImageData(CW, CH);
 const px = imgData.data;
 
 function drawState(t) {
-  const vals = frames[t];
+  const vN = framesN[t];
+  const vO = framesO[t];
   for (let si = 0; si < N; si++) {
-    const bright = vals[si] > 0 ? Math.min(1, Math.pow(vals[si] / maxVal, 0.22)) : 0;
-    const stype  = DATA.slot_types[si];
-    const [r, g, b] = bright > 0 ? lerpC(BASE[stype], FULL[stype], bright) : BASE[stype];
+    const n = vN[si], o = vO[si], total = n + o;
+    const bright = total > 0 ? Math.min(1, Math.pow(total / maxVal, 0.22)) : 0;
+
+    // Slot type based on what has ACTUALLY written to this slot up to time t
+    let stype;
+    if (total < 0.5)           stype = 0;  // unwritten → gray
+    else if (n / total > 0.60) stype = 1;  // red   — needle-dominant
+    else if (n / total < 0.15) stype = 2;  // green — context-dominant
+    else                        stype = 3;  // blue  — shared
+
+    const [r, g, b] = bright > 0 ? lerpC(GRAY, FULL[stype], bright) : GRAY;
     const x0 = si * PX;
     for (let py = 0; py < CH; py++) {
       for (let dx = 0; dx < PX; dx++) {
