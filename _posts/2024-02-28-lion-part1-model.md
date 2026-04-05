@@ -44,6 +44,12 @@ toc:
 
 ---
 
+<div style="background:#f8f9fa; border-left:3px solid #adb5bd; padding:0.6rem 1rem; margin-bottom:1.5rem; border-radius:0 4px 4px 0; font-size:0.9rem;">
+  <strong>Phoenix Series</strong> &nbsp;—&nbsp;
+  <strong>Part 1: Memory as a set of Slots</strong> &nbsp;|&nbsp;
+  <a href="{{ '/2025/lion-part2-theory/' | relative_url }}">Part 2: Architecture and Results →</a>
+</div>
+
 ## The Recall Gap
 Mamba <d-cite key="mamba"></d-cite> showed that attention <d-cite key="attention"></d-cite> is not strictly necessary for strong sequence modeling. A simple recurrent model could match, and sometimes outperform, Transformers on language modeling at a fraction of the cost. But there is no free lunch.
 Soon after, several works exposed a critical limitation: fixed-size memory models struggle on recall benchmarks, which is not surprising, since they have only a finite amount of room to store information. 

@@ -183,7 +183,7 @@
                     <span class="text-[8px] md:text-[10px] font-black uppercase tracking-widest text-blue-600" id="input-label-text">Input</span>
                     <span id="token-id" class="text-[8px] md:text-[10px] font-mono bg-blue-100 px-1.5 py-0.5 rounded border border-blue-200 text-blue-700">t=1</span>
                 </div>
-                <span class="text-sm md:text-lg font-mono text-blue-800" id="equation-input-text">\( \bar{B}x_t \)</span>
+                <span class="text-sm md:text-lg font-mono text-blue-800" id="equation-input-text">\( U_t \)</span>
             </div>
 
             <div id="input-wrapper" class="relative p-1.5 md:p-3 bg-white rounded-xl border-2 border-blue-100 shadow-xl opacity-0">
@@ -207,8 +207,8 @@
     </div>
         <p class="w-full px-2 md:px-8 text-left text-slate-600 text-[10px] md:text-xs">
             <strong>Recurrent update step in a State Space Model (SSM)</strong>. 
-            Animation of the equation \( S_t = \bar{A} S_{t-1} + \bar{B} x_t \) unfolding in real-time.
-            The left matrix represents the previous state \( S_{t-1} \) undergoing decay, while the right matrix shows the new input contribution \( \bar{B} x_t \). 
+            Animation of the equation \( S_t = \bar{A} S_{t-1} + U_t \) unfolding in real-time.
+            The left matrix represents the previous state \( S_{t-1} \) undergoing decay, while the right matrix shows the new input contribution \( U_t \).
             The center flow indicator highlights the integration process, culminating in the updated state \( S_t \).
         </p>
     </div>

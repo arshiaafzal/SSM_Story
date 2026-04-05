@@ -1,0 +1,13 @@
+# Local development — builds from the local Dockerfile
+# Usage: docker-compose -f docker-compose-local.yml up --build
+# Then visit: http://localhost:8080/SSM_Story/
+services:
+  jekyll:
+    build: .
+    ports:
+      - "8080:8080"
+      - "35729:35729"
+    volumes:
+      - .:/srv/jekyll
+    environment:
+      - JEKYLL_ENV=development

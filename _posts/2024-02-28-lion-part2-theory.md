@@ -47,6 +47,12 @@ toc:
 ---
 
 
+<div style="background:#f8f9fa; border-left:3px solid #adb5bd; padding:0.6rem 1rem; margin-bottom:1.5rem; border-radius:0 4px 4px 0; font-size:0.9rem;">
+  <strong>Phoenix Series</strong> &nbsp;—&nbsp;
+  <a href="{{ '/2025/lion-part1-model/' | relative_url }}">← Part 1: Memory as a set of Slots</a> &nbsp;|&nbsp;
+  <strong>Part 2: Architecture and Results</strong>
+</div>
+
 ## From Framework to Model
 
 In Part 1, we introduced Routing Slot Memories, a framework that combines the selective writing of SWA with the gradual forgetting of SSMs. The next step was to turn that framework into a concrete model.
