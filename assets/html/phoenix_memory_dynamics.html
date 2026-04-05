@@ -81,6 +81,18 @@
     input[type=range] { accent-color: #3b82f6; }
     #scrubber { flex: 1; height: 3px; cursor: pointer; }
     #step-lbl { font-size: 0.66rem; color: #94a3b8; white-space: nowrap; min-width: 46px; text-align: right; flex-shrink: 0; }
+    #play-btn {
+      padding: 0.2rem 0.75rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      background: #f8fafc;
+      color: #475569;
+      font-size: 0.7rem;
+      font-weight: 600;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    #play-btn:hover { background: #e2e8f0; }
 
     .legend {
       display: flex;
@@ -162,6 +174,7 @@
 </div>
 
 <div class="controls">
+  <button id="play-btn">▶ Play</button>
   <span id="step-lbl" style="font-size:0.66rem;color:#94a3b8;">t = 1 / 65</span>
 </div>
 
@@ -317,15 +330,15 @@ function render() {
   if (ce) ce.scrollIntoView({ block:'nearest', inline:'nearest', behavior:'smooth' });
 }
 
-// ── Auto-play loop ──
+// ── Animation loop ──
 const STEP_MS = 204;   // ms per token step — smooth and readable
-let animId = null, lastTs = 0;
+let animId = null, lastTs = 0, playing = false;
 
 function tick(ts) {
   if (ts - lastTs >= STEP_MS) {
     step++;
     if (step >= T) {
-      step = 0;          // loop back to start
+      step = 0;
       lastTs = ts;
       render();
       animId = requestAnimationFrame(tick);
@@ -337,11 +350,46 @@ function tick(ts) {
   animId = requestAnimationFrame(tick);
 }
 
+function startAnim() {
+  if (!playing) {
+    playing = true;
+    lastTs = 0;
+    animId = requestAnimationFrame(tick);
+    document.getElementById('play-btn').textContent = '⏸ Pause';
+  }
+}
+function stopAnim() {
+  if (playing) {
+    playing = false;
+    cancelAnimationFrame(animId);
+    animId = null;
+    document.getElementById('play-btn').textContent = '▶ Play';
+  }
+}
 
-// Start immediately
-animId = requestAnimationFrame(tick);
+document.getElementById('play-btn').addEventListener('click', function() {
+  if (playing) stopAnim(); else startAnim();
+});
 
+// Show first frame paused
 render();
+
+// ── Scroll forwarding: let the parent page scroll when the cursor is over this iframe ──
+// Both pages are same-origin so window.parent access is allowed.
+window.addEventListener('wheel', function(e) {
+  try { window.parent.scrollBy(0, e.deltaY); } catch(_) {}
+}, {passive: true});
+
+/// Touch: forward vertical swipes so mobile users can scroll past
+let _lastTY = 0;
+window.addEventListener('touchstart', function(e) {
+  _lastTY = e.touches[0].clientY;
+}, {passive: true});
+window.addEventListener('touchmove', function(e) {
+  const dy = _lastTY - e.touches[0].clientY;
+  _lastTY = e.touches[0].clientY;
+  try { window.parent.scrollBy(0, dy); } catch(_) {}
+}, {passive: true});
 
 </script>
 </body>
