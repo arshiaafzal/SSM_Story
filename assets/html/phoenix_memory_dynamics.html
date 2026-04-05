@@ -72,30 +72,11 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      margin-top: 0.55rem;
-      padding: 0.38rem 0.65rem;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
+      margin-top: 0.45rem;
     }
-    .play-btn {
-      padding: 0.18rem 0.6rem;
-      border-radius: 5px;
-      border: 1px solid #cbd5e1;
-      background: #fff;
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: #334155;
-      cursor: pointer;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .play-btn:hover { background: #f1f5f9; }
     input[type=range] { accent-color: #3b82f6; }
-    #scrubber { flex: 1; }
-    #speed    { flex: 0 0 50px; }
-    .ctrl-lbl { font-size: 0.65rem; color: #94a3b8; white-space: nowrap; flex-shrink: 0; }
-    #step-lbl { font-size: 0.69rem; color: #64748b; white-space: nowrap; min-width: 52px; text-align: right; flex-shrink: 0; }
+    #scrubber { flex: 1; height: 3px; cursor: pointer; }
+    #step-lbl { font-size: 0.66rem; color: #94a3b8; white-space: nowrap; min-width: 46px; text-align: right; flex-shrink: 0; }
 
     .legend {
       display: flex;
@@ -177,10 +158,8 @@
 </div>
 
 <div class="controls">
-  <button class="play-btn" id="playBtn">&#9654; Play</button>
   <input type="range" id="scrubber" min="0" max="64" value="0" step="1">
-  <span class="ctrl-lbl">Speed</span>
-  <input type="range" id="speed" min="1" max="10" value="5">
+  <span id="step-lbl">1 / 65</span>
 </div>
 
 <div class="legend">
@@ -337,35 +316,38 @@ function render() {
   if (ce) ce.scrollIntoView({ block:'nearest', inline:'nearest', behavior:'smooth' });
 }
 
-// ── Animation ──
-let playing = false, animId = null, lastTs = 0;
-function stop() {
-  playing = false;
-  if (animId) cancelAnimationFrame(animId);
-  document.getElementById('playBtn').innerHTML = '&#9654; Play';
-}
+// ── Auto-play loop ──
+const STEP_MS = 130;   // ms per token step — smooth and readable
+let animId = null, lastTs = 0, userSeeking = false;
+
 function tick(ts) {
-  if (!playing) return;
-  const delay = Math.max(25, 750 - parseInt(document.getElementById('speed').value) * 68);
-  if (ts - lastTs >= delay) {
+  if (!userSeeking && ts - lastTs >= STEP_MS) {
     step++;
-    if (step >= T) { step = T-1; stop(); render(); return; }
+    if (step >= T) {
+      step = 0;          // loop back to start
+      lastTs = ts;
+      render();
+      animId = requestAnimationFrame(tick);
+      return;
+    }
     render();
     lastTs = ts;
   }
   animId = requestAnimationFrame(tick);
 }
-document.getElementById('playBtn').addEventListener('click', () => {
-  if (playing) { stop(); return; }
-  if (step >= T-1) step = 0;
-  playing = true;
-  document.getElementById('playBtn').innerHTML = '&#9646;&#9646; Pause';
-  lastTs = 0;
-  animId = requestAnimationFrame(tick);
-});
+
+// Scrubber for manual seeking (pauses loop briefly then resumes)
+let resumeTimer = null;
 document.getElementById('scrubber').addEventListener('input', e => {
-  stop(); step = parseInt(e.target.value); render();
+  userSeeking = true;
+  clearTimeout(resumeTimer);
+  step = parseInt(e.target.value);
+  render();
+  resumeTimer = setTimeout(() => { userSeeking = false; lastTs = 0; }, 800);
 });
+
+// Start immediately
+animId = requestAnimationFrame(tick);
 
 render();
 </script>

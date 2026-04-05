@@ -284,12 +284,14 @@ To make this concrete, we visualize Phoenix’s hidden state on a synthetic NIAH
       onload="(function(f){try{const d=f.contentWindow.document;const r=function(){f.style.height='0px';const h=Math.max(d.body?d.body.scrollHeight:0,d.documentElement?d.documentElement.scrollHeight:0);f.style.height=(h+4)+'px';};r();setTimeout(r,150);setTimeout(r,600);}catch(e){}})(this)"
     ></iframe>
   </div>
-  <div style="width: 100%; font-size: 0.85rem; color: #475569; line-height: 1.6; text-align: left;">
-    <strong style="color: #1e293b; display: block; margin-bottom: 0.5rem;">Phoenix Memory Dynamics.</strong>
-    Each horizontal row is one token; each vertical column is one of 512 memory slots, sorted left-to-right by how much the passkey tokens write to them.
-    <span style="color:#c0392b;">■</span> Red rows are passkey tokens; <span style="color:#27ae60;">■</span> green rows are context tokens.
-    The intensity of each cell reflects the routing weight written to that slot.
-    Press <strong>Play</strong> to watch the memory fill token by token.
+  <div style="width: 100%; font-size: 0.85rem; color: #475569; line-height: 1.8; text-align: left;">
+    <strong style="color: #1e293b; display: block; margin-bottom: 0.4rem;">Figure: Phoenix Memory Dynamics &mdash; Layer 23, Head 4.</strong>
+    The box is Phoenix's recurrent memory: 512 slots arranged left-to-right, each displayed as a vertical line. The memory starts completely empty (gray) and fills token by token as the prompt is processed.
+    <span style="color:#dc1010; font-weight:600;">&#9646; Red slots</span> are claimed by the passkey tokens (<em>RecallSSM1378</em>) — the router directs them into a dedicated region and keeps them there.
+    <span style="color:#1a8fe0; font-weight:600;">&#9646; Blue slots</span> receive both passkey and context writes and act as shared memory.
+    <span style="color:#12b554; font-weight:600;">&#9646; Green slots</span> absorb the surrounding context tokens only.
+    Brightness grows each time a slot is revisited — darker means written once, fully saturated means written many times.
+    When <strong>Phoenix:</strong> begins generating the answer, it reads from the red region and the retrieval slots brighten further, showing the model recovering exactly what it stored.
   </div>
 </div>
 
