@@ -350,6 +350,16 @@ document.getElementById('scrubber').addEventListener('input', e => {
 animId = requestAnimationFrame(tick);
 
 render();
+
+// ── Forward scroll events to parent so the page doesn't get stuck ──
+window.addEventListener('wheel', e => {
+  window.parent.scrollBy({ top: e.deltaY, left: e.deltaX, behavior: 'auto' });
+}, { passive: true });
+window.addEventListener('touchmove', e => {
+  if (e.touches.length === 1) {
+    window.parent.scrollBy({ top: -e.touches[0].clientY, behavior: 'auto' });
+  }
+}, { passive: true });
 </script>
 </body>
 </html>
