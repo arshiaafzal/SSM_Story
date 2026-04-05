@@ -286,12 +286,10 @@ To make this concrete, we visualize Phoenix’s hidden state on a synthetic NIAH
   </div>
   <div style="width: 100%; font-size: 0.85rem; color: #475569; line-height: 1.6; text-align: left;">
     <strong style="color: #1e293b; display: block; margin-bottom: 0.5rem;">Phoenix Memory Dynamics.</strong>
-    Memory slot allocation for two heads of Phoenix on a synthetic NIAH-style task, shown token-by-token.
-    Each square is one of 512 memory slots, sorted by specialization.
-    <span style="color:#c0392b;">■</span> Red slots are written predominantly by the passkey tokens,
-    <span style="color:#27ae60;">■</span> green slots by ordinary context tokens, and
-    <span style="color:#2980b9;">■</span> blue slots by both.
-    Press <strong>Play</strong> to animate.
+    Each horizontal row is one token; each vertical column is one of 512 memory slots, sorted left-to-right by how much the passkey tokens write to them.
+    <span style="color:#c0392b;">■</span> Red rows are passkey tokens; <span style="color:#27ae60;">■</span> green rows are context tokens.
+    The intensity of each cell reflects the routing weight written to that slot.
+    Press <strong>Play</strong> to watch the memory fill token by token.
   </div>
 </div>
 
