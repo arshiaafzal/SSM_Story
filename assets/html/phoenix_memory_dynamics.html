@@ -158,8 +158,7 @@
 </div>
 
 <div class="controls">
-  <input type="range" id="scrubber" min="0" max="64" value="0" step="1">
-  <span id="step-lbl">1 / 65</span>
+  <span id="step-lbl" style="font-size:0.66rem;color:#94a3b8;">t = 1 / 65</span>
 </div>
 
 <div class="legend">
@@ -187,7 +186,6 @@ canvas.width  = CW;
 canvas.height = CH;
 const ctx = canvas.getContext('2d');
 document.getElementById('head-label').textContent = DATA.head_label;
-document.getElementById('scrubber').max = T - 1;
 
 // ── Cumulative frames: track needle vs context separately ──
 // This ensures slot color is determined by what has ACTUALLY written to it so far,
@@ -300,8 +298,7 @@ function render() {
   badge.textContent = tok === '<s>' ? '⟨s⟩' : tok.replace(/^▁/, ' ');
   badge.className = 'tok-badge ' + (isGen ? 'gen' : isN ? 'needle' : 'ctx');
 
-  document.getElementById('step-lbl').textContent = (step+1) + ' / ' + T;
-  document.getElementById('scrubber').value = step;
+  document.getElementById('step-lbl').textContent = 't = ' + (step+1) + ' / ' + T;
 
   for (let i = 0; i < T; i++) {
     const el = document.getElementById('tk'+i);
@@ -318,10 +315,10 @@ function render() {
 
 // ── Auto-play loop ──
 const STEP_MS = 204;   // ms per token step — smooth and readable
-let animId = null, lastTs = 0, userSeeking = false;
+let animId = null, lastTs = 0;
 
 function tick(ts) {
-  if (!userSeeking && ts - lastTs >= STEP_MS) {
+  if (ts - lastTs >= STEP_MS) {
     step++;
     if (step >= T) {
       step = 0;          // loop back to start
@@ -336,30 +333,29 @@ function tick(ts) {
   animId = requestAnimationFrame(tick);
 }
 
-// Scrubber for manual seeking (pauses loop briefly then resumes)
-let resumeTimer = null;
-document.getElementById('scrubber').addEventListener('input', e => {
-  userSeeking = true;
-  clearTimeout(resumeTimer);
-  step = parseInt(e.target.value);
-  render();
-  resumeTimer = setTimeout(() => { userSeeking = false; lastTs = 0; }, 800);
-});
 
 // Start immediately
 animId = requestAnimationFrame(tick);
 
 render();
 
-// ── Forward scroll events to parent so the page doesn't get stuck ──
+// ── Forward scroll to parent — must be non-passive to call preventDefault ──
 window.addEventListener('wheel', e => {
-  window.parent.scrollBy({ top: e.deltaY, left: e.deltaX, behavior: 'auto' });
+  e.preventDefault();
+  window.parent.scrollBy({ top: e.deltaY, left: e.deltaX });
+}, { passive: false });
+
+// Touch: track delta and forward to parent
+let _lastTouchY = 0;
+window.addEventListener('touchstart', e => {
+  _lastTouchY = e.touches[0].clientY;
 }, { passive: true });
 window.addEventListener('touchmove', e => {
-  if (e.touches.length === 1) {
-    window.parent.scrollBy({ top: -e.touches[0].clientY, behavior: 'auto' });
-  }
-}, { passive: true });
+  e.preventDefault();
+  const dy = _lastTouchY - e.touches[0].clientY;
+  _lastTouchY = e.touches[0].clientY;
+  window.parent.scrollBy({ top: dy });
+}, { passive: false });
 </script>
 </body>
 </html>
