@@ -274,6 +274,53 @@ function drawState(t) {
   ctx.putImageData(imgData, 0, 0);
 }
 
+// ── Custom display text (overrides raw model tokens for readability) ──
+// 59 prompt tokens + 6 generation tokens = 65 total; routing data unchanged.
+const DISPLAY_TOKENS = [
+  '⟨s⟩',                                            // 0
+  ' SS', 'Ms',                                       // 1–2
+  ' often',                                          // 3
+  ' strug', 'gle',                                   // 4–5
+  ' on',                                             // 6
+  ' rec', 'all',                                     // 7–8
+  '-',                                               // 9
+  'heavy',                                           // 10
+  ' tasks',                                          // 11
+  ' when',                                           // 12
+  ' mem', 'ory',                                     // 13–14
+  ' up', 'dates',                                    // 15–16
+  ' stay',                                           // 17
+  ' dense',                                          // 18
+  ' and',                                            // 19
+  ' uni', 'form',                                    // 20–21
+  ' dur', 'ing',                                     // 22–23
+  ' train', 'ing',                                   // 24–25
+  '.',                                               // 26
+  ' The',                                            // 27
+  ' pass', 'word',                                   // 28–29
+  ' is',                                             // 30
+  ' Re', 'call', 'SS', 'M',                          // 31–34
+  '13', '78',                                        // 35–36
+  '.',                                               // 37
+  ' Ro', 'ut', 'ing',                                // 38–40
+  ' stores',                                         // 41
+  ' it',                                             // 42
+  ' in',                                             // 43
+  ' ded', 'ic', 'ated',                              // 44–46
+  ' slots',                                          // 47
+  ' for',                                            // 48
+  ' rec', 'all',                                     // 49–50
+  '.',                                               // 51
+  ' Now',                                            // 52
+  ' tell',                                           // 53
+  ' me',                                             // 54
+  ' the',                                            // 55
+  ' pass', 'word',                                   // 56–57
+  ' =',                                              // 58
+  // Generation tokens:
+  ' Recall', 'SSM', ' 1', '3', '7', '8',            // 59–64
+];
+
 // ── Build token ticker ──
 const needleSet = new Set(DATA.needle_indices);
 const ticker = document.getElementById('ticker');
@@ -298,7 +345,7 @@ DATA.tokens.forEach((tok, i) => {
   const sp = document.createElement('span');
   const isGen = i >= GEN_START;
   sp.className = 'tok' + (isGen ? ' gen' : '');
-  sp.textContent = tok === '<s>' ? '⟨s⟩' : tok.replace(/^▁/, ' ');
+  sp.textContent = DISPLAY_TOKENS[i];
   sp.id = 'tk' + i;
   ticker.appendChild(sp);
 });
@@ -312,7 +359,7 @@ function render() {
   const isN  = needleSet.has(step);
   const isGen = step >= GEN_START;
   const badge = document.getElementById('tok-badge');
-  badge.textContent = tok === '<s>' ? '⟨s⟩' : tok.replace(/^▁/, ' ');
+  badge.textContent = DISPLAY_TOKENS[step];
   badge.className = 'tok-badge ' + (isGen ? 'gen' : isN ? 'needle' : 'ctx');
 
   document.getElementById('step-lbl').textContent = 't = ' + (step+1) + ' / ' + T;
