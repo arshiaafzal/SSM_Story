@@ -61,6 +61,8 @@ RSM is deliberately general. To instantiate Phoenix, one needs to choose how the
 
 Our recurrence uses separate key and value states, mirroring SWA, but replaces hard deletion with learned decay:
 
+<div style="background:#eff6ff; border-radius:10px; padding:0.5rem 1.5rem; margin:0.5rem 0;">
+
 $$
 S^k_t = (1-\exp(a_tr_t)) \odot S^k_{t-1} + \exp(a_tr_t)^\top k_t
 $$
@@ -69,9 +71,13 @@ $$
 S^v_t = (1-\exp(a_tr_t)) \odot S^v_{t-1} + \exp(a_tr_t)^\top v_t
 $$
 
+</div>
+
 Unlike standard SSMs <d-cite key="mamba,mamba2"></d-cite> that write to all memory slots at once ($r_t = \mathbf{1}$), Phoenix writes only to the slots selected by $r_t$. And unlike SWA, which fully overwrites the evicted slot, Phoenix decays the previous content of the selected slot rather than removing it outright.
 
 For routing, we draw inspiration from the DeepSeek Mixture-of-Experts (MoE) family <d-cite key="deepseek_moe"></d-cite>. Each token is projected to a score vector, and only the top-$K$ entries remain active:
+
+<div style="background:#eff6ff; border-radius:10px; padding:0.5rem 1.5rem; margin:0.5rem 0;">
 
 $$
 \begin{aligned}
@@ -83,6 +89,8 @@ m_t[i], & \text{if } i \in \mathrm{TopK}(m_t),\\
 \end{cases}
 \end{aligned}
 $$
+
+</div>
 
 By isolating only the highest-scoring slots, the memory dynamically specializes based on the content of the token. Finally, to keep the effective write magnitude stable, these gated scores are normalized into the final routing weights:
 
