@@ -276,7 +276,7 @@ To make this concrete, we visualize Phoenix’s hidden state on a synthetic NIAH
   <div style="width: 100%;">
     <iframe
       id="phoenix-memory-dynamics"
-      src="{{ '/assets/html/phoenix_memory_dynamics.html' | relative_url }}?v=4"
+      src="{{ '/assets/html/phoenix_memory_dynamics.html' | relative_url }}?v=5"
       title="Phoenix Memory Dynamics — interactive slot allocation visualization"
       loading="lazy"
       scrolling="no"
