@@ -53,7 +53,7 @@
       border-radius: 8px;
       overflow: hidden;
       width: 100%;
-      background: #f1f5f9;
+      background: #e8ecf1;
       box-shadow: inset 0 1px 4px rgba(15,23,42,0.07);
     }
     canvas {
@@ -172,19 +172,19 @@
 
 <div class="legend">
   <div class="leg">
-    <div class="dot" style="background:linear-gradient(90deg,#fde8e8,#c0392b)"></div>
+    <div class="dot" style="background:linear-gradient(90deg,#e8ecf1,#e73525)"></div>
     Retrieval slots
   </div>
   <div class="leg">
-    <div class="dot" style="background:linear-gradient(90deg,#ddeaf8,#2980b9)"></div>
+    <div class="dot" style="background:linear-gradient(90deg,#e8ecf1,#2593da)"></div>
     Shared slots
   </div>
   <div class="leg">
-    <div class="dot" style="background:linear-gradient(90deg,#daf0e5,#27ae60)"></div>
+    <div class="dot" style="background:linear-gradient(90deg,#e8ecf1,#16c45f)"></div>
     Context slots
   </div>
   <div class="leg">
-    <div class="dot" style="background:#e8ecf2;border:1px solid #cbd5e1"></div>
+    <div class="dot" style="background:#e8ecf1;border:1px solid #cbd5e1"></div>
     Unwritten
   </div>
 </div>
@@ -223,17 +223,13 @@ for (let j = 0; j < N; j++) if (frames[T-1][j] > maxVal) maxVal = frames[T-1][j]
 
 // ── Colour tables — base (empty) and full (saturated) per slot type ──
 // 0=unused, 1=red, 2=green, 3=blue
-const BASE = [
-  [241, 245, 249],   // unused  — light slate
-  [253, 226, 226],   // red     — blush
-  [220, 242, 230],   // green   — mint
-  [218, 234, 248],   // blue    — sky
-];
+const GRAY = [232, 236, 241];   // uniform light gray for ALL unwritten slots
+const BASE = [ GRAY, GRAY, GRAY, GRAY ];
 const FULL = [
-  [203, 211, 222],   // unused  — gray
-  [192,  57,  43],   // red     #c0392b
-  [ 39, 174,  96],   // green   #27ae60
-  [ 41, 128, 185],   // blue    #2980b9
+  [180, 186, 196],   // unused  — muted gray
+  [231,  53,  37],   // red     #e73525  (vivid)
+  [ 22, 196,  95],   // green   #16c45f  (vivid)
+  [ 37, 147, 218],   // blue    #2593da  (vivid)
 ];
 
 function lerpC(base, full, t) {
@@ -252,7 +248,7 @@ function drawState(t) {
   const vals = frames[t];
   for (let si = 0; si < N; si++) {
     // brightness: power 0.38 → vivid even at first write, maxes out naturally
-    const bright = vals[si] > 0 ? Math.min(1, Math.pow(vals[si] / maxVal, 0.38)) : 0;
+    const bright = vals[si] > 0 ? Math.min(1, Math.pow(vals[si] / maxVal, 0.28)) : 0;
     const stype  = DATA.slot_types[si];
     const [r, g, b] = bright > 0
       ? lerpC(BASE[stype], FULL[stype], bright)
