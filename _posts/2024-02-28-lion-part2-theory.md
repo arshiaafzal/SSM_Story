@@ -272,18 +272,28 @@ In a standard SSM, every slot receives every token, so the effective sequence le
 
 To make this concrete, we visualize Phoenix’s hidden state on a synthetic NIAH task:
 
-<figure style="text-align: center;">
-  <img src="{{ '/assets/video/best.gif' | relative_url }}"
-       alt="Phoenix Memory Dynamics — animated visualization of memory slot allocation across two heads"
-       style="width: 80%; max-width: 700px;" />
-  <figcaption style="margin-top: 0.6em; font-size: 0.85em; color: #555; line-height: 1.5;">
-    <strong>Phoenix Memory Dynamics.</strong> Memory allocation for two different heads of Phoenix on a synthetic NIAH-style task.
-    <span style="color:#c0392b;">■</span> Red slots store tokens important for retrieval (e.g., passwords),
-    <span style="color:#27ae60;">■</span> green slots store non-retrieval tokens, and
-    <span style="color:#2980b9;">■</span> blue slots are shared memory between the two types of tokens.
-    Different heads allocate different amounts of slots to retrieval-important tokens, illustrating non-uniform memory allocation across heads.
-  </figcaption>
-</figure>
+<div style="margin: 1.5rem auto; display: flex; flex-direction: column; gap: 0.4rem; align-items: center; max-width: 100%;">
+  <div style="width: 100%; display: flex; justify-content: center; overflow: hidden;">
+    <iframe
+      id="phoenix-memory-dynamics"
+      src="{{ '/assets/html/phoenix_memory_dynamics.html' | relative_url }}"
+      title="Phoenix Memory Dynamics — interactive slot allocation visualization"
+      loading="lazy"
+      scrolling="no"
+      style="display: block; width: 100%; height: 700px; border: 0; background: transparent;"
+      onload="(function(f){try{const d=f.contentWindow.document;const r=function(){f.style.height='0px';const h=Math.max(d.body?d.body.scrollHeight:0,d.documentElement?d.documentElement.scrollHeight:0);f.style.height=(h+4)+'px';};r();setTimeout(r,150);setTimeout(r,600);}catch(e){}})(this)"
+    ></iframe>
+  </div>
+  <div style="width: 100%; font-size: 0.85rem; color: #475569; line-height: 1.6; text-align: left;">
+    <strong style="color: #1e293b; display: block; margin-bottom: 0.5rem;">Phoenix Memory Dynamics.</strong>
+    Memory slot allocation for two heads of Phoenix on a synthetic NIAH-style task, shown token-by-token.
+    Each square is one of 512 memory slots, sorted by specialization.
+    <span style="color:#c0392b;">■</span> Red slots are written predominantly by the passkey tokens,
+    <span style="color:#27ae60;">■</span> green slots by ordinary context tokens, and
+    <span style="color:#2980b9;">■</span> blue slots by both.
+    Press <strong>Play</strong> to animate.
+  </div>
+</div>
 
 The passkey — shown in $\color{red}{red}$ — is routed into a dedicated region of the hidden state and remains separated from most ordinary tokens. Ordinary tokens shown in $\color{green}{green}$ flow through the general-purpose slots without touching it. Some slots shown in $\color{blue}{blue}$ serve both roles. Crucially, different heads allocate different amounts of memory to retrieval-critical tokens — the model discovered this specialization entirely on its own, without any explicit supervision.
 
