@@ -280,6 +280,7 @@ To make this concrete, we visualize Phoenix’s hidden state on a synthetic NIAH
       title="Phoenix Memory Dynamics — interactive slot allocation visualization"
       loading="lazy"
       scrolling="no"
+      tabindex="-1"
       style="display: block; width: 100%; height: 700px; border: 0; background: transparent; pointer-events: none;"
       onload="(function(f){try{const d=f.contentWindow.document;const r=function(){f.style.height='0px';const h=Math.max(d.body?d.body.scrollHeight:0,d.documentElement?d.documentElement.scrollHeight:0);f.style.height=(h+4)+'px';};r();setTimeout(r,150);setTimeout(r,600);}catch(e){}})(this)"
     ></iframe>
