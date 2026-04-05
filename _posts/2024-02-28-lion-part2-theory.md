@@ -235,7 +235,7 @@ We also experimented with a hybrid variant — interleaving Phoenix RSM layers w
 We had set out to fix recall. We hadn't planned on fixing length generalization. But there it was.
 -->
 ## Length Generalization
-One unexpected outcome was Phoenix’s strong length generalization. During evaluation, we found that Phoenix remained effective far beyond its training length, beyond what had previously been observed in SSM-based models. This behavior was not explicitly designed for, which motivated us to look for a mechanistic explanation. In developing that explanation, we found it useful to think in terms of **Effective Sequence Length (ESL)** (ESL), a concept we developed with [Ricardo](https://r-buitrago.github.io/).
+One surprising outcome was Phoenix’s strong length generalization. During evaluation, we found that Phoenix remained effective far beyond its training length, beyond what had previously been observed in SSM-based models. This behavior was not explicitly designed for, which motivated us to look for a mechanistic explanation. In developing that explanation, we found it useful to think in terms of **Effective Sequence Length (ESL)** (ESL), a concept that came out of our discussion with [Ricardo](https://r-buitrago.github.io/).
 
 
 <div markdown="1" style="margin: 0.6rem auto 2rem; display: flex; flex-direction: column; gap: 0.4rem; align-items: center; max-width: 100%;">
@@ -275,7 +275,7 @@ To make this concrete, we visualize Phoenix’s hidden state on a synthetic NIAH
 
 The passkey — shown in $\color{red}{red}$ — is routed into a dedicated region of the hidden state and remains separated from most ordinary tokens. Ordinary tokens shown in $\color{green}{green}$ flow through the general-purpose slots without touching it. Some slots shown in $\color{blue}{blue}$ serve both roles. Crucially, different heads allocate different amounts of memory to retrieval-critical tokens — the model discovered this specialization entirely on its own, without any explicit supervision.
 
-This is what "organizing memory like a closet" looks like from the inside.
+This is what **"organizing memory like a closet"** looks like from the inside.
 
 ## Final Notes and Future
 
