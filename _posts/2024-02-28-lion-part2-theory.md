@@ -94,9 +94,13 @@ $$
 
 By isolating only the highest-scoring slots, the memory dynamically specializes based on the content of the token. Finally, to keep the effective write magnitude stable, these gated scores are normalized into the final routing weights:
 
+<div style="background:#eff6ff; border-radius:10px; padding:0.5rem 1.5rem; margin:0.5rem 0;">
+
 $$
 r_t = \frac{g_t}{\alpha\sum_{i=1}^M g_t[i]}.
 $$
+
+</div>
 
 Here, $\alpha$ controls the effective write scale, similarly to the role of temperature-like scaling in GLA .
 
