@@ -169,7 +169,7 @@ The baseline behavior is consistent with their memory mechanism: Mamba-2 and GDN
 Phoenix behaved differently. It held near-perfect accuracy ($\geq \mathbf{99\%}$) all the way to 16K tokens, and remained the *only model* at the 400M scale to keep strong performance ($> \mathbf{91\%}$) at 32K — that's $\mathbf{16\times}$ its training length. 
 This behavior is consistent with the routing mechanism: the passkey can be written into a dedicated slot and remain recoverable over long spans, rather than being diluted by subsequent tokens.
 
-<div style="margin: 1.5rem -6% 0; width: 112%;">
+<div style="margin: 1.5rem auto 0; width: 100%;">
   <iframe
     id="niah-plot"
     src="{{ '/assets/html/niah_plot.html' | relative_url }}"
