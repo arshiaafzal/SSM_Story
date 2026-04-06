@@ -175,7 +175,7 @@
 
 <div class="controls">
   <button id="play-btn">▶ Play</button>
-  <span id="step-lbl" style="font-size:0.66rem;color:#94a3b8;">t = 1 / 65</span>
+  <span id="step-lbl-btn" style="font-size:0.66rem;color:#94a3b8;">t = 1 / 65</span>
 </div>
 
 <div class="legend">
@@ -365,7 +365,9 @@ function render() {
   badge.textContent = DISPLAY_TOKENS[step];
   badge.className = 'tok-badge ' + (isGen ? 'gen' : isN ? 'needle' : 'ctx');
 
-  document.getElementById('step-lbl').textContent = 't = ' + (step+1) + ' / ' + T;
+  const _lbl = 't = ' + (step+1) + ' / ' + T;
+  document.getElementById('step-lbl').textContent = (step+1) + ' / ' + T;
+  document.getElementById('step-lbl-btn').textContent = _lbl;
 
   for (let i = 0; i < T; i++) {
     const el = document.getElementById('tk'+i);
