@@ -36,7 +36,7 @@
             background: linear-gradient(to bottom, 
                 #10b981 0%,     /* Emerald 500 (LinAtt) */
                 #6ee7b7 35%,    /* Emerald 300 (SSM variants) */
-                #3b82f6 60%,    /* Blue 500 (Phoenix) */
+                #3b82f6 60%,    /* Blue 500 (Raven) */
                 #fda4af 80%,    /* Rose 300 (GSA/ABC) */
                 #f43f5e 100%    /* Rose 500 (SWA) */
             );
@@ -84,7 +84,7 @@
         }
         .row-darkgreen { background-color: rgba(167, 243, 208, 0.35); } /* emerald-200 at 35% */
         .row-darkgreen-light { background-color: rgba(209, 250, 229, 0.4); } /* emerald-100 at 40% */
-        .row-phoenix { 
+        .row-raven { 
             background-color: rgba(219, 234, 254, 0.6); /* blue-100 at 60% */
             font-weight: 500;
         }
@@ -165,9 +165,9 @@
                             <td>\(a_t(\mathbf{I} - \mathbf{k}_t\mathbf{k}_t^\top)\)</td>
                             <td class="pr-6">\(\mathbf{S}_t\mathbf{q}_t\)</td>
                         </tr>
-                        <!-- Phoenix -->
-                        <tr class="row-phoenix">
-                            <td class="text-blue-700 font-bold">Phoenix</td>
+                        <!-- Raven -->
+                        <tr class="row-raven">
+                            <td class="text-blue-700 font-bold">Raven</td>
                             <td>\({\mathbf{g}_t} / {\mathbf{1}^\top \mathbf{g}_t}\)</td>
                             <td>\([\mathbf{k}_t \ \mathbf{v}_t]^\top\)</td>
                             <td>\(\mathbf{I}\)</td>
@@ -205,7 +205,7 @@
         <!-- Caption -->
         <div class="caption-box">
             <span class="font-bold text-slate-800">Table 1: Routing Slot Memories.</span> 
-            Design of the <i>Router</i> and <i>Decay</i> components across multiple architectures. The bar on the right along with row colors display each model's spectrum as a function of router sparsity, with <span class="highlight-swa">SWA</span> and <span class="highlight-ssm">SSM</span> marking the two extremes. For SSMs, the content matrix (\(\mathbf{u}_t\)) is <b><i>low-rank</i></b>, whereas SWA-like models use a <b><i>sparse</i></b> stacking of \(\mathbf{k}_t\) and \(\mathbf{v}_t\). \(f(\cdot)\) denotes the softmax. Dual-state models (highlighted in <span class="highlight-red">red</span> and <span class="highlight-blue">Phoenix</span>) apply slot-wise decay via \(\mathbf{D}_t\); therefore, their channel-wise decay \(\mathbf{A}_t\) equals \(\mathbf{I}\).
+            Design of the <i>Router</i> and <i>Decay</i> components across multiple architectures. The bar on the right along with row colors display each model's spectrum as a function of router sparsity, with <span class="highlight-swa">SWA</span> and <span class="highlight-ssm">SSM</span> marking the two extremes. For SSMs, the content matrix (\(\mathbf{u}_t\)) is <b><i>low-rank</i></b>, whereas SWA-like models use a <b><i>sparse</i></b> stacking of \(\mathbf{k}_t\) and \(\mathbf{v}_t\). \(f(\cdot)\) denotes the softmax. Dual-state models (highlighted in <span class="highlight-red">red</span> and <span class="highlight-blue">Raven</span>) apply slot-wise decay via \(\mathbf{D}_t\); therefore, their channel-wise decay \(\mathbf{A}_t\) equals \(\mathbf{I}\).
         </div>
 
     </div>

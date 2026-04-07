@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phoenix: Sparse Memory Routing Update</title>
+    <title>Raven: Sparse Memory Routing Update</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
@@ -184,7 +184,7 @@
 
     <div id="main-stage" class="flex flex-row items-center justify-center w-full max-w-5xl gap-2 sm:gap-4 md:gap-8 relative px-1 md:px-4">
         
-        <!-- LEFT: Phoenix Memory Slots -->
+        <!-- LEFT: Raven Memory Slots -->
         <div class="flex flex-col items-center shrink-0">
             <div class="matrix-header">
                 <span class="text-[8px] md:text-[10px] font-black uppercase tracking-widest text-orange-600 mb-1">Fixed Memory Slots</span>
@@ -245,7 +245,7 @@
         </div>
         
         <p class="text-slate-600 text-[10px] md:text-xs leading-relaxed text-justify md:text-center">
-            <strong>Sparse Memory Routing in Phoenix</strong>. Unlike SSMs that update the entire state densely, or SWA that enforces strict FIFO overwriting, Phoenix uses an input-dependent router. At each step, only a specific <em>subset</em> of memory slots (highlighted) is selected to undergo decay and receive new information. Unselected slots remain completely untouched, preventing interference and preserving long-range recall.
+            <strong>Sparse Memory Routing in Raven</strong>. Unlike SSMs that update the entire state densely, or SWA that enforces strict FIFO overwriting, Raven uses an input-dependent router. At each step, only a specific <em>subset</em> of memory slots (highlighted) is selected to undergo decay and receive new information. Unselected slots remain completely untouched, preventing interference and preserving long-range recall.
         </p>
     </div>
 
@@ -347,7 +347,7 @@
 
         async function playCycle() {
             // Pick a thematic color for the current token
-            // Phoenix theme: mostly warm colors (oranges, reds, golds) but varies slightly
+            // Raven theme: mostly warm colors (oranges, reds, golds) but varies slightly
             const baseHue = (tokenCount * 45) % 360; 
             const currentHue = (baseHue > 60 && baseHue < 300) ? (baseHue % 40) + 10 : baseHue; // Keep it warm
 

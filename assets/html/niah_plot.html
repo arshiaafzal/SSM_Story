@@ -59,7 +59,7 @@
       "Mamba2":      "#2ECC71",
       "Mamba-2":     "#2ECC71",
       "GDN":         "purple",
-      "Phoenix":     "dodgerblue",
+      "Raven":     "dodgerblue",
     };
 
     const RAW = {
@@ -73,7 +73,7 @@
           "GSA":         [ 99.2,  97.1, 90.0, 67.4, 29.6, 11.0],
           "Mamba2":      [ 99.2,  95.6, 52.2, 12.8,  5.4,  2.8],
           "GDN":         [ 99.2, 100.0, 99.8, 92.0, 41.8, 22.1],
-          "Phoenix":     [ 99.8, 100.0, 99.8, 99.8, 99.4, 91.4],
+          "Raven":     [ 99.8, 100.0, 99.8, 99.8, 99.4, 91.4],
         },
       },
       "800": {
@@ -86,14 +86,14 @@
           "GSA":         [100.0, 100.0, 99.8, 97.6, 64.0,  0.0],
           "GDN":         [100.0, 100.0,100.0,100.0, 94.8, 45.2],
           "Mamba-2":     [ 99.8,  63.4, 13.6,  1.8,  0.8,  0.6],
-          "Phoenix":     [ 99.8, 100.0, 99.8, 99.2, 98.2, 91.0],
+          "Raven":     [ 99.8, 100.0, 99.8, 99.2, 98.2, 91.0],
         },
       },
     };
 
     function buildDatasets(models) {
       return Object.entries(models).map(([name, vals]) => {
-        const px = name === "Phoenix";
+        const px = name === "Raven";
         return {
           label:            name,
           data:             vals,
