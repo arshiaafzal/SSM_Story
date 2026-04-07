@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phoenix Memory Dynamics</title>
+  <title>Raven Memory Dynamics</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
@@ -127,8 +127,8 @@
       flex-shrink: 0;
     }
     .phase-label.prompt  { color: #0f172a; }
-    .phase-label.phoenix { color: #0f172a; }
-    /* force Phoenix label to new line */
+    .phase-label.raven { color: #0f172a; }
+    /* force Raven label to new line */
     .line-break { width: 100%; height: 0; flex-shrink: 0; }
 
     .tok {
@@ -335,14 +335,14 @@ pLabel.textContent = 'Prompt:';
 ticker.appendChild(pLabel);
 
 DATA.tokens.forEach((tok, i) => {
-  // Insert line-break + "Phoenix:" label before generation tokens
+  // Insert line-break + "Raven:" label before generation tokens
   if (i === GEN_START) {
     const brk = document.createElement('div');
     brk.className = 'line-break';
     ticker.appendChild(brk);
     const phLabel = document.createElement('span');
-    phLabel.className = 'phase-label phoenix';
-    phLabel.textContent = 'Phoenix:';
+    phLabel.className = 'phase-label raven';
+    phLabel.textContent = 'Raven:';
     ticker.appendChild(phLabel);
   }
   const sp = document.createElement('span');

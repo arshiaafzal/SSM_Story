@@ -1,6 +1,6 @@
 ---
 layout: distill
-title: Phoenix (Part-2)
+title: Raven (Part-2)
 description: Architecture and Results
 tags:
 giscus_comments: false
@@ -40,7 +40,7 @@ toc:
     subsections:
       - name: Retrieval Ability
       - name: Language Modeling
-      - name: Hybrid Phoenix
+      - name: Hybrid Raven
   - name: A Pleasant Surprise
   - name: Final Notes and Future
 
@@ -48,16 +48,16 @@ toc:
 
 
 <div style="background:#f8f9fa; border-left:3px solid #adb5bd; padding:0.6rem 1rem; margin-bottom:1.5rem; border-radius:0 4px 4px 0; font-size:0.9rem;">
-  <strong>Phoenix Series</strong> &nbsp;—&nbsp;
+  <strong>Raven Series</strong> &nbsp;—&nbsp;
   <a href="{{ '/2025/lion-part1-model/' | relative_url }}">← Part 1: Memory as a set of Slots</a> &nbsp;|&nbsp;
   <strong>Part 2: Architecture and Results</strong>
 </div>
 
 ## From Framework to Model
 
-In Part 1, we introduced Routing Slot Memories, a framework that combines the selective writing of SWA with the gradual forgetting of SSMs. The next step was to turn that framework into a concrete model.
+In Part 1, we introduced Routing Slot Memories (RSM), a framework that combines the selective writing of SWA with the gradual forgetting of SSMs. The next step was to turn that framework into a concrete model.
 
-RSM is deliberately general. To instantiate Phoenix, one needs to choose how the router $r_t$ is computed and how the decay term $a_t$ is parameterized. We wanted a design expressive enough to learn meaningful slot assignments, but simple enough to train stably at scale.
+RSM is deliberately general. To instantiate Raven, one needs to choose how the router $r_t$ is computed and how the decay term $a_t$ is parameterized. We wanted a design expressive enough to learn meaningful slot assignments, but simple enough to train stably at scale.
 
 Our recurrence uses separate key and value states, mirroring SWA, but replaces hard deletion with learned decay:
 
@@ -73,7 +73,7 @@ $$
 
 </div>
 
-Unlike standard SSMs <d-cite key="mamba,mamba2"></d-cite> that write to all memory slots at once ($r_t = \mathbf{1}$), Phoenix writes only to the slots selected by $r_t$. And unlike SWA, which fully overwrites the evicted slot, Phoenix decays the previous content of the selected slot rather than removing it outright.
+Unlike standard SSMs <d-cite key="mamba,mamba2"></d-cite> that write to all memory slots at once ($r_t = \mathbf{1}$), Raven writes only to the slots selected by $r_t$. And unlike SWA, which fully overwrites the evicted slot, Raven decays the previous content of the selected slot rather than removing it outright.
 
 For routing, we draw inspiration from the DeepSeek Mixture-of-Experts (MoE) family <d-cite key="deepseek_moe"></d-cite>. Each token is projected to a score vector, and only the top-$K$ entries remain active:
 
@@ -102,14 +102,14 @@ $$
 
 </div>
 
-Here, $\alpha$ controls the effective write scale, similarly to the role of temperature-like scaling in GLA .
+Here, $\alpha$ controls the effective write scale, similarly to the role of temperature-like scaling in GLA <d-cite key="gla"></d-cite>, we used $\alpha=1$ for 400M model size and $\alpha=4$ for 800M model size.
 
 
 <div style="margin: 1.5rem auto 1rem; display: flex; justify-content: center; width: 100%;">
   <iframe
-    id="phoenix-recurrent-matrix-update"
-    src="{{ '/assets/html/phoenix_recurrent_matrix_update.html' | relative_url }}"
-    title="Phoenix recurrent matrix update visualization"
+    id="raven-recurrent-matrix-update"
+    src="{{ '/assets/html/raven_recurrent_matrix_update.html' | relative_url }}"
+    title="Raven recurrent matrix update visualization"
     loading="lazy"
     scrolling="no"
     style="display: block; width: 70%; max-width: 1400px; height: 0; border: 0; border-radius: 0rem; background: transparent; overflow: hidden;"
@@ -120,41 +120,41 @@ Here, $\alpha$ controls the effective write scale, similarly to the role of temp
 
 With the recurrence fixed, we turned to the block design.
 
-{% include figure.liquid loading="eager" path="assets/img/arch.png" title="block diagram" caption="Phoenix block design vs. other linear models block design." width="60%" max-width="60%" class="rounded mx-auto d-block" %}
+{% include figure.liquid loading="eager" path="assets/img/arch.png" title="block diagram" caption="Raven block design vs. other linear models block design." width="60%" max-width="60%" class="rounded mx-auto d-block" %}
 
 **Dropping the short convolution.** 
-Most linear transformer blocks include a short depthwise convolution before the recurrence — a holdover that helps capture local context. We removed it. The reasoning: SWA is mathematically equivalent to an input-dependent convolution, and Phoenix's RSM already subsumes SWA as a special case. Adding a separate convolution on top would be redundant. 
+Most linear transformer blocks include a short depthwise convolution before the recurrence — a holdover that helps capture local context. We removed it. The reasoning: SWA is mathematically equivalent to an input-dependent convolution, and Raven's RSM already subsumes SWA as a special case. Adding a separate convolution on top would be redundant. 
 <!-- Similar to what Mamba-3 does, we found that removing it came at no cost and slightly simplified the architecture. The RSM, it turns out, was already doing that job implicitly. -->
 
 **On norms.** 
-We apply QK-RMSNorm to queries and keys to stabilize training and avoid gradient explosions, following common practice in SSMs. 
-One interesting exception appears in hybrid Phoenix, where Phoenix layers are interleaved with attention. In that setting, removing these norms improves length generalization, especially on recall tasks.
+Following common practice in both Transformers and linear attention/SSMs, we apply QK-RMSNorm to queries and keys to stabilize training and avoid gradient explosions, following common practice in SSMs. 
+One interesting exception appears in hybrid Raven, where Raven layers are interleaved with attention. In that setting, removing these norms improves length generalization, especially on recall tasks.
 We hypothesize that the norms suppress position-related information that the NoPE attention layers rely on. This was one of the more unexpected ablation results.
 
 {% details Side Note on RoPE %}
 
 In early experiments, we applied Rotary Position Embedding (RoPE) <d-cite key="rope"></d-cite> to queries and keys.
-This substantially hurt Phoenix’s length generalization, which is one of its main strengths, so we removed it from the final design.
+This substantially hurt Raven’s length generalization, which is one of its main strengths, so we removed it from the final design.
 
 {% enddetails %}
 
-<!-- **The counterintuitive choice: no load balancing.** In Mixture-of-Experts models <d-cite key="moe"></d-cite>, load-balancing losses are standard practice — you push the router to distribute tokens evenly across experts to prevent a few experts from dominating. We tried this. It made Phoenix worse.
+<!-- **The counterintuitive choice: no load balancing.** In Mixture-of-Experts models <d-cite key="moe"></d-cite>, load-balancing losses are standard practice — you push the router to distribute tokens evenly across experts to prevent a few experts from dominating. We tried this. It made Raven worse.
 
-The reason, once we thought about it, made sense: Phoenix *wants* its memory to be uneven. A slot that specializes in storing retrieval-critical tokens — passkeys, variable names, rare facts — should store *more* of those tokens, not fewer. Forcing uniform allocation would destroy exactly the specialization that makes Phoenix useful. So we dropped the load-balancing loss entirely and instead added Gumbel noise during training to encourage exploration and prevent early collapse. The router was free to specialize, and specialize it did: retrieval-critical tokens naturally clustered into dedicated slots, leaving the rest of the memory free for ordinary context. -->
+The reason, once we thought about it, made sense: Raven *wants* its memory to be uneven. A slot that specializes in storing retrieval-critical tokens — passkeys, variable names, rare facts — should store *more* of those tokens, not fewer. Forcing uniform allocation would destroy exactly the specialization that makes Raven useful. So we dropped the load-balancing loss entirely and instead added Gumbel noise during training to encourage exploration and prevent early collapse. The router was free to specialize, and specialize it did: retrieval-critical tokens naturally clustered into dedicated slots, leaving the rest of the memory free for ordinary context. -->
 
 **No load balancing.**
- In Mixture-of-Experts models, load-balancing losses are commonly used to spread tokens more evenly across experts. We do not use such a loss in Phoenix, since its memory is most useful when allocation is uneven. Slots that specialize in retrieval-critical tokens, such as passkeys, variable names, or rare facts, should receive more of those tokens rather than be pushed toward uniform usage. For this reason, we allow the router to specialize freely, and use Gumbel noise during training only to encourage exploration and avoid early collapse. This intuition is supported by our experiments: retrieval-critical tokens naturally cluster into dedicated slots, while other slots remain available for ordinary context.
+ In Mixture-of-Experts models, load-balancing losses are commonly used to spread tokens more evenly across experts. We do not use such a loss in Raven, since its memory is most useful when allocation is uneven. Slots that specialize in retrieval-critical tokens, such as passkeys, variable names, or rare facts, should receive more of those tokens rather than be pushed toward uniform usage. For this reason, we allow the router to specialize freely, and use Gumbel noise during training only to encourage exploration and avoid early collapse. This intuition is supported by our experiments: retrieval-critical tokens naturally cluster into dedicated slots, while other slots remain available for ordinary context.
 
 
 ## Empirical Results
 
 <!-- When we finally ran the experiments, we were cautiously optimistic. The theory was clean. But linear models had disappointed on recall before, and we didn't want to overclaim. -->
-We now turn to the empirical evaluation. Our main question was whether Phoenix improves in-context retrieval without sacrificing general language modeling.
+We now turn to the empirical evaluation. Our main question was whether Raven improves in-context retrieval without sacrificing general language modeling.
 
 ### Retrieval Ability
 
-<!-- Our first question was simple: does Phoenix actually retrieve better? We pitted it against the strongest linear baselines we knew —  -->
-We begin with retrieval. We compare Phoenix against *Mamba-2* <d-cite key="mamba2"></d-cite>, *GDN* <d-cite key="gated_deltanet"></d-cite>, and *GLA* <d-cite key="gla"></d-cite> on the SSM side, and SWA-like models including *SWA+RoPE* and *GSA* <d-cite key="gsa"></d-cite> on the other — and threw Needle-in-a-Haystack tasks at all of them.
+<!-- Our first question was simple: does Raven actually retrieve better? We pitted it against the strongest linear baselines we knew —  -->
+We begin with retrieval. We compare Raven against *Mamba-2* <d-cite key="mamba2"></d-cite>, *GDN* <d-cite key="gated_deltanet"></d-cite>, and *GLA* <d-cite key="gla"></d-cite> on the SSM side, and SWA-like models including *SWA+RoPE* and *GSA* <d-cite key="gsa"></d-cite> on the other — and threw Needle-in-a-Haystack tasks at all of them.
 
 <!-- The degradation in the baselines was predictable once you understood the mechanism:  -->
 The baseline behavior is consistent with their memory mechanism: Mamba-2 and GDN write every token to every slot, so over a long sequence, each slot becomes a blurry average of everything it has ever seen. By 8K tokens — already $4\times$ their training length — the passkey signal is too diluted to recover.
@@ -173,12 +173,13 @@ The baseline behavior is consistent with their memory mechanism: Mamba-2 and GDN
   </div>
   <div style="width: 100%; font-size: 0.85rem; color: #475569; line-height: 1.6; text-align: left;">
     <strong style="color: #1e293b; display: block; margin-bottom: 0.5rem;">Table 2: In-context recall benchmarks and NIAH accuracy vs. context length and cache size.</strong> 
-    We report accuracy (%) on SWDE/FDA/SQuAD and on single NIAH-1/2/3 across context lengths. Rec. mem. and Conv. mem. denote the millions of cached state elements used during decoding. The common baseline of \(12.5\)M recurrent elements corresponds to a 24-layer model with a total state size of \(0.57\)M per layer (derived from \(2\times\) factors in architectures like GSA/SWA or larger single tensors in Mamba-2/GDN).
+    We report accuracy (%) on SWDE/FDA/SQuAD and on single NIAH-1/2/3 across context lengths. Rec. mem. and Conv. mem. denote the millions of cached state elements used during decoding. The common baseline of \(12.5M\) recurrent elements corresponds to a 24-layer model with a total state size of \(0.57M\) per layer (derived from \(2\times\) factors in architectures like GSA/SWA or larger single tensors in Mamba-2/GDN).
   </div>
 </div>
 
 
-Phoenix behaved differently. It held near-perfect accuracy ($\geq \mathbf{99\%}$) all the way to 16K tokens, and remained the *only model* at the 400M scale to keep strong performance ($> \mathbf{91\%}$) at 32K — that's $\mathbf{16\times}$ its training length. 
+Raven behaved differently. It held near-perfect accuracy ($\geq \mathbf{99\%}$) all the way to 16K tokens, and remained the *only model* at the 400M scale to keep strong performance ($> \mathbf{91\%}$) at 32K — that's $\mathbf{16\times}$ its training length.  
+**In contrast, Raven is dramatically better at *NIAH-1* than all other models.**  
 This behavior is consistent with the routing mechanism: the passkey can be written into a dedicated slot and remain recoverable over long spans, rather than being diluted by subsequent tokens.
 
 <div style="margin: 1.5rem -8% 0; width: 116%;">
@@ -198,7 +199,7 @@ This behavior is consistent with the routing mechanism: the passkey can be writt
 A natural question is whether this improvement in retrieval comes at the expense of general language modeling.
 We had deliberately made the memory uneven — would that hurt perplexity or zero-shot benchmarks?
 
-Across standard evaluations, Phoenix matched or surpassed **Mamba-2** <d-cite key="mamba2"></d-cite>, **GLA** <d-cite key="gla"></d-cite>, and **GDN** <d-cite key="gated_deltanet"></d-cite>, as well as strong Transformer baselines like *FoX*, at both **400M and 800M parameter scales**. It even achieved the **best Lambada performance at 400M**. 
+Across standard evaluations, **Raven matched or surpassed** *Mamba-2* <d-cite key="mamba2"></d-cite>, *GLA* <d-cite key="gla"></d-cite>, and *GDN* <d-cite key="gated_deltanet"></d-cite>, as well as strong Transformer baselines like *FoX*, at both **400M and 800M parameter scales**. It even achieved the **best Lambada performance at 400M**. 
 These results suggest that selective memory does not compromise general language modeling, and may even help by routing tokens to more appropriate slots.
 
 
@@ -216,14 +217,14 @@ These results suggest that selective memory does not compromise general language
   </div>
   <div style="width: 100%; font-size: 0.85rem; color: #475569; line-height: 1.6; text-align: left;">
     <strong style="color: #1e293b; display: block; margin-bottom: 0.5rem;">Table 3: Language modeling and zero-shot evaluation results. </strong> 
-    Perplexity on Lambada (LMB.) and zero-shot accuracy on Lambada, PIQA, HellaSwag, WinoGrande, ARC-e, and ARC-c for Transformer, SSM, and Phoenix models at 400M and 800M parameter scales. Phoenix matches strong linear baselines overall while maintaining strong downstream performance.
+    Perplexity on Lambada (LMB.) and zero-shot accuracy on Lambada, PIQA, HellaSwag, WinoGrande, ARC-e, and ARC-c for Transformer, SSM, and Raven models at 400M and 800M parameter scales. Raven matches strong linear baselines overall while maintaining strong downstream performance.
   </div>
 </div>
 
 
-### Hybrid Phoenix
+### Hybrid Raven
 
-We also experimented with a hybrid variant — interleaving Phoenix RSM layers with standard attention layers. The results here were striking. The hybrid Phoenix achieved near-perfect NIAH-1 accuracy up to **32K tokens** and strong NIAH-2 performance up to **16K tokens**, while other SSM hybrids like GDN+Attn <d-cite key="gated_deltanet"></d-cite> and Mamba-2+Attn <d-cite key="mamba2"></d-cite> started breaking down at 4K and 2K respectively. The combination of NoPE attention — good at precise short-range retrieval — with Phoenix's persistent, content-addressed slots turned out to be unusually complementary.
+We also experimented with a hybrid variant — interleaving Raven RSM layers with standard attention layers. The results here were striking. The hybrid Raven achieved near-perfect NIAH-1 accuracy up to **32K tokens** and strong NIAH-2 performance up to **16K tokens**, while other SSM hybrids like GDN+Attn <d-cite key="gated_deltanet"></d-cite> and Mamba-2+Attn <d-cite key="mamba2"></d-cite> started breaking down at 4K and 2K respectively. The combination of NoPE attention — good at precise short-range retrieval — with Raven's persistent, content-addressed slots turned out to be unusually complementary.
 
 <div style="margin: 2rem 0; width: 100%; display: flex; flex-direction: column; gap: 0.75rem; align-items: stretch;">
   <div style="width: 100%; overflow: hidden;">
@@ -239,7 +240,7 @@ We also experimented with a hybrid variant — interleaving Phoenix RSM layers w
   </div>
   <div style="width: 100%; font-size: 0.85rem; color: #475569; line-height: 1.6; text-align: left;">
     <strong style="color: #1e293b; display: block; margin-bottom: 0.5rem;">Table 4: Hybrid Models Retrieval Ability.</strong> 
-    Recall ability of hybrid-phoenix vs other hybrid architechtures.
+    Recall ability of hybrid-raven vs other hybrid architechtures.
   </div>
 </div>
 
@@ -247,7 +248,7 @@ We also experimented with a hybrid variant — interleaving Phoenix RSM layers w
 We had set out to fix recall. We hadn't planned on fixing length generalization. But there it was.
 -->
 ## Length Generalization
-One surprising outcome was Phoenix’s strong length generalization. During evaluation, we found that Phoenix remained effective far beyond its training length, beyond what had previously been observed in SSM-based models. This behavior was not explicitly designed for, which motivated us to look for a mechanistic explanation. In developing that explanation, we found it useful to think in terms of **Effective Sequence Length (ESL)** (ESL), a concept that came out of our discussion with [Ricardo](https://r-buitrago.github.io/).
+One surprising outcome was Raven’s strong length generalization. During evaluation, we found that Raven remained effective far beyond its training length, beyond what had previously been observed in SSM-based models. This behavior was not explicitly designed for, which motivated us to look for a mechanistic explanation. In developing that explanation, we found it useful to think in terms of **Effective Sequence Length (ESL)** (ESL), a concept that came out of our discussion with [Ricardo](https://r-buitrago.github.io/).
 
 
 <div markdown="1" style="margin: 0.6rem auto 2rem; display: flex; flex-direction: column; gap: 0.4rem; align-items: center; max-width: 100%;">
@@ -264,20 +265,20 @@ One surprising outcome was Phoenix’s strong length generalization. During eval
   </div>
   <div style="width: 100%; font-size: 0.85rem; color: #475569; line-height: 1.6; text-align: left;">
     <strong style="color: #1e293b; display: block; margin-bottom: 0.5rem;">Figure: Effective Sequence Length.</strong> 
-    Normalized effective sequence length for a NIAH-1 sample at sequence length 16K. SWA stores each token in exactly one slot (FIFO). Phoenix shows the hidden state $S_t$ for layer 1, head 1 (256 slots, Top$_{32}$). SSM stores each token in all slots with decay. Slots are reordered by usage frequency; results correspond to 400M parameter models.
+    Normalized effective sequence length for a NIAH-1 sample at sequence length 16K. SWA stores each token in exactly one slot (FIFO). Raven shows the hidden state $S_t$ for layer 1, head 1 (256 slots, Top$_{32}$). SSM stores each token in all slots with decay. Slots are reordered by usage frequency; results correspond to 400M parameter models.
   </div>
 </div>
 
-In a standard SSM, every slot receives every token, so the effective sequence length of each slot is $T$. In SWA, each slot receives exactly $\frac{T}{M}$ tokens, yielding uniform allocation across slots. In Phoenix, routing produces a more heterogeneous pattern: some slots receive many tokens, while others receive only a small subset, including rare retrieval-critical tokens. As a result, different slots operate over different effective sequence lengths, which may help explain Phoenix’s improved length generalization.
+In a standard SSM, every slot receives every token, so the effective sequence length of each slot is $T$. In SWA, each slot receives exactly $\frac{T}{M}$ tokens, yielding uniform allocation across slots. In Raven, routing produces a more heterogeneous pattern: some slots receive many tokens, while others receive only a small subset, including rare retrieval-critical tokens. As a result, different slots operate over different effective sequence lengths, which may help explain Raven’s improved length generalization.
 
-To make this concrete, we visualize Phoenix’s hidden state on a synthetic NIAH task:
+To make this concrete, we visualize Raven’s hidden state on a synthetic NIAH task:
 
 <div style="margin: 1.5rem auto; display: flex; flex-direction: column; gap: 0.4rem; align-items: center; max-width: 100%;">
   <div style="width: 100%;">
     <iframe
-      id="phoenix-memory-dynamics"
-      src="{{ '/assets/html/phoenix_memory_dynamics.html' | relative_url }}?v=8"
-      title="Phoenix Memory Dynamics — interactive slot allocation visualization"
+      id="raven-memory-dynamics"
+      src="{{ '/assets/html/raven_memory_dynamics.html' | relative_url }}?v=8"
+      title="Raven Memory Dynamics — interactive slot allocation visualization"
       loading="lazy"
       scrolling="no"
       tabindex="-1"
@@ -286,13 +287,13 @@ To make this concrete, we visualize Phoenix’s hidden state on a synthetic NIAH
     ></iframe>
   </div>
   <div style="width: 100%; font-size: 0.85rem; color: #475569; line-height: 1.8; text-align: left;">
-    <strong style="color: #1e293b; display: block; margin-bottom: 0.4rem;">Figure: Phoenix Memory Dynamics &mdash; Layer 23, Head 4.</strong>
-    The box is Phoenix's recurrent memory: 512 slots arranged left-to-right, each displayed as a vertical line. The memory starts completely empty (gray) and fills token by token as the prompt is processed.
+    <strong style="color: #1e293b; display: block; margin-bottom: 0.4rem;">Figure: Raven Memory Dynamics &mdash; Layer 23, Head 4.</strong>
+    The box is Raven's recurrent memory: 512 slots arranged left-to-right, each displayed as a vertical line. The memory starts completely empty (gray) and fills token by token as the prompt is processed.
     <span style="color:#dc1010; font-weight:600;">&#9646; Red slots</span> are claimed by the passkey tokens (<em>RecallSSM1378</em>) — the router directs them into a dedicated region and keeps them there.
     <span style="color:#1a8fe0; font-weight:600;">&#9646; Blue slots</span> receive both passkey and context writes and act as shared memory.
     <span style="color:#12b554; font-weight:600;">&#9646; Green slots</span> absorb the surrounding context tokens only.
     Brightness grows each time a slot is revisited — darker means written once, fully saturated means written many times.
-    When <strong>Phoenix:</strong> begins generating the answer, it reads from the red region and the retrieval slots brighten further, showing the model recovering exactly what it stored.
+    When <strong>Raven:</strong> begins generating the answer, it reads from the red region and the retrieval slots brighten further, showing the model recovering exactly what it stored.
   </div>
 </div>
 
@@ -302,7 +303,7 @@ This is what **"organizing memory like a closet"** looks like from the inside.
 
 ## Final Notes and Future
 
-Phoenix began from a simple goal: improving recall in linear models. More broadly, it suggests that learned memory can benefit from structured, content-based allocation rather than uniform updates across slots. In Phoenix, a relatively simple routing mechanism is enough to improve recall while remaining competitive on language modeling, with the additional benefit of strong length generalization.
+Raven began from a simple goal: improving recall in linear models. More broadly, it suggests that learned memory can benefit from structured, content-based allocation rather than uniform updates across slots. In Raven, a relatively simple routing mechanism is enough to improve recall while remaining competitive on language modeling, with the additional benefit of strong length generalization.
 
 There is plenty left to explore. How far can the length generalization be pushed? Can the routing mechanism be made even more expressive? What happens at truly large scales? We don't have all the answers yet — but we're working on it.
 
@@ -316,7 +317,7 @@ There is plenty left to explore. How far can the length generalization be pushed
 
 <script>
   (() => {
-    const iframe = document.getElementById('phoenix-recurrent-matrix-update');
+    const iframe = document.getElementById('raven-recurrent-matrix-update');
     if (!iframe) return;
 
     const resizeIframe = () => {

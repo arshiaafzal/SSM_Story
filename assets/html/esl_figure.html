@@ -154,8 +154,8 @@
                     <!-- Chart 1: SSM -->
                     <div class="chart-wrapper" id="chart-ssm"></div>
 
-                    <!-- Chart 2: Phoenix (RSM) -->
-                    <div class="chart-wrapper" id="chart-phoenix"></div>
+                    <!-- Chart 2: Raven (RSM) -->
+                    <div class="chart-wrapper" id="chart-raven"></div>
 
                     <!-- Chart 3: SWA -->
                     <div class="chart-wrapper" id="chart-swa"></div>
@@ -170,7 +170,7 @@
                         SSM
                     </div>
                     <div class="legend-item font-bold italic text-blue-700 tracking-wide text-xs md:text-sm">
-                        Phoenix (RSM)
+                        Raven (RSM)
                     </div>
                     <div class="legend-item font-bold text-rose-700 tracking-wide text-xs md:text-sm">
                         SWA
@@ -209,7 +209,7 @@
             // Using userSpaceOnUse ensures the gradient stretches across the entire chart 
             svg += `
                 <defs>
-                    <linearGradient id="phoenix-gradient" gradientUnits="userSpaceOnUse" x1="${gradX1}" y1="0" x2="${gradX2}" y2="0">
+                    <linearGradient id="raven-gradient" gradientUnits="userSpaceOnUse" x1="${gradX1}" y1="0" x2="${gradX2}" y2="0">
                         <stop offset="0%" stop-color="#4ade80" />   <!-- Match SSM Green -->
                         <stop offset="45%" stop-color="#3b82f6" />  <!-- Vibrant Blue -->
                         <stop offset="85%" stop-color="#fb7185" />  <!-- Match SWA Red -->
@@ -264,8 +264,8 @@
             document.getElementById('chart-ssm').innerHTML = closeChart(svg);
         }
 
-        // --- Generate Chart 2: Phoenix ---
-        function renderPhoenix() {
+        // --- Generate Chart 2: Raven ---
+        function renderRaven() {
             let svg = createBaseChart(Y_TICKS_STD, 1.0);
             
             const numBars = 128;
@@ -273,7 +273,7 @@
             let pathData = `M ${scaleX(0)} ${scaleY(0.85)}`;
 
             // Generate "stepped/noisy" exponential decay bars
-            let barsSvg = `<g fill="url(#phoenix-gradient)">`;
+            let barsSvg = `<g fill="url(#raven-gradient)">`;
             for (let i = 0; i < numBars; i++) {
                 // Base exponential decay + a small baseline so the tail remains visible
                 let val = 0.82 * Math.exp(-i / 32) + 0.03;
@@ -297,9 +297,9 @@
             svg += barsSvg;
 
             // Overlay the smooth trend line using the SAME gradient so it turns red at the end
-            svg += `<path d="${pathData}" fill="none" stroke="url(#phoenix-gradient)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />`;
+            svg += `<path d="${pathData}" fill="none" stroke="url(#raven-gradient)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />`;
 
-            document.getElementById('chart-phoenix').innerHTML = closeChart(svg);
+            document.getElementById('chart-raven').innerHTML = closeChart(svg);
         }
 
         // --- Generate Chart 3: SWA ---
@@ -323,7 +323,7 @@
         // Initialize all charts
         window.onload = () => {
             renderSSM();
-            renderPhoenix();
+            renderRaven();
             renderSWA();
         };
     </script>

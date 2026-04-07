@@ -1,6 +1,6 @@
 ---
 layout: distill
-title: Phoenix (Part-1)
+title: Raven (Part-1)
 description: Memory as a set of Slots
 tags:
 giscus_comments: false
@@ -45,7 +45,7 @@ toc:
 ---
 
 <div style="background:#f8f9fa; border-left:3px solid #adb5bd; padding:0.6rem 1rem; margin-bottom:1.5rem; border-radius:0 4px 4px 0; font-size:0.9rem;">
-  <strong>Phoenix Series</strong> &nbsp;—&nbsp;
+  <strong>Raven Series</strong> &nbsp;—&nbsp;
   <strong>Part 1: Memory as a set of Slots</strong> &nbsp;|&nbsp;
   <a href="{{ '/2025/lion-part2-theory/' | relative_url }}">Part 2: Architecture and Results →</a>
 </div>
@@ -152,9 +152,9 @@ A dense router ($r_t = \mathbf{1}$) gives you an SSM—every token hits every sh
 
 The question then became concrete: Can we train a model to learn, purely from data, which shelf each token belongs on—and keep it there?
 
-Our answer is **Phoenix**. By using a **learned sparse router**, Phoenix treats its hidden state like a Mixture-of-Experts  <d-cite key="moe"></d-cite> for memory. Much like an organized closet, it can tuck a needle into a dedicated "retrieval shelf" and leave it undisturbed by the thousands of "filler" tokens flowing through other slots.
+Our answer is **Raven**. By using a **learned sparse router**, Raven treats its hidden state like a Mixture-of-Experts  <d-cite key="moe"></d-cite> for memory. Much like an organized closet, it can tuck a needle into a dedicated "retrieval shelf" and leave it undisturbed by the thousands of "filler" tokens flowing through other slots.
 
-In **Part 2**, we’ll move from theory to practice: we'll look at the specific architecture of the Phoenix block, the "counterintuitive" design decisions that made it work, and how this organized memory allows it to recall information $16\times$ beyond its training length.
+In **Part 2**, we’ll move from theory to practice: we'll look at the specific architecture of the Raven block, the "counterintuitive" design decisions that made it work, and how this organized memory allows it to recall information $16\times$ beyond its training length.
 
 
 {% comment %}
@@ -301,8 +301,8 @@ For every token, only the content of the selected slots gets decayed — exactly
     Visualization of three different sequence mixers using Routing Slot Memories, with different router choices.
     <strong>(a)</strong> SWA memory allocation uses a first-in-first-out strategy with a one-hot vector $\mathbf{e}_t$ as the router.
     <strong>(b)</strong> SSM memory allocation projects each token into all memory slots using a dense, all-ones router $\mathbf{1}_M$.
-    <strong>(c)</strong> Phoenix memory allocation uses a selective router for writes.
-    The visualization shows a sequence of $T=6$ tokens and $M=4$ memory slots for the hidden state $\mathbf{S}_t$, with $\mathrm{Top}_K = 1$ for the Phoenix router.
+    <strong>(c)</strong> Raven memory allocation uses a selective router for writes.
+    The visualization shows a sequence of $T=6$ tokens and $M=4$ memory slots for the hidden state $\mathbf{S}_t$, with $\mathrm{Top}_K = 1$ for the Raven router.
   </figcaption>
 </figure> -->
 
@@ -310,11 +310,11 @@ For every token, only the content of the selected slots gets decayed — exactly
 
 > Can we train a model that learns, purely from data, *which shelf each token belongs on* — and then keeps it there?
 
-Our answer to that is **Phoenix** — a model with a **learned sparse router $r_t$**, trained end-to-end, to route tokens to memory slots based on content. This is somewhat similar to **Mixture-of-Experts (MoE)** <d-cite key="moe"></d-cite> , with the slots act as specialized experts: a slot that learns to hold passkeys keeps holding passkeys, undisturbed by the stream of ordinary text flowing through the other shelves.
+Our answer to that is **Raven** — a model with a **learned sparse router $r_t$**, trained end-to-end, to route tokens to memory slots based on content. This is somewhat similar to **Mixture-of-Experts (MoE)** <d-cite key="moe"></d-cite> , with the slots act as specialized experts: a slot that learns to hold passkeys keeps holding passkeys, undisturbed by the stream of ordinary text flowing through the other shelves.
 
-This is why Phoenix can store a passkey once and retrieve it 32,000 tokens later. Not because the memory is larger — but because it's organized.
+This is why Raven can store a passkey once and retrieve it 32,000 tokens later. Not because the memory is larger — but because it's organized.
 
-In Part 2, we'll walk through how we actually built Phoenix from this framework, the design decisions that surprised us along the way, and what happened when we finally ran the experiments. -->
+In Part 2, we'll walk through how we actually built Raven from this framework, the design decisions that surprised us along the way, and what happened when we finally ran the experiments. -->
 <!-- ---------------- -->
 {% endcomment %}
 
