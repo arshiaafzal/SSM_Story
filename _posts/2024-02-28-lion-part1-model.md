@@ -4,7 +4,7 @@ title: Raven (Part-1)
 description: Memory as a set of Slots
 tags:
 giscus_comments: false
-date: 2025-08-29
+date: 2026-04-08
 featured: false
 thumbnail: assets/img/best.png
 
@@ -137,7 +137,7 @@ By making $r_t$ sparse, the RSM treats the state as a collection of independent 
 - **The Persistence Term:** If the router does not select a slot ($r_t = 0$), that memory remains mathematically identical to the previous step. It is "shielded."
 - **The Update Term:** Only the "active" slots undergo the decay ($D_t, A_t$) and write ($U_t$) process.
 
-By simply changing the behavior of the router $r_t$, this single equation recovers the entire landscape of current sequence models:x
+By simply changing the behavior of the router $r_t$, this single equation recovers the entire landscape of current sequence models:
 
 <div style="margin: 1.5rem auto 1rem; display: flex; justify-content: center; width: 100%; overflow-x: auto;">
   <iframe
