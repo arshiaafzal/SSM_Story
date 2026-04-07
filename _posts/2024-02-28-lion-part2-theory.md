@@ -277,13 +277,13 @@ To make this concrete, we visualize Raven’s hidden state on a synthetic NIAH t
   <div style="width: 100%;">
     <iframe
       id="raven-memory-dynamics"
-      src="{{ '/assets/html/raven_memory_dynamics.html' | relative_url }}?v=8"
+      src="{{ '/assets/html/raven_memory_dynamics.html' | relative_url }}?v=12"
       title="Raven Memory Dynamics — interactive slot allocation visualization"
       loading="lazy"
       scrolling="no"
       tabindex="-1"
-      style="display: block; width: 100%; height: 700px; border: 0; background: transparent;"
-      onload="(function(f){try{const d=f.contentWindow.document;const r=function(){f.style.height='0px';const h=Math.max(d.body?d.body.scrollHeight:0,d.documentElement?d.documentElement.scrollHeight:0);f.style.height=(h+4)+'px';};r();setTimeout(r,150);setTimeout(r,600);}catch(e){}})(this)"
+      style="display: block; width: 100%; height: 220px; border: 0; background: transparent;"
+      onload="(function(f){try{const minH=220,maxH=520;f.style.height=minH+'px';const r=function(){const d=f.contentWindow&&f.contentWindow.document;if(!d)return;const h=Math.max(d.body?d.body.scrollHeight:0,d.documentElement?d.documentElement.scrollHeight:0);if(h>0){const target=Math.min(maxH,Math.max(minH,h+4));f.style.height=target+'px';}};r();[80,220,500,900,1400].forEach(function(ms){setTimeout(r,ms);});}catch(e){}})(this)"
     ></iframe>
   </div>
   <div style="width: 100%; font-size: 0.85rem; color: #475569; line-height: 1.8; text-align: left;">
