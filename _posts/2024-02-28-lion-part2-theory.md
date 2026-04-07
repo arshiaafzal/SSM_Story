@@ -4,7 +4,7 @@ title: Raven (Part-2)
 description: Architecture and Results
 tags:
 giscus_comments: false
-date: 2026-04-08
+date: 2025-08-29
 featured: false
 thumbnail: assets/img/best.png
 

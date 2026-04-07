@@ -4,7 +4,7 @@ title: Raven (Part-1)
 description: Memory as a set of Slots
 tags:
 giscus_comments: false
-date: 2026-04-08
+date: 2025-08-29
 featured: false
 thumbnail: assets/img/best.png
 
