@@ -38,15 +38,26 @@ ninja.data = [{
           window.location.href = "/SSM_Story/2025/lion-part3-chunk/";
         
       },
-    },{id: "post-phoenix-part-1",
+    },{id: "post-raven-part-2",
       
-        title: "Phoenix (Part-1)",
+        title: "Raven (Part-2)",
+      
+      description: "Architecture and Results",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/SSM_Story/2025/lion-part2-theory/";
+        
+      },
+    },{id: "post-raven-part-1",
+      
+        title: "Raven (Part-1)",
       
       description: "Memory as a set of Slots",
       section: "Posts",
       handler: () => {
         
-          window.location.href = "/SSM_Story/2025/lion-part1-model_old/";
+          window.location.href = "/SSM_Story/2025/lion-part1-model/";
         
       },
     },{id: "news-a-simple-inline-announcement",
