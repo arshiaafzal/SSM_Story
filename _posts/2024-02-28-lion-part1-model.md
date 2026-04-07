@@ -122,7 +122,7 @@ SWA is precise about where it writes: it updates exactly one slot ($e_t$). But i
 
 SSMs and SWA fail in complementary ways. SSMs update memory too diffusely; SWA updates memory too rigidly.
 
-Bridging the recall gap requires a mechanism that can do both: treat subsets of the hidden state as independent slots, and decide which ones should be updated versus preserved. This dual requirement—routing and decay—is the foundation of the framework.
+Bridging the recall gap requires a mechanism that can do both: treat subsets of the hidden state as independent slots, and decide which ones should be updated versus preserved. This dual requirement—routing and decay—is the foundation of our framework.
 
 ## Routing Slot Memories (RSM)
 
