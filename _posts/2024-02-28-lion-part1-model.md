@@ -35,12 +35,12 @@ bibliography: arshia.bib
 
 toc:
   - name: The Recall Gap
-  - name: Organize your memory like your closet 👕
+  - name: From Global States to Partitioned Slots 👕
     subsections:
-      - name: SSMs' closet is a pile of clothes
-      - name: SWA's closet throws out the old clothes
-      - name: The Missing Piece
-  - name: Routing Slot Memories
+      - name: SSMs write blindly and decay uniformly
+      - name: SWA writes precisely but forcefuly evicts
+      - name: The Dual Requirement
+  - name: Routing Slot Memories (RSM)
 
 ---
 
