@@ -38,7 +38,7 @@ toc:
   - name: From Global States to Partitioned Slots 👕
     subsections:
       - name: SSMs write blindly and decay uniformly
-      - name: SWA writes precisely but forcefuly evicts
+      - name: SWA writes precisely but forcefully evicts
       - name: The Dual Requirement
   - name: Routing Slot Memories (RSM)
 
@@ -51,7 +51,7 @@ toc:
 </div>
 
 ## The Recall Gap
-Mamba <d-cite key="mamba"></d-cite> showed that attention <d-cite key="attention"></d-cite> is not strictly necessary for strong sequence modeling. A simple recurrent model could match, and sometimes outperform, Transformers on language modeling at a fraction of the cost. But there is no free lunch.
+Mamba <d-cite key="mamba"></d-cite> showed that attention <d-cite key="attention"></d-cite> is not strictly necessary for strong language modeling. A simple recurrent model could match, and sometimes outperform, Transformers on language modeling at a fraction of the cost. But there is no free lunch.
 Soon after, several works exposed a critical limitation: fixed-size memory models struggle on recall benchmarks, which is not surprising, since they have only a finite amount of room to store information. 
 While it’s tempting to blame their finite capacity, the reality is more nuanced.
 
@@ -99,7 +99,7 @@ In the diagonal case ($A_t=\text{diag}(a_t)$), the update simplifies to $S_t = S
   ></iframe>
 </div>
 
-### SWA writes precisely but forcefuly evicts
+### SWA writes precisely but forcefully evicts
 
 Sliding window attention (SWA) takes the opposite approach. It maintains a fixed cache and, at each step, $\color{red}{\text{drops}}$ the oldest token to $\color{green}{\text{append}}$ the newest one. Written as a matrix update using a one-hot selector $e_t$:
 
@@ -137,7 +137,7 @@ By making $r_t$ sparse, the RSM treats the state as a collection of independent 
 - **The Persistence Term:** If the router does not select a slot ($r_t = 0$), that memory remains mathematically identical to the previous step. It is "shielded."
 - **The Update Term:** Only the "active" slots undergo the decay ($D_t, A_t$) and write ($U_t$) process.
 
-By simply changing the behavior of the router $r_t$, this single equation recovers the entire landscape of current sequence models:
+By simply changing the behavior of the router $r_t$, this single equation provides a unified view of several prominent sequence model families: 
 
 <div style="margin: 1.5rem auto 1rem; display: flex; justify-content: center; width: 100%; overflow-x: auto;">
   <iframe
