@@ -232,7 +232,7 @@ We also experimented with a hybrid variant — interleaving Raven RSM layers wit
   </div>
 </div>
 
-In the 800M hybrid setting, Raven is the best model for in-context recall and length extrapolation — while GDN and SWA+RoPE drop to 0% accuracy beyond their training length, Raven retains around 80% accuracy on NIAH-2 at 64K tokens, which is 16× its training sequence length.
+In the 800M hybrid setting, Raven is the best model for in-context recall and length extrapolation — while GDN and SWA+RoPE drop to **0%** accuracy beyond their training length, Raven retains around **80%** accuracy on NIAH-2 at 64K tokens, which is **16×** its training sequence length.
 
 <div style="margin: 1.5rem -8% 0; width: 116%;">
   <iframe
