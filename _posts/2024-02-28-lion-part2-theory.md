@@ -9,7 +9,7 @@ featured: false
 thumbnail: assets/img/best.png
 
 authors:
-  - name: Arshia Afzal$^*$ (Bloggin 🎙️)
+  - name: Arshia Afzal$^*$ 🎙️
     url:
     affiliations:
       name: EPFL
@@ -103,18 +103,6 @@ $$
 </div>
 
 Here, $\alpha$ controls the effective write scale, similarly to the role of temperature-like scaling in GLA <d-cite key="gla"></d-cite>, we used $\alpha=1$ for 400M model size and $\alpha=4$ for 800M model size.
-
-
-<div style="margin: 1.5rem auto 1rem; display: flex; justify-content: center; width: 100%;">
-  <iframe
-    id="raven-recurrent-matrix-update"
-    src="{{ '/assets/html/raven_recurrent_matrix_update.html' | relative_url }}"
-    title="Raven recurrent matrix update visualization"
-    loading="lazy"
-    scrolling="no"
-    style="display: block; width: 70%; max-width: 1400px; height: 0; border: 0; border-radius: 0rem; background: transparent; overflow: hidden;"
-  ></iframe>
-</div>
 
 ## Design Decisions
 
@@ -315,36 +303,3 @@ There is plenty left to explore. How far can the length generalization be pushed
 
 
 
-<script>
-  (() => {
-    const iframe = document.getElementById('raven-recurrent-matrix-update');
-    if (!iframe) return;
-
-    const resizeIframe = () => {
-      try {
-        const doc = iframe.contentDocument || iframe.contentWindow?.document;
-        if (!doc || !doc.body || !doc.documentElement) return;
-
-        const height = Math.max(
-          doc.body.scrollHeight,
-          doc.documentElement.scrollHeight,
-          doc.body.offsetHeight,
-          doc.documentElement.offsetHeight
-        );
-
-        iframe.style.height = `${height}px`;
-      } catch (error) {
-        // Ignore cross-document timing issues during initial load.
-      }
-    };
-
-    iframe.addEventListener('load', () => {
-      resizeIframe();
-      window.setTimeout(resizeIframe, 0);
-      window.setTimeout(resizeIframe, 250);
-      window.setTimeout(resizeIframe, 1000);
-    });
-
-    window.addEventListener('resize', resizeIframe);
-  })();
-</script>

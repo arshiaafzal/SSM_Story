@@ -13,7 +13,7 @@ authors:
     url:
     affiliations:
       name: EPFL
-  - name: Aviv Bick$^*$ (Bloggin 🎙️)
+  - name: Aviv Bick$^*$ 🎙️
     url:
     affiliations:
       name: CMU
@@ -49,6 +49,10 @@ toc:
   <strong>Part 1: Memory as a set of Slots</strong> &nbsp;|&nbsp;
   <a href="{{ '/2025/lion-part2-theory/' | relative_url }}">Part 2: Architecture and Results →</a>
 </div>
+
+{% include figure.liquid loading="eager" path="assets/img/raven_walnut.png" title="Mischievous raven and walnut treasure" width="55%" class="rounded mx-auto d-block" %}
+
+🐦‍⬛ Ravens are among the most intelligent birds known — famous for caching food across hundreds of locations and retrieving each item with remarkable precision. Because our model learns to store critical information in dedicated memory slots and retrieve it exactly when needed, we named it **Raven**.
 
 ## The Recall Gap
 Mamba <d-cite key="mamba"></d-cite> showed that attention <d-cite key="attention"></d-cite> is not strictly necessary for strong language modeling. A simple recurrent model could match, and sometimes outperform, Transformers on language modeling at a fraction of the cost. But there is no free lunch.
@@ -156,10 +160,55 @@ The question then becomes concrete: can a model learn, purely from data, which s
 
 Our answer is **Raven**. By using a **learned sparse router**, Raven treats its hidden state like a Mixture-of-Experts <d-cite key="moe"></d-cite> for memory. It can place critical information into dedicated slots and avoid corrupting those slots with irrelevant filler tokens.
 
+<div style="margin: 1.5rem auto 1rem; display: flex; justify-content: center; width: 100%;">
+  <iframe
+    id="raven-recurrent-matrix-update"
+    src="{{ '/assets/html/raven_recurrent_matrix_update.html' | relative_url }}"
+    title="Raven recurrent matrix update visualization"
+    loading="lazy"
+    scrolling="no"
+    style="display: block; width: 70%; max-width: 1400px; height: 0; border: 0; border-radius: 0rem; background: transparent; overflow: hidden;"
+  ></iframe>
+</div>
+
 In **Part 2**, we’ll move from theory to practice: we'll look at the specific architecture of the Raven block, the "counterintuitive" design decisions that made it work, and how this organized memory allows it to recall information $16\times$ beyond its training length.
 
 
 
+
+<script>
+  (() => {
+    const iframe = document.getElementById('raven-recurrent-matrix-update');
+    if (!iframe) return;
+
+    const resizeIframe = () => {
+      try {
+        const doc = iframe.contentDocument || iframe.contentWindow?.document;
+        if (!doc || !doc.body || !doc.documentElement) return;
+
+        const height = Math.max(
+          doc.body.scrollHeight,
+          doc.documentElement.scrollHeight,
+          doc.body.offsetHeight,
+          doc.documentElement.offsetHeight
+        );
+
+        iframe.style.height = `${height}px`;
+      } catch (error) {
+        // Ignore cross-document timing issues during initial load.
+      }
+    };
+
+    iframe.addEventListener('load', () => {
+      resizeIframe();
+      window.setTimeout(resizeIframe, 0);
+      window.setTimeout(resizeIframe, 250);
+      window.setTimeout(resizeIframe, 1000);
+    });
+
+    window.addEventListener('resize', resizeIframe);
+  })();
+</script>
 
 <script>
   (() => {
