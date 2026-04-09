@@ -227,9 +227,23 @@ We also experimented with a hybrid variant — interleaving Raven RSM layers wit
     ></iframe>
   </div>
   <div style="width: 100%; font-size: 0.85rem; color: #475569; line-height: 1.6; text-align: left;">
-    <strong style="color: #1e293b; display: block; margin-bottom: 0.5rem;">Table 4: Hybrid Models Retrieval Ability.</strong> 
+    <strong style="color: #1e293b; display: block; margin-bottom: 0.5rem;">Table 4: Hybrid Models Retrieval Ability.</strong>
     Recall ability of hybrid-raven vs other hybrid architechtures.
   </div>
+</div>
+
+In the 800M hybrid setting, Raven is the best model for in-context recall and length extrapolation — while GDN and SWA+RoPE drop to 0% accuracy beyond their training length, Raven retains around 80% accuracy on NIAH-2 at 64K tokens, which is 16× its training sequence length.
+
+<div style="margin: 1.5rem -8% 0; width: 116%;">
+  <iframe
+    id="niah-hybrid-plot"
+    src="{{ '/assets/html/niah_hybrid_plot.html' | relative_url }}"
+    title="NIAH-2 and NIAH-3 hybrid accuracy interactive plot"
+    loading="lazy"
+    scrolling="no"
+    style="display: block; width: 100%; height: 490px; border: 0; border-radius: 0.5rem; background: transparent;"
+    onload="(function(f){try{var d=f.contentWindow.document;var r=function(){f.style.height='0px';var h=Math.max(d.body?d.body.scrollHeight:0,d.documentElement?d.documentElement.scrollHeight:0);f.style.height=(h+4)+'px';};r();setTimeout(r,150);setTimeout(r,600);}catch(e){}})(this)"
+  ></iframe>
 </div>
 
 <!-- ## A Pleasant Surprise 
