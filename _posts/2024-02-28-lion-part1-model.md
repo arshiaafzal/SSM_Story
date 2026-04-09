@@ -52,7 +52,7 @@ toc:
 
 {% include figure.liquid loading="eager" path="assets/img/raven_walnut.png" title="Mischievous raven and walnut treasure" width="55%" class="rounded mx-auto d-block" %}
 
-🐦‍⬛ Ravens are among the most intelligent birds known — famous for caching food across hundreds of locations and retrieving each item with remarkable precision. Because our model learns to store critical information in dedicated memory slots and retrieve it exactly when needed, we named it **Raven**.
+🐦‍⬛ Ravens are among the most intelligent birds known — famous for caching food across hundreds of locations and retrieving each item with remarkable precision. Just like our new model, which stores information selectively and can retrieve it cleanly when needed!
 
 ## The Recall Gap
 Mamba <d-cite key="mamba"></d-cite> showed that attention <d-cite key="attention"></d-cite> is not strictly necessary for strong language modeling. A simple recurrent model could match, and sometimes outperform, Transformers on language modeling at a fraction of the cost. But there is no free lunch.
