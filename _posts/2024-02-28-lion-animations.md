@@ -17,96 +17,107 @@ authors:
 bibliography: 2018-12-22-distill.bib
 ---
 
-### SSM — Dense Update
+<style>
+.anim-row {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+}
+.anim-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #475569;
+  white-space: nowrap;
+  padding: 0 6px;
+  flex-shrink: 0;
+}
+.anim-row iframe {
+  display: block;
+  flex: 1;
+  height: 0;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+</style>
 
-<div style="margin: 1.5rem auto 1rem; display: flex; justify-content: center; width: 100%;">
-  <iframe
-    id="ssm-anim"
-    src="{{ '/assets/html/ssm_recurrent_matrix_update.html' | relative_url }}"
-    title="SSM recurrent matrix update"
-    loading="lazy"
-    scrolling="no"
-    style="display: block; width: 70%; max-width: 1400px; height: 0; border: 0; background: transparent; overflow: hidden;"
-  ></iframe>
+<div style="margin:0; padding:0; display:flex; flex-direction:column; gap:0;">
+
+  <iframe id="ssm-anim"   src="{{ '/assets/html/ssm_recurrent_matrix_update.html' | relative_url }}"   scrolling="no" style="display:block;width:100%;height:0;border:0;margin:0;padding:0;overflow:hidden;"></iframe>
+  <iframe id="swa-anim"   src="{{ '/assets/html/swa_recurrent_matrix_update.html' | relative_url }}"   scrolling="no" style="display:block;width:100%;height:0;border:0;margin:0;padding:0;overflow:hidden;"></iframe>
+  <iframe id="raven-anim" src="{{ '/assets/html/raven_recurrent_matrix_update.html' | relative_url }}" scrolling="no" style="display:block;width:100%;height:0;border:0;margin:0;padding:0;overflow:hidden;"></iframe>
+
+</div>
+
+<div style="margin:1.5rem 0 0; padding:0;">
+  <iframe id="cmp-anim" src="{{ '/assets/html/comparison_matrix_update.html' | relative_url }}" scrolling="no" style="display:block;width:100%;height:0;border:0;margin:0;padding:0;overflow:hidden;"></iframe>
 </div>
 
 <script>
-  (() => {
-    const iframe = document.getElementById('ssm-anim');
-    if (!iframe) return;
+  // ── Auto-resize all iframes ──────────────────────────────────────
+  ['ssm-anim','swa-anim','raven-anim','cmp-anim'].forEach(id => {
+    const f = document.getElementById(id);
+    if (!f) return;
     const resize = () => {
       try {
-        const doc = iframe.contentDocument || iframe.contentWindow?.document;
+        const doc = f.contentDocument || f.contentWindow?.document;
         if (!doc || !doc.body) return;
-        const h = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight);
-        iframe.style.height = `${h}px`;
+        f.style.height = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight) + 'px';
       } catch(e) {}
     };
-    iframe.addEventListener('load', () => { resize(); setTimeout(resize,250); setTimeout(resize,1000); });
+    f.addEventListener('load', () => { resize(); setTimeout(resize,250); setTimeout(resize,1000); });
     window.addEventListener('resize', resize);
-  })();
-</script>
+  });
 
----
+  // ── Sync conductor for SSM / SWA / Raven ────────────────────────
+  // Each iframe pauses at its move point waiting for 'sync-move'.
+  // The parent sends 'sync-play' then fires 'sync-move' at exactly
+  // MOVE_DELAY ms later — guaranteeing all three move simultaneously.
+  const SYNC_IDS  = ['ssm-anim','swa-anim','raven-anim'];
+  const SYNC_SRCS = new Set(['ssm','swa','raven']);
+  const MOVE_DELAY = 1500; // ms after sync-play when move fires
 
-### SWA — Sliding Window
+  const readySet = new Set();
+  const doneSet  = new Set();
+  let syncStarted = false;
 
-<div style="margin: 1.5rem auto 1rem; display: flex; justify-content: center; width: 100%;">
-  <iframe
-    id="swa-anim"
-    src="{{ '/assets/html/swa_recurrent_matrix_update.html' | relative_url }}"
-    title="SWA recurrent matrix update"
-    loading="lazy"
-    scrolling="no"
-    style="display: block; width: 70%; max-width: 1400px; height: 0; border: 0; background: transparent; overflow: hidden;"
-  ></iframe>
-</div>
+  function sendToAll(msg) {
+    SYNC_IDS.forEach(id => {
+      const f = document.getElementById(id);
+      if (f && f.contentWindow) f.contentWindow.postMessage(msg, '*');
+    });
+  }
 
-<script>
-  (() => {
-    const iframe = document.getElementById('swa-anim');
-    if (!iframe) return;
-    const resize = () => {
-      try {
-        const doc = iframe.contentDocument || iframe.contentWindow?.document;
-        if (!doc || !doc.body) return;
-        const h = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight);
-        iframe.style.height = `${h}px`;
-      } catch(e) {}
-    };
-    iframe.addEventListener('load', () => { resize(); setTimeout(resize,250); setTimeout(resize,1000); });
-    window.addEventListener('resize', resize);
-  })();
-</script>
+  function startCycle() {
+    sendToAll({type: 'sync-play'});
+    // Fire sync-move at the exact same moment for all three
+    setTimeout(() => sendToAll({type: 'sync-move'}), MOVE_DELAY);
+  }
 
----
+  window.addEventListener('message', e => {
+    if (!e.data || !SYNC_SRCS.has(e.data.src)) return;
 
-### Raven — Sparse Routing
+    if (e.data.type === 'cycle-ready') {
+      readySet.add(e.data.src);
+      if (readySet.size === 3 && !syncStarted) {
+        syncStarted = true;
+        setTimeout(startCycle, 400);
+      }
+    }
 
-<div style="margin: 1.5rem auto 1rem; display: flex; justify-content: center; width: 100%;">
-  <iframe
-    id="raven-anim"
-    src="{{ '/assets/html/raven_recurrent_matrix_update.html' | relative_url }}"
-    title="Raven recurrent matrix update"
-    loading="lazy"
-    scrolling="no"
-    style="display: block; width: 70%; max-width: 1400px; height: 0; border: 0; background: transparent; overflow: hidden;"
-  ></iframe>
-</div>
-
-<script>
-  (() => {
-    const iframe = document.getElementById('raven-anim');
-    if (!iframe) return;
-    const resize = () => {
-      try {
-        const doc = iframe.contentDocument || iframe.contentWindow?.document;
-        if (!doc || !doc.body) return;
-        const h = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight);
-        iframe.style.height = `${h}px`;
-      } catch(e) {}
-    };
-    iframe.addEventListener('load', () => { resize(); setTimeout(resize,250); setTimeout(resize,1000); });
-    window.addEventListener('resize', resize);
-  })();
+    if (e.data.type === 'cycle-done') {
+      doneSet.add(e.data.src);
+      if (doneSet.size === 3) {
+        doneSet.clear();
+        setTimeout(startCycle, 500);
+      }
+    }
+  });
 </script>
