@@ -4,6 +4,7 @@ title: "The Attention Zoo: Linear & Softmax Models Unified"
 description: An interactive guide to modern sequence models — explore architectures and recurrences across the linear-softmax landscape.
 tags: attention linear-attention SSM transformer
 giscus_comments: false
+
 date: 2026-04-06
 featured: true
 thumbnail: assets/img/attention-zoo/gla-custom.png
