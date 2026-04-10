@@ -386,11 +386,11 @@ function renderCard(m) {
   <div class="az-eq-row">
     <div class="az-eq-cell">
       <div class="az-eq-lbl">${eqLbl}</div>
-      <div class="az-eq-val">\(${m.mathR}\)</div>
+      <div class="az-eq-val">\\(${m.mathR}\\)</div>
     </div>
     <div class="az-eq-cell">
       <div class="az-eq-lbl">Readout</div>
-      <div class="az-eq-val">\(${m.mathO}\)</div>
+      <div class="az-eq-val">\\(${m.mathO}\\)</div>
     </div>
   </div>
 </div>`;
