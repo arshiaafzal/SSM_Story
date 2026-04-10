@@ -355,6 +355,23 @@ DATA.tokens.forEach((tok, i) => {
 
 // ── Render ──
 let step = 0;
+
+function syncFrameHeight(force) {
+  try {
+    if (playing && !force) return;
+    const frame = window.frameElement;
+    if (!frame) return;
+    const h = Math.ceil(Math.max(
+      document.body ? document.body.scrollHeight : 0,
+      document.documentElement ? document.documentElement.scrollHeight : 0
+    ));
+    if (h <= 0) return;
+
+    const current = Math.ceil(frame.getBoundingClientRect().height || parseFloat(frame.style.height) || 0);
+    if (Math.abs(h - current) > 1) frame.style.height = h + 'px';
+  } catch (_) {}
+}
+
 function render() {
   drawState(step);
 
@@ -378,8 +395,8 @@ function render() {
     else if (i < step)    el.className = 'tok' + (gen?' gen':'') + (n ? ' done-n' : ' done-c');
     else                  el.className = 'tok' + (gen?' gen':'');
   }
-  const ce = document.getElementById('tk'+step);
-  if (ce) ce.scrollIntoView({ block:'nearest', inline:'nearest', behavior:'smooth' });
+  // Avoid forcing scroll while animating; this iframe should never pull the parent viewport.
+  syncFrameHeight();
 }
 
 // ── Animation loop ──
@@ -415,6 +432,7 @@ function stopAnim() {
     playing = false;
     cancelAnimationFrame(animId);
     animId = null;
+    syncFrameHeight(true);
     document.getElementById('play-btn').textContent = '▶ Play';
   }
 }
@@ -425,6 +443,16 @@ document.getElementById('play-btn').addEventListener('click', function() {
 
 // Show first frame paused
 render();
+
+if (typeof ResizeObserver !== 'undefined') {
+  const ro = new ResizeObserver(syncFrameHeight);
+  if (document.body) ro.observe(document.body);
+}
+
+window.addEventListener('load', function() {
+  syncFrameHeight(true);
+  [100, 300, 700, 1200].forEach(function(ms) { setTimeout(function() { syncFrameHeight(true); }, ms); });
+});
 
 // ── Scroll forwarding: let the parent page scroll when the cursor is over this iframe ──
 // Both pages are same-origin so window.parent access is allowed.

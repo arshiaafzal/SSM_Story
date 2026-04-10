@@ -9,7 +9,7 @@ featured: false
 thumbnail: assets/img/best.png
 
 authors:
-  - name: Arshia Afzal$^*$ (Bloggin 🎙️)
+  - name: Arshia Afzal$^*$ 🎙️
     url:
     affiliations:
       name: EPFL
@@ -103,18 +103,6 @@ $$
 </div>
 
 Here, $\alpha$ controls the effective write scale, similarly to the role of temperature-like scaling in GLA <d-cite key="gla"></d-cite>, we used $\alpha=1$ for 400M model size and $\alpha=4$ for 800M model size.
-
-
-<div style="margin: 1.5rem auto 1rem; display: flex; justify-content: center; width: 100%;">
-  <iframe
-    id="raven-recurrent-matrix-update"
-    src="{{ '/assets/html/raven_recurrent_matrix_update.html' | relative_url }}"
-    title="Raven recurrent matrix update visualization"
-    loading="lazy"
-    scrolling="no"
-    style="display: block; width: 70%; max-width: 1400px; height: 0; border: 0; border-radius: 0rem; background: transparent; overflow: hidden;"
-  ></iframe>
-</div>
 
 ## Design Decisions
 
@@ -239,9 +227,23 @@ We also experimented with a hybrid variant — interleaving Raven RSM layers wit
     ></iframe>
   </div>
   <div style="width: 100%; font-size: 0.85rem; color: #475569; line-height: 1.6; text-align: left;">
-    <strong style="color: #1e293b; display: block; margin-bottom: 0.5rem;">Table 4: Hybrid Models Retrieval Ability.</strong> 
+    <strong style="color: #1e293b; display: block; margin-bottom: 0.5rem;">Table 4: Hybrid Models Retrieval Ability.</strong>
     Recall ability of hybrid-raven vs other hybrid architechtures.
   </div>
+</div>
+
+In the 800M hybrid setting, Raven is the best model for in-context recall and length extrapolation — while GDN and SWA+RoPE drop to **0%** accuracy beyond their training length, Raven retains around **80%** accuracy on NIAH-2 at 64K tokens, which is **16×** its training sequence length.
+
+<div style="margin: 1.5rem -8% 0; width: 116%;">
+  <iframe
+    id="niah-hybrid-plot"
+    src="{{ '/assets/html/niah_hybrid_plot.html' | relative_url }}"
+    title="NIAH-2 and NIAH-3 hybrid accuracy interactive plot"
+    loading="lazy"
+    scrolling="no"
+    style="display: block; width: 100%; height: 490px; border: 0; border-radius: 0.5rem; background: transparent;"
+    onload="(function(f){try{var d=f.contentWindow.document;var r=function(){f.style.height='0px';var h=Math.max(d.body?d.body.scrollHeight:0,d.documentElement?d.documentElement.scrollHeight:0);f.style.height=(h+4)+'px';};r();setTimeout(r,150);setTimeout(r,600);}catch(e){}})(this)"
+  ></iframe>
 </div>
 
 <!-- ## A Pleasant Surprise 
@@ -277,13 +279,13 @@ To make this concrete, we visualize Raven’s hidden state on a synthetic NIAH t
   <div style="width: 100%;">
     <iframe
       id="raven-memory-dynamics"
-      src="{{ '/assets/html/raven_memory_dynamics.html' | relative_url }}?v=8"
+      src="{{ '/assets/html/raven_memory_dynamics.html' | relative_url }}?v=12"
       title="Raven Memory Dynamics — interactive slot allocation visualization"
       loading="lazy"
       scrolling="no"
       tabindex="-1"
-      style="display: block; width: 100%; height: 700px; border: 0; background: transparent;"
-      onload="(function(f){try{const d=f.contentWindow.document;const r=function(){f.style.height='0px';const h=Math.max(d.body?d.body.scrollHeight:0,d.documentElement?d.documentElement.scrollHeight:0);f.style.height=(h+4)+'px';};r();setTimeout(r,150);setTimeout(r,600);}catch(e){}})(this)"
+      style="display: block; width: 100%; height: 220px; border: 0; background: transparent;"
+      onload="(function(f){try{const minH=220,maxH=520;f.style.height=minH+'px';const r=function(){const d=f.contentWindow&&f.contentWindow.document;if(!d)return;const h=Math.max(d.body?d.body.scrollHeight:0,d.documentElement?d.documentElement.scrollHeight:0);if(h>0){const target=Math.min(maxH,Math.max(minH,h+4));f.style.height=target+'px';}};r();[80,220,500,900,1400].forEach(function(ms){setTimeout(r,ms);});}catch(e){}})(this)"
     ></iframe>
   </div>
   <div style="width: 100%; font-size: 0.85rem; color: #475569; line-height: 1.8; text-align: left;">
@@ -315,36 +317,3 @@ There is plenty left to explore. How far can the length generalization be pushed
 
 
 
-<script>
-  (() => {
-    const iframe = document.getElementById('raven-recurrent-matrix-update');
-    if (!iframe) return;
-
-    const resizeIframe = () => {
-      try {
-        const doc = iframe.contentDocument || iframe.contentWindow?.document;
-        if (!doc || !doc.body || !doc.documentElement) return;
-
-        const height = Math.max(
-          doc.body.scrollHeight,
-          doc.documentElement.scrollHeight,
-          doc.body.offsetHeight,
-          doc.documentElement.offsetHeight
-        );
-
-        iframe.style.height = `${height}px`;
-      } catch (error) {
-        // Ignore cross-document timing issues during initial load.
-      }
-    };
-
-    iframe.addEventListener('load', () => {
-      resizeIframe();
-      window.setTimeout(resizeIframe, 0);
-      window.setTimeout(resizeIframe, 250);
-      window.setTimeout(resizeIframe, 1000);
-    });
-
-    window.addEventListener('resize', resizeIframe);
-  })();
-</script>
