@@ -16,7 +16,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/SSM_Story/https:/arshiaafzal.github.io/SSM_Story/";
           },
-        },{id: "post-story-of-linear-time-sequence-modeling",
+        },{id: "post-the-attention-zoo-linear-amp-softmax-models-unified",
+      
+        title: "The Attention Zoo: Linear &amp; Softmax Models Unified",
+      
+      description: "An interactive guide to modern sequence models — explore architectures and recurrences across the linear-softmax landscape.",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/SSM_Story/2026/attention-zoo/";
+        
+      },
+    },{id: "post-story-of-linear-time-sequence-modeling",
       
         title: "Story of Linear Time Sequence Modeling 📚",
       
@@ -58,6 +69,17 @@ ninja.data = [{
       handler: () => {
         
           window.location.href = "/SSM_Story/2025/lion-part1-model/";
+        
+      },
+    },{id: "post-memory-update-animations",
+      
+        title: "Memory Update Animations",
+      
+      description: "SSM, SWA, and Raven memory update animations",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/SSM_Story/2025/lion-animations/";
         
       },
     },{id: "news-a-simple-inline-announcement",
