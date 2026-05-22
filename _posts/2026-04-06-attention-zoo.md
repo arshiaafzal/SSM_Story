@@ -139,7 +139,7 @@ toc:
 /* Card body layout */
 .az-card-body {
   display: grid;
-  grid-template-columns: 44% 56%;
+  grid-template-columns: 60% 40%;
   min-height: 280px;
 }
 @media(max-width:680px){ .az-card-body{ grid-template-columns:1fr; } }
